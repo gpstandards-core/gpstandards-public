@@ -19,8 +19,8 @@
                         void: '#050505',
                         gunmetal: '#1A1A1A',
                         terminal: '#FFB000', // Amber
-                        signal: '#00F0FF',   // Blue
-                        risk: '#FF2A00',     // Red
+                        neon: '#39FF14',     // Neon Green
+                        risk: '#FF2A00',     // Risk Red
                     },
                     fontFamily: {
                         mono: ['"JetBrains Mono"', 'monospace'],
@@ -47,7 +47,7 @@
             height: 100px;
             z-index: 999;
             background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255, 176, 0, 0.03) 50%, rgba(0,0,0,0) 100%);
-            opacity: 0.1;
+            opacity: 0.05;
             position: fixed;
             bottom: 100%;
             animation: scanline 10s linear infinite;
@@ -68,12 +68,21 @@
         /* SCROLLBAR */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb { background: #1A1A1A; }
         ::-webkit-scrollbar-thumb:hover { background: #FFB000; }
         
         /* GLITCH HOVER */
         .hover-glitch:hover {
-            text-shadow: 2px 0 #FFB000, -2px 0 #00F0FF;
+            text-shadow: 2px 0 #FFB000, -2px 0 #39FF14;
+        }
+        
+        /* INPUT AUTOFILL HACK */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px #050505 inset !important;
+            -webkit-text-fill-color: white !important;
         }
     </style>
 </head>
@@ -101,10 +110,10 @@
         <div class="max-w-6xl mx-auto px-6 text-center mb-16">
             <h1 class="font-mono text-4xl md:text-6xl font-bold leading-tight text-white tracking-tighter mb-6">
                 WE DO NOT RENT INTELLIGENCE.<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-terminal to-white">WE BUILD SOVEREIGN INFRASTRUCTURE.</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">WE BUILD SOVEREIGN INFRASTRUCTURE.</span>
             </h1>
             <p class="font-sans text-gray-400 max-w-2xl mx-auto border-l-2 border-terminal pl-4 text-left md:text-center md:border-l-0">
-                Public AI models leak your data. We deploy air-gapped "Digital Workers" that live on your servers, learn your history, and secure your legacy.
+                Public AI models leak your data and hallucinate your precedents. G&P Standards deploys air-gapped "Digital Workers" that live on your servers, learn your history, and secure your legacy.
             </p>
         </div>
 
@@ -115,20 +124,20 @@
                 </div>
                 <div class="font-mono text-xs text-terminal tracking-widest mb-4">/// JURISDICTION</div>
                 <h2 class="font-mono text-3xl text-white mb-4 group-hover:text-terminal transition-colors">HIGH-STAKES LITIGATION</h2>
-                <p class="text-sm text-gray-500 mb-8">Deploy Liability Firewalls and Revenue Reclaimers.</p>
+                <p class="text-sm text-gray-500 mb-8 font-mono">Deploy Liability Firewalls.</p>
                 <div class="inline-block border border-terminal px-4 py-2 text-terminal font-mono text-xs uppercase group-hover:bg-terminal group-hover:text-black transition-colors">
                     Initialize Protocol A
                 </div>
             </div>
 
-            <div class="group relative glass-panel p-8 md:p-12 hover:border-signal transition-all duration-300 cursor-pointer">
+            <div class="group relative glass-panel p-8 md:p-12 hover:border-neon transition-all duration-300 cursor-pointer">
                 <div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
-                    <i data-lucide="building-2" class="w-8 h-8 text-signal"></i>
+                    <i data-lucide="building-2" class="w-8 h-8 text-neon"></i>
                 </div>
-                <div class="font-mono text-xs text-signal tracking-widest mb-4">/// ASSET CLASS</div>
-                <h2 class="font-mono text-3xl text-white mb-4 group-hover:text-signal transition-colors">COMMERCIAL PORTFOLIOS</h2>
-                <p class="text-sm text-gray-500 mb-8">Deploy Zero-Vacancy Agents and NOI Uplift.</p>
-                <div class="inline-block border border-signal px-4 py-2 text-signal font-mono text-xs uppercase group-hover:bg-signal group-hover:text-black transition-colors">
+                <div class="font-mono text-xs text-neon tracking-widest mb-4">/// ASSET CLASS</div>
+                <h2 class="font-mono text-3xl text-white mb-4 group-hover:text-neon transition-colors">COMMERCIAL REAL ESTATE</h2>
+                <p class="text-sm text-gray-500 mb-8 font-mono">Deploy Zero-Vacancy Agents.</p>
+                <div class="inline-block border border-neon px-4 py-2 text-neon font-mono text-xs uppercase group-hover:bg-neon group-hover:text-black transition-colors">
                     Initialize Protocol B
                 </div>
             </div>
@@ -146,134 +155,127 @@
                     
                     <div class="space-y-6">
                         <div>
-                            <label class="font-mono text-xs text-terminal uppercase block mb-2">Hourly Billable Rate ($)</label>
+                            <label class="font-mono text-xs text-terminal uppercase block mb-2">Billable Hourly Rate ($)</label>
                             <input type="number" id="rate" value="500" class="w-full bg-void border border-white/20 p-4 text-white font-mono focus:border-terminal outline-none transition-colors" oninput="calculateLoss()">
                         </div>
-                        <div>
-                            <label class="font-mono text-xs text-terminal uppercase block mb-2">Unbilled Admin Hours / Week</label>
-                            <input type="number" id="hours" value="10" class="w-full bg-void border border-white/20 p-4 text-white font-mono focus:border-terminal outline-none transition-colors" oninput="calculateLoss()">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="font-mono text-xs text-terminal uppercase block mb-2">Unbilled Hrs/Week</label>
+                                <input type="number" id="hours" value="10" class="w-full bg-void border border-white/20 p-4 text-white font-mono focus:border-terminal outline-none transition-colors" oninput="calculateLoss()">
+                            </div>
+                            <div>
+                                <label class="font-mono text-xs text-terminal uppercase block mb-2">Attorneys / Staff</label>
+                                <input type="number" id="staff" value="5" class="w-full bg-void border border-white/20 p-4 text-white font-mono focus:border-terminal outline-none transition-colors" oninput="calculateLoss()">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="border border-risk/30 bg-risk/5 p-12 text-center">
                     <div class="font-mono text-xs text-risk tracking-widest mb-4">TOTAL ANNUAL LOSS</div>
-                    <div id="result" class="font-mono text-5xl md:text-6xl font-bold text-risk mb-4">$260,000</div>
+                    <div id="result" class="font-mono text-4xl md:text-6xl font-bold text-risk mb-4">$1,300,000</div>
                     <div class="font-mono text-[10px] text-gray-500 uppercase">Calculated based on 52 operational weeks</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 z-10 relative">
+    <section class="py-24 z-10 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-mono text-xs text-terminal tracking-[0.5em] mb-12 uppercase">/// The Triad Protocol</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-                <div class="glass-panel p-8">
-                    <i data-lucide="layers" class="w-8 h-8 text-white mb-6"></i>
-                    <h3 class="font-mono text-xl text-white mb-4">1. THE NEURAL OVERLAY</h3>
-                    <p class="font-sans text-sm text-gray-400 leading-relaxed">
-                        We do not replace your legacy systems (Yardi/iManage). We layer intelligence on top of them. Non-destructive integration.
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-mono text-4xl text-white mb-6">THE TRAP: <br><span class="text-white">MODE COLLAPSE</span></h2>
+                    <p class="font-sans text-gray-400 mb-6 leading-relaxed">
+                        Standard AI converges on the mean. In litigation and underwriting, average is a death sentence. 
+                    </p>
+                    <p class="font-sans text-gray-400 mb-6 leading-relaxed">
+                        Our <strong>G&P Diversity Engine™</strong> rejects the mean to mine the "Tail"—the top 1% of insights hidden in your data.
                     </p>
                 </div>
-                <div class="glass-panel p-8">
-                    <i data-lucide="server" class="w-8 h-8 text-white mb-6"></i>
-                    <h3 class="font-mono text-xl text-white mb-4">2. THE SOVEREIGN VAULT</h3>
-                    <p class="font-sans text-sm text-gray-400 leading-relaxed">
-                        Air-gapped compute. Zero data egress. Your model runs on your metal.
-                    </p>
-                </div>
-                <div class="glass-panel p-8">
-                    <i data-lucide="shield-check" class="w-8 h-8 text-white mb-6"></i>
-                    <h3 class="font-mono text-xl text-white mb-4">3. ANTI-TRAINING COVENANT</h3>
-                    <p class="font-sans text-sm text-gray-400 leading-relaxed">
-                        We legally warrant that your data is NEVER used to train public foundation models. You own the weights.
-                    </p>
-                </div>
-            </div>
-
-            <div class="border border-terminal/20 bg-void p-8 md:p-12 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 text-terminal opacity-20 font-mono text-xs">CLASSIFIED IP</div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 class="font-mono text-3xl text-white mb-6">THE G&P DIVERSITY ENGINE™</h3>
-                        <p class="font-sans text-gray-400 leading-relaxed">
-                            Standard AI suffers from Mode Collapse—it reverts to the mean. We utilize <strong>The G&P Diversity Engine™</strong> and <strong>High-Dimensional Probability Mapping</strong> to harvest the "Tail"—the top 1% of strategies hidden in your data.
-                        </p>
+                
+                <div class="relative h-64 border-b border-white/20">
+                    <svg viewBox="0 0 100 50" class="w-full h-full absolute bottom-0 left-0" preserveAspectRatio="none">
+                        <path d="M0,50 Q40,50 50,5 Q60,50 100,50" fill="none" stroke="#333" stroke-width="0.5"/>
+                        <path d="M0,50 Q40,50 50,5 Q60,50 100,50" fill="url(#grad1)" opacity="0.2"/>
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#000;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    
+                    <div class="absolute bottom-0 left-1/2 w-px h-[80%] bg-gray-600 border-l border-dashed border-gray-500"></div>
+                    <div class="absolute top-[20%] left-[52%] text-[10px] font-mono text-gray-500">
+                        PUBLIC AI / COMPETITORS<br>(AVERAGE)
                     </div>
-                    <div class="font-mono text-xs text-gray-500 bg-gunmetal p-6 border-l-2 border-terminal">
-                        <span class="text-terminal">> SYSTEM ALERT:</span><br><br>
-                        Legacy RAG (Retrieval Augmented Generation) hallucinates.<br>
-                        G&P Epistemic Engines cite sources.<br>
-                        We force the model to show its work before token generation.
+
+                    <div class="absolute bottom-0 right-0 w-[15%] h-[40%] bg-terminal/20 border-l border-terminal"></div>
+                    <div class="absolute bottom-[45%] right-[2%] text-xs font-mono text-terminal font-bold text-right">
+                        THE G&P TAIL<br>(ALPHA)
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-white/5 z-10 relative">
+    <section class="py-24 bg-gunmetal/20 border-y border-white/5 z-10 relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-white/10">
-                
-                <div class="p-12 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 transition-colors">
-                    <div class="font-mono text-xs text-terminal mb-4">TRACK A // LEGAL</div>
-                    <h3 class="font-mono text-3xl text-white mb-6">THE RISK-REVERSAL RETAINER</h3>
-                    <p class="font-sans text-gray-400 mb-8 text-sm">
-                        Wealth Preservation through forensic time reconstruction.
-                    </p>
-                    <div class="border-l-2 border-terminal pl-4">
+            <h2 class="font-mono text-xs text-terminal tracking-[0.5em] mb-12 uppercase">/// Protocols Executed</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel p-10 hover:border-terminal transition-colors group">
+                    <div class="font-mono text-xs text-terminal mb-4">TRACK A // LEGAL ENGINE</div>
+                    <h3 class="font-mono text-2xl text-white mb-4">THE RISK-REVERSAL RETAINER</h3>
+                    <div class="border-l-2 border-terminal pl-4 mt-6">
                         <h4 class="font-mono text-white text-sm mb-2">THE LIABILITY FIREWALL</h4>
-                        <p class="text-xs text-gray-500">
-                            Our system includes a mandatory human-in-the-loop review layer. We indemnify you against AI fabrication errors.
+                        <p class="text-sm text-gray-400">
+                            Mandatory human-in-the-loop review layers. We indemnify you against AI fabrication errors.
                         </p>
                     </div>
                 </div>
 
-                <div class="p-12 hover:bg-white/5 transition-colors">
-                    <div class="font-mono text-xs text-signal mb-4">TRACK B // CRE</div>
-                    <h3 class="font-mono text-3xl text-white mb-6">THE ZERO-VACANCY PROTOCOL</h3>
-                    <p class="font-sans text-gray-400 mb-8 text-sm">
-                        NOI Uplift through automated leasing agents.
-                    </p>
-                    <div class="border-l-2 border-signal pl-4">
+                <div class="glass-panel p-10 hover:border-neon transition-colors group">
+                    <div class="font-mono text-xs text-neon mb-4">TRACK B // ASSET ENGINE</div>
+                    <h3 class="font-mono text-2xl text-white mb-4">THE ZERO-VACANCY PROTOCOL</h3>
+                    <div class="border-l-2 border-neon pl-4 mt-6">
                         <h4 class="font-mono text-white text-sm mb-2">NO CURE, NO PAY</h4>
-                        <p class="text-xs text-gray-500">
+                        <p class="text-sm text-gray-400">
                             We deploy Voice Agents to handle 100% of leasing. We only get paid when you sign a lease.
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section class="py-24 z-10 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-mono text-xs text-gray-500 tracking-[0.5em] mb-12 uppercase text-center">/// The Sovereign Council</h2>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="font-mono text-3xl text-white mb-16">GOVERNANCE ARCHITECTURE</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="border border-white/10 p-8 text-center hover:border-terminal transition-colors">
-                    <div class="w-16 h-16 bg-gunmetal rounded-full mx-auto flex items-center justify-center mb-6 text-terminal">
-                        <span class="font-mono font-bold text-xl">HE</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="flex flex-col items-center group">
+                    <div class="w-20 h-20 border border-white/10 rounded-full flex items-center justify-center mb-6 group-hover:border-terminal transition-colors">
+                        <i data-lucide="brain-circuit" class="w-8 h-8 text-gray-400 group-hover:text-terminal"></i>
                     </div>
-                    <h3 class="font-mono text-white text-lg mb-2">HEAD OF EPISTEMOLOGY</h3>
-                    <p class="font-mono text-xs text-gray-500">Oversees Truth Alignment</p>
+                    <h3 class="font-mono text-sm text-white tracking-widest">HEAD OF EPISTEMOLOGY</h3>
+                    <p class="font-mono text-[10px] text-gray-500 mt-2">TRUTH ALIGNMENT</p>
                 </div>
-                <div class="border border-white/10 p-8 text-center hover:border-terminal transition-colors">
-                    <div class="w-16 h-16 bg-gunmetal rounded-full mx-auto flex items-center justify-center mb-6 text-terminal">
-                        <span class="font-mono font-bold text-xl">LSA</span>
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-20 h-20 border border-white/10 rounded-full flex items-center justify-center mb-6 group-hover:border-terminal transition-colors">
+                        <i data-lucide="server" class="w-8 h-8 text-gray-400 group-hover:text-terminal"></i>
                     </div>
-                    <h3 class="font-mono text-white text-lg mb-2">LEAD SYSTEMS ARCHITECT</h3>
-                    <p class="font-mono text-xs text-gray-500">Oversees Sovereign Vaults</p>
+                    <h3 class="font-mono text-sm text-white tracking-widest">LEAD SYSTEMS ARCHITECT</h3>
+                    <p class="font-mono text-[10px] text-gray-500 mt-2">SOVEREIGN VAULTS</p>
                 </div>
-                <div class="border border-white/10 p-8 text-center hover:border-terminal transition-colors">
-                    <div class="w-16 h-16 bg-gunmetal rounded-full mx-auto flex items-center justify-center mb-6 text-terminal">
-                        <span class="font-mono font-bold text-xl">CG</span>
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-20 h-20 border border-white/10 rounded-full flex items-center justify-center mb-6 group-hover:border-terminal transition-colors">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-gray-400 group-hover:text-terminal"></i>
                     </div>
-                    <h3 class="font-mono text-white text-lg mb-2">COMPLIANCE GOVERNOR</h3>
-                    <p class="font-mono text-xs text-gray-500">ISO 42001 Protocol</p>
+                    <h3 class="font-mono text-sm text-white tracking-widest">COMPLIANCE GOVERNOR</h3>
+                    <p class="font-mono text-[10px] text-gray-500 mt-2">ISO 42001</p>
                 </div>
             </div>
         </div>
@@ -283,18 +285,16 @@
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="font-mono text-4xl text-white mb-4 hover-glitch">ACCESS THE TOP 1%</h2>
-                <p class="font-mono text-sm text-gray-500">CLEARANCE PROTOCOL INITIATED</p>
             </div>
 
             <form class="glass-panel p-8 md:p-12 space-y-8" onsubmit="event.preventDefault();">
                 <div class="space-y-2">
-                    <label class="font-mono text-xs text-terminal tracking-widest">ENTITY SIZE / REVENUE</label>
-                    <select id="entitySize" class="w-full bg-void border border-white/20 text-white p-4 font-mono text-sm focus:border-terminal outline-none appearance-none" onchange="checkClearance()">
-                        <option value="" disabled selected>SELECT CLASSIFICATION</option>
-                        <option value="low">&lt; $5M Revenue / &lt; 10 Attorneys</option>
-                        <option value="high">&gt; $10M Revenue / &gt; 20 Attorneys</option>
+                    <label class="font-mono text-xs text-terminal tracking-widest">ASSET VALUE / FIRM SIZE</label>
+                    <select id="assetSize" class="w-full bg-void border border-white/20 text-white p-4 font-mono text-sm focus:border-terminal outline-none appearance-none cursor-pointer" onchange="checkAccess()">
+                        <option value="" disabled selected>SELECT RANGE</option>
+                        <option value="low">&lt; $10M (Redirect to Waitlist)</option>
+                        <option value="high">&gt; $50M (Unlock Priority Access)</option>
                     </select>
-                    <div id="clearanceMessage" class="font-mono text-xs h-4 pt-2"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -308,14 +308,9 @@
                     </div>
                 </div>
 
-                <div class="pt-4">
-                    <button type="submit" id="submitBtn" class="w-full py-5 bg-white/10 text-gray-500 font-mono font-bold tracking-[0.2em] cursor-not-allowed transition-all" disabled>
-                        AWAITING CLEARANCE...
-                    </button>
-                    <p class="text-center text-[10px] font-mono text-gray-600 mt-4">
-                        Engagements begin at a $15,000 Minimum Threshold.
-                    </p>
-                </div>
+                <button type="submit" id="submitBtn" class="w-full py-5 bg-terminal/10 text-gray-500 font-mono font-bold tracking-[0.2em] cursor-not-allowed border border-white/5 transition-all duration-300">
+                    AWAITING SELECTION...
+                </button>
             </form>
         </div>
     </section>
@@ -325,10 +320,8 @@
             <div class="mb-4 md:mb-0">
                 &copy; 2026 G&P STANDARDS LLC.
             </div>
-            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-center md:text-right">
-                <span class="text-terminal">NIST AI RMF ALIGNED</span>
-                <span>ISO 42001 COMPLIANCE</span>
-                <span>GDPR/CCPA SOVEREIGN</span>
+            <div class="text-center md:text-right max-w-md">
+                G&P STANDARDS EXECUTES A STRICT ANTI-TRAINING COVENANT. NO CLIENT DATA IS EVER UTILIZED TO TRAIN PUBLIC FOUNDATION MODELS.
             </div>
         </div>
     </footer>
@@ -339,10 +332,11 @@
 
         // Calculator Logic
         function calculateLoss() {
-            const rate = document.getElementById('rate').value;
-            const hours = document.getElementById('hours').value;
+            const rate = document.getElementById('rate').value || 0;
+            const hours = document.getElementById('hours').value || 0;
+            const staff = document.getElementById('staff').value || 0;
             const weeks = 52;
-            const total = rate * hours * weeks;
+            const total = rate * hours * staff * weeks;
             
             // Format Currency
             const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(total);
@@ -351,21 +345,16 @@
         }
 
         // Gatekeeper Logic
-        function checkClearance() {
-            const size = document.getElementById('entitySize').value;
-            const msg = document.getElementById('clearanceMessage');
+        function checkAccess() {
+            const val = document.getElementById('assetSize').value;
             const btn = document.getElementById('submitBtn');
 
-            if (size === 'low') {
-                msg.innerHTML = '<span class="text-gray-500">Redirecting to Waitlist...</span>';
-                btn.innerText = "ACCESS DENIED";
-                btn.className = "w-full py-5 bg-white/10 text-gray-500 font-mono font-bold tracking-[0.2em] cursor-not-allowed";
-                btn.disabled = true;
-            } else if (size === 'high') {
-                msg.innerHTML = '<span class="text-terminal animate-pulse">>> PRIORITY ACCESS UNLOCKED.</span>';
-                btn.innerText = "REQUEST CLEARANCE";
-                btn.className = "w-full py-5 bg-terminal text-black font-mono font-bold tracking-[0.2em] hover:bg-white transition-colors cursor-pointer";
-                btn.disabled = false;
+            if (val === 'low') {
+                btn.innerText = "REDIRECTING TO WAITLIST...";
+                btn.className = "w-full py-5 bg-white/5 text-gray-500 font-mono font-bold tracking-[0.2em] cursor-not-allowed border border-white/5";
+            } else if (val === 'high') {
+                btn.innerText = "INITIATE CLEARANCE PROTOCOL";
+                btn.className = "w-full py-5 bg-terminal text-black font-mono font-bold tracking-[0.2em] hover:bg-white transition-colors cursor-pointer border border-terminal shadow-[0_0_15px_rgba(255,176,0,0.3)]";
             }
         }
     </script>
