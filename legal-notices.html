@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Notices | G&P Standards</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { gpNavy: '#0a1f44', gpGold: '#c5a059' }, fontFamily: { serif: ['"Playfair Display"', 'serif'], sans: ['"Inter"', 'sans-serif'] } } } }</script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    
+    <nav class="sticky top-0 z-40 w-full bg-white border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex flex-col items-start leading-none"><span class="text-3xl font-serif font-bold text-gpNavy">G&P</span><span class="text-[10px] tracking-[0.2em] text-gpGold uppercase font-semibold">Standards</span></a>
+            <a href="index.html" class="text-xs font-bold text-gpNavy uppercase tracking-widest hover:text-gpGold">Back to Site</a>
+        </div>
+    </nav>
+
+    <div class="max-w-3xl mx-auto px-6 py-20 bg-white shadow-xl mt-12 mb-20 border-t-4 border-gpNavy">
+        <h1 class="text-4xl font-serif font-bold text-gpNavy mb-8">Legal Notices</h1>
+        <div class="prose prose-slate max-w-none text-sm leading-relaxed text-slate-600">
+            <h3 class="text-gpNavy font-bold mt-8 mb-4">Corporate Structure</h3>
+            <p>G&P Standards LLC is a limited liability company registered in the State of Delaware, United States.</p>
+            <h3 class="text-gpNavy font-bold mt-8 mb-4">Registered Office</h3>
+            <p>1201 N. Market Street, Suite 800<br>Wilmington, DE 19801<br>United States</p>
+            <h3 class="text-gpNavy font-bold mt-8 mb-4">Copyright</h3>
+            <p>&copy; 2025 G&P Standards LLC. All rights reserved. No part of this website may be reproduced or transmitted in any form or by any means without the prior written permission of G&P Standards LLC.</p>
+        </div>
+    </div>
+
+    <footer class="relative bg-gpNavy text-white pt-20 pb-8 overflow-hidden">
+        <div class="absolute inset-0 z-0"><img src="images/footer-visual.png" alt="Footer Visual" class="w-full h-full object-cover opacity-10"><div class="absolute inset-0 bg-gpNavy/90"></div></div>
+        <div class="relative max-w-7xl mx-auto px-6 z-10">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <div class="mb-4 md:mb-0 max-w-2xl"><p class="mb-2">&copy; 2025 G&P Standards LLC. All rights reserved.</p></div>
+                <div class="flex flex-wrap gap-6 mt-4 md:mt-0"><a href="legal-notices.html" class="hover:text-gpGold">Legal notices</a><a href="privacy.html" class="hover:text-gpGold">Privacy</a><a href="cookie-policy.html" class="hover:text-gpGold">Cookie policy</a><a href="legal-disclaimer.html" class="hover:text-gpGold">Legal disclaimer</a><a href="terms.html" class="hover:text-gpGold">Terms and conditions</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t-4 border-gpGold shadow-[0_-10px_40px_rgba(0,0,0,0.2)] z-50 hidden transition-transform duration-500 translate-y-full"><div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-start justify-between gap-12"><div class="md:w-3/5"><h4 class="text-gpNavy font-serif text-3xl font-bold mb-4">Cookies: The choice is yours</h4><p class="text-slate-600 text-sm leading-relaxed mb-4">We use cookies.</p><button onclick="acceptAllCookies()" class="bg-[#d04a02] text-white font-bold text-sm px-6 py-3">Accept</button></div></div></div>
+    <script>
+        lucide.createIcons();
+        const banner = document.getElementById('cookie-banner'); window.addEventListener('load', () => { if (!localStorage.getItem('gp_consent_state')) { banner.classList.remove('hidden'); setTimeout(() => banner.classList.remove('translate-y-full'), 100); } else { runTrackers(JSON.parse(localStorage.getItem('gp_consent_state'))); } });
+        function runTrackers(state) {
+            if (state === 'all' || state.analytics || state.targeting) {
+                if (!window.lintrk) {
+                    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+                    window._linkedin_data_partner_ids.push("9129065");
+                    (function(l) { if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]} var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s); })(window.lintrk);
+                }
+            }
+        }
+        function acceptAllCookies() { localStorage.setItem('gp_consent_state', JSON.stringify('all')); runTrackers('all'); banner.classList.add('translate-y-full'); }
+    </script>
+</body>
+</html>
