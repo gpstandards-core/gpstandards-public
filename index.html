@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G&P STANDARDS | SOVEREIGN INTELLIGENCE</title>
+    <title>G&P STANDARDS | SOVEREIGN INFRASTRUCTURE</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +18,9 @@
                     colors: {
                         void: '#050505',
                         gunmetal: '#1A1A1A',
-                        terminal: '#FFB000', // Terminal Amber
-                        signal: '#00F0FF',   // Signal Blue
-                        risk: '#FF2A00',
+                        terminal: '#FFB000', // Amber
+                        signal: '#00F0FF',   // Blue
+                        risk: '#FF2A00',     // Red
                     },
                     fontFamily: {
                         mono: ['"JetBrains Mono"', 'monospace'],
@@ -41,18 +41,14 @@
             background-color: #050505;
             color: #e5e5e5;
         }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+        /* SCANLINE EFFECT */
         .scanline {
             width: 100%;
             height: 100px;
-            z-index: 10;
-            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255, 176, 0, 0.02) 50%, rgba(0,0,0,0) 100%);
+            z-index: 999;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255, 176, 0, 0.03) 50%, rgba(0,0,0,0) 100%);
             opacity: 0.1;
-            position: absolute;
+            position: fixed;
             bottom: 100%;
             animation: scanline 10s linear infinite;
             pointer-events: none;
@@ -61,262 +57,317 @@
             0% { bottom: 100%; }
             100% { bottom: -100%; }
         }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        
+        /* CUSTOM UTILITIES */
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: #FFB000; }
+        
+        /* GLITCH HOVER */
+        .hover-glitch:hover {
+            text-shadow: 2px 0 #FFB000, -2px 0 #00F0FF;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-terminal selection:text-black">
 
-    <div class="fixed inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none z-0"></div>
-    <div class="scanline fixed inset-0"></div>
+    <div class="fixed inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-30 pointer-events-none z-0"></div>
+    <div class="scanline"></div>
 
     <nav class="fixed w-full z-50 border-b border-white/10 bg-void/90 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="font-mono font-bold tracking-widest text-lg">
                 G&P <span class="text-terminal">[STANDARDS]</span>
             </div>
-            <div class="hidden md:flex space-x-12 font-mono text-xs tracking-widest text-gray-400">
-                <a href="#infrastructure" class="hover:text-terminal transition-colors">INFRASTRUCTURE</a>
-                <a href="#intelligence" class="hover:text-terminal transition-colors">INTELLIGENCE</a>
-                <a href="#access" class="text-terminal border border-terminal px-4 py-2 hover:bg-terminal hover:text-black transition-all">REQUEST CLEARANCE</a>
+            <div class="flex items-center space-x-2 border border-terminal/30 bg-terminal/5 px-3 py-1 text-terminal font-mono text-[10px] tracking-widest">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-terminal opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-terminal"></span>
+                </span>
+                <span>SYSTEM STATUS: OPERATIONAL</span>
             </div>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-20 z-10">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div class="lg:col-span-8 space-y-8">
-                <div class="inline-flex items-center space-x-2 border border-terminal/30 bg-terminal/5 px-3 py-1 text-terminal font-mono text-xs tracking-widest">
-                    <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-terminal opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-terminal"></span>
-                    </span>
-                    <span>SYSTEM STATUS: OPERATIONAL</span>
-                </div>
-                
-                <h1 class="font-mono text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white tracking-tighter">
-                    WE DO NOT RENT INTELLIGENCE. <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">WE BUILD SOVEREIGN INFRASTRUCTURE.</span>
-                </h1>
-                
-                <p class="font-sans text-lg text-gray-400 max-w-2xl leading-relaxed border-l-2 border-terminal pl-6">
-                    Public AI models leak your data and hallucinate your precedents. G&P Standards deploys air-gapped, private "Digital Workers" that live on your servers, learn your history, and secure your legacy.
-                </p>
+    <section class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 z-10">
+        <div class="max-w-6xl mx-auto px-6 text-center mb-16">
+            <h1 class="font-mono text-4xl md:text-6xl font-bold leading-tight text-white tracking-tighter mb-6">
+                WE DO NOT RENT INTELLIGENCE.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-terminal to-white">WE BUILD SOVEREIGN INFRASTRUCTURE.</span>
+            </h1>
+            <p class="font-sans text-gray-400 max-w-2xl mx-auto border-l-2 border-terminal pl-4 text-left md:text-center md:border-l-0">
+                Public AI models leak your data. We deploy air-gapped "Digital Workers" that live on your servers, learn your history, and secure your legacy.
+            </p>
+        </div>
 
-                <div class="flex flex-col sm:flex-row gap-6 pt-6">
-                    <a href="#access" class="group relative px-8 py-4 bg-terminal text-black font-mono font-bold tracking-widest overflow-hidden">
-                        <div class="absolute inset-0 w-full h-full bg-white/20 group-hover:translate-x-full transition-transform duration-300 ease-out -translate-x-full"></div>
-                        <span class="relative">INITIATE AUDIT</span>
-                    </a>
-                    <button class="px-8 py-4 border border-white/20 text-white font-mono tracking-widest hover:border-terminal hover:text-terminal transition-colors">
-                        READ THE BLACK PAPER
-                    </button>
+        <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="group relative glass-panel p-8 md:p-12 hover:border-terminal transition-all duration-300 cursor-pointer">
+                <div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="scale" class="w-8 h-8 text-terminal"></i>
                 </div>
-                
-                <div class="pt-8 text-xs font-mono text-gray-500">
-                    // STOP PAYING MONTHLY SUBSCRIPTIONS FOR TOOLS THAT TRAIN YOUR REPLACEMENTS.
+                <div class="font-mono text-xs text-terminal tracking-widest mb-4">/// JURISDICTION</div>
+                <h2 class="font-mono text-3xl text-white mb-4 group-hover:text-terminal transition-colors">HIGH-STAKES LITIGATION</h2>
+                <p class="text-sm text-gray-500 mb-8">Deploy Liability Firewalls and Revenue Reclaimers.</p>
+                <div class="inline-block border border-terminal px-4 py-2 text-terminal font-mono text-xs uppercase group-hover:bg-terminal group-hover:text-black transition-colors">
+                    Initialize Protocol A
                 </div>
             </div>
 
-            <div class="lg:col-span-4 flex justify-center lg:justify-end">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 border border-white/10 rounded-full flex items-center justify-center animate-pulse">
-                    <div class="absolute w-[90%] h-[90%] border border-terminal/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                    <div class="absolute w-[70%] h-[70%] border border-dashed border-white/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div class="font-mono text-terminal text-xs tracking-widest text-center">
-                        <span class="block text-4xl font-bold mb-2">100%</span>
-                        DATA<br>SOVEREIGNTY
-                    </div>
+            <div class="group relative glass-panel p-8 md:p-12 hover:border-signal transition-all duration-300 cursor-pointer">
+                <div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="building-2" class="w-8 h-8 text-signal"></i>
+                </div>
+                <div class="font-mono text-xs text-signal tracking-widest mb-4">/// ASSET CLASS</div>
+                <h2 class="font-mono text-3xl text-white mb-4 group-hover:text-signal transition-colors">COMMERCIAL PORTFOLIOS</h2>
+                <p class="text-sm text-gray-500 mb-8">Deploy Zero-Vacancy Agents and NOI Uplift.</p>
+                <div class="inline-block border border-signal px-4 py-2 text-signal font-mono text-xs uppercase group-hover:bg-signal group-hover:text-black transition-colors">
+                    Initialize Protocol B
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 border-t border-white/5 z-10 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+    <section class="py-24 border-y border-white/5 bg-gunmetal/30 z-10 relative">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="font-mono text-3xl text-white mb-6">THE PROBLEM: <span class="text-risk">MODE COLLAPSE</span></h2>
-                    <p class="font-sans text-gray-400 mb-8 leading-relaxed">
-                        Standard AI is designed to be average. In high-stakes litigation and CRE underwriting, average is a death sentence. We engineer the outlier.
+                    <h2 class="font-mono text-3xl text-white mb-6">AUDIT YOUR <span class="text-risk">REVENUE BLEED</span></h2>
+                    <p class="font-sans text-gray-400 mb-8">
+                        This is the cost of manual cognition. The G&P Revenue Reclaimer recovers this capital.
                     </p>
-                    <div class="p-6 border border-risk/30 bg-risk/5 font-mono text-sm text-risk">
-                        WARNING: Public models regress to the mean. Your edge is in the tail events.
-                    </div>
-                </div>
-                
-                <div class="relative h-64 border-b border-l border-white/20 flex items-end">
-                    <svg viewBox="0 0 100 50" class="w-full h-full absolute bottom-0 left-0 text-gray-700 fill-current opacity-30">
-                        <path d="M0,50 Q25,50 35,40 T50,5 T65,40 T100,50" />
-                    </svg>
-                    <div class="absolute bottom-0 left-[35%] w-[30%] h-[80%] flex flex-col justify-end items-center">
-                        <span class="text-xs font-mono text-gray-500 mb-2">PUBLIC AI / COMPETITORS</span>
-                        <div class="w-px h-full bg-gray-600"></div>
-                    </div>
-                    <div class="absolute bottom-0 right-[15%] w-px h-[40%] bg-terminal z-20">
-                        <div class="absolute -top-8 -right-16 text-terminal font-mono text-xs font-bold whitespace-nowrap">
-                            THE G&P TAIL ->
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="font-mono text-xs text-terminal uppercase block mb-2">Hourly Billable Rate ($)</label>
+                            <input type="number" id="rate" value="500" class="w-full bg-void border border-white/20 p-4 text-white font-mono focus:border-terminal outline-none transition-colors" oninput="calculateLoss()">
                         </div>
-                        <div class="absolute top-0 -left-1 w-3 h-3 bg-terminal rounded-full animate-ping"></div>
+                        <div>
+                            <label class="font-mono text-xs text-terminal uppercase block mb-2">Unbilled Admin Hours / Week</label>
+                            <input type="number" id="hours" value="10" class="w-full bg-void border border-white/20 p-4 text-white font-mono focus:border-terminal outline-none transition-colors" oninput="calculateLoss()">
+                        </div>
                     </div>
+                </div>
+
+                <div class="border border-risk/30 bg-risk/5 p-12 text-center">
+                    <div class="font-mono text-xs text-risk tracking-widest mb-4">TOTAL ANNUAL LOSS</div>
+                    <div id="result" class="font-mono text-5xl md:text-6xl font-bold text-risk mb-4">$260,000</div>
+                    <div class="font-mono text-[10px] text-gray-500 uppercase">Calculated based on 52 operational weeks</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="infrastructure" class="py-32 bg-gunmetal z-10 relative">
+    <section class="py-24 z-10 relative">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-mono text-xs text-terminal tracking-[0.5em] mb-12">THE TRIAD PROTOCOL</h2>
+            <h2 class="font-mono text-xs text-terminal tracking-[0.5em] mb-12 uppercase">/// The Triad Protocol</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-panel p-8 hover:border-terminal/50 transition-colors duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                <div class="glass-panel p-8">
+                    <i data-lucide="layers" class="w-8 h-8 text-white mb-6"></i>
+                    <h3 class="font-mono text-xl text-white mb-4">1. THE NEURAL OVERLAY</h3>
+                    <p class="font-sans text-sm text-gray-400 leading-relaxed">
+                        We do not replace your legacy systems (Yardi/iManage). We layer intelligence on top of them. Non-destructive integration.
+                    </p>
+                </div>
+                <div class="glass-panel p-8">
                     <i data-lucide="server" class="w-8 h-8 text-white mb-6"></i>
-                    <h3 class="font-mono text-xl text-white mb-4">1. THE SOVEREIGN VAULT</h3>
+                    <h3 class="font-mono text-xl text-white mb-4">2. THE SOVEREIGN VAULT</h3>
                     <p class="font-sans text-sm text-gray-400 leading-relaxed">
-                        Air-gapped compute. Zero data egress. Your model runs on your metal. No API calls to OpenAI. No training on your competitors' data.
+                        Air-gapped compute. Zero data egress. Your model runs on your metal.
                     </p>
                 </div>
-                <div class="glass-panel p-8 hover:border-terminal/50 transition-colors duration-300">
-                    <i data-lucide="sword" class="w-8 h-8 text-white mb-6"></i>
-                    <h3 class="font-mono text-xl text-white mb-4">2. THE CONFLICT ENGINE</h3>
+                <div class="glass-panel p-8">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-white mb-6"></i>
+                    <h3 class="font-mono text-xl text-white mb-4">3. ANTI-TRAINING COVENANT</h3>
                     <p class="font-sans text-sm text-gray-400 leading-relaxed">
-                        AI trained exclusively on your winning precedents and proprietary datasets. It doesn't know "generic law." It knows <i>your</i> strategy.
+                        We legally warrant that your data is NEVER used to train public foundation models. You own the weights.
                     </p>
                 </div>
-                <div class="glass-panel p-8 hover:border-terminal/50 transition-colors duration-300">
-                    <i data-lucide="shield-alert" class="w-8 h-8 text-white mb-6"></i>
-                    <h3 class="font-mono text-xl text-white mb-4">3. THE GOVERNOR</h3>
-                    <p class="font-sans text-sm text-gray-400 leading-relaxed">
-                        Hard-coded compliance layers (ISO 42001) that physically prevent hallucination. If the citation doesn't exist in the vault, the model stays silent.
-                    </p>
+            </div>
+
+            <div class="border border-terminal/20 bg-void p-8 md:p-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 text-terminal opacity-20 font-mono text-xs">CLASSIFIED IP</div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="font-mono text-3xl text-white mb-6">THE G&P DIVERSITY ENGINE™</h3>
+                        <p class="font-sans text-gray-400 leading-relaxed">
+                            Standard AI suffers from Mode Collapse—it reverts to the mean. We utilize <strong>The G&P Diversity Engine™</strong> and <strong>High-Dimensional Probability Mapping</strong> to harvest the "Tail"—the top 1% of strategies hidden in your data.
+                        </p>
+                    </div>
+                    <div class="font-mono text-xs text-gray-500 bg-gunmetal p-6 border-l-2 border-terminal">
+                        <span class="text-terminal">> SYSTEM ALERT:</span><br><br>
+                        Legacy RAG (Retrieval Augmented Generation) hallucinates.<br>
+                        G&P Epistemic Engines cite sources.<br>
+                        We force the model to show its work before token generation.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 z-10 relative">
+    <section class="py-24 bg-white/5 z-10 relative">
         <div class="max-w-7xl mx-auto px-6">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-white/10 mb-24">
-                <div class="p-12 md:p-16 border-b lg:border-b-0 lg:border-r border-white/10">
-                    <div class="font-mono text-xs text-gray-500 mb-4">TRACK A // LEGAL ENGINE</div>
-                    <h3 class="font-mono text-3xl text-white mb-6">THE REVENUE RECLAIMER</h3>
-                    <p class="font-sans text-gray-400 mb-8">
-                        The Billable Hour is Dying. Here is what replaces it. We reconstruct unbilled time from email metadata and file timestamps with forensic precision.
-                    </p>
-                    <ul class="space-y-4 font-mono text-sm text-gray-300">
-                        <li class="flex items-center"><span class="text-terminal mr-2">>></span> WEALTH PRESERVATION</li>
-                        <li class="flex items-center"><span class="text-terminal mr-2">>></span> RISK IMMUNITY</li>
-                        <li class="flex items-center text-terminal"><span class="mr-2">>></span> GUARANTEE: THE HALLUCINATION INDEMNITY</li>
-                    </ul>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-white/10">
                 
-                <div class="p-12 md:p-16 bg-white/5 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4">
-                        <i data-lucide="trending-up" class="w-12 h-12 text-signal opacity-20"></i>
-                    </div>
-                    <div class="font-mono text-xs text-signal mb-4">TRACK B // ASSET ENGINE</div>
-                    <h3 class="font-mono text-3xl text-white mb-6">ZONING ARBITRAGE AGENT</h3>
-                    <p class="font-sans text-gray-400 mb-8">
-                        Vacancy is a Choice. Our agent predicts municipal zoning shifts and valuation uplifts 6-18 months before the market reacts.
+                <div class="p-12 border-b md:border-b-0 md:border-r border-white/10 hover:bg-white/5 transition-colors">
+                    <div class="font-mono text-xs text-terminal mb-4">TRACK A // LEGAL</div>
+                    <h3 class="font-mono text-3xl text-white mb-6">THE RISK-REVERSAL RETAINER</h3>
+                    <p class="font-sans text-gray-400 mb-8 text-sm">
+                        Wealth Preservation through forensic time reconstruction.
                     </p>
-                    <div class="mt-8 p-4 border border-signal/30 bg-signal/5">
-                        <p class="font-mono text-xs text-signal">
-                            SIGNAL: Equity-Swap pricing available for portfolios >$50M AUM.
+                    <div class="border-l-2 border-terminal pl-4">
+                        <h4 class="font-mono text-white text-sm mb-2">THE LIABILITY FIREWALL</h4>
+                        <p class="text-xs text-gray-500">
+                            Our system includes a mandatory human-in-the-loop review layer. We indemnify you against AI fabrication errors.
                         </p>
                     </div>
                 </div>
-            </div>
 
-        </div>
-    </section>
-
-    <section id="intelligence" class="py-32 bg-gunmetal border-y border-white/10 z-10 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="font-mono text-4xl text-white mb-8">THE LOGIC: <br>THE G&P DIVERSITY ENGINE™</h2>
-                    <p class="font-sans text-gray-400 mb-6">
-                        Standard models converge on the mean. We utilize <strong>High-Dimensional Probability Mapping</strong> to force the model to explore the statistical "Tail" of your data, locating the 1% of insights that human associates miss.
+                <div class="p-12 hover:bg-white/5 transition-colors">
+                    <div class="font-mono text-xs text-signal mb-4">TRACK B // CRE</div>
+                    <h3 class="font-mono text-3xl text-white mb-6">THE ZERO-VACANCY PROTOCOL</h3>
+                    <p class="font-sans text-gray-400 mb-8 text-sm">
+                        NOI Uplift through automated leasing agents.
                     </p>
+                    <div class="border-l-2 border-signal pl-4">
+                        <h4 class="font-mono text-white text-sm mb-2">NO CURE, NO PAY</h4>
+                        <p class="text-xs text-gray-500">
+                            We deploy Voice Agents to handle 100% of leasing. We only get paid when you sign a lease.
+                        </p>
+                    </div>
                 </div>
-                
-                <div class="space-y-4 font-mono text-xs">
-                    <div class="p-4 bg-void border border-risk/30 opacity-50">
-                        <div class="text-risk mb-2">// STANDARD RAG OUTPUT</div>
-                        <div class="text-gray-500">"Based on general principles, the lease likely allows subletting..."</div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 z-10 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-mono text-xs text-gray-500 tracking-[0.5em] mb-12 uppercase text-center">/// The Sovereign Council</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-white/10 p-8 text-center hover:border-terminal transition-colors">
+                    <div class="w-16 h-16 bg-gunmetal rounded-full mx-auto flex items-center justify-center mb-6 text-terminal">
+                        <span class="font-mono font-bold text-xl">HE</span>
                     </div>
-                    <div class="p-4 bg-void border border-terminal">
-                        <div class="text-terminal mb-2">// G&P EPISTEMIC OUTPUT</div>
-                        <div class="text-gray-300">
-                            <span class="text-terminal">Retrieving:</span> Lease_2023_Sec_4.pdf<br>
-                            <span class="text-terminal">Citation:</span> "Tenant shall not sublet without Owner consent..." (Page 42, Para 3).<br>
-                            <span class="text-white">Conclusion: Subletting requires written approval.</span>
-                        </div>
+                    <h3 class="font-mono text-white text-lg mb-2">HEAD OF EPISTEMOLOGY</h3>
+                    <p class="font-mono text-xs text-gray-500">Oversees Truth Alignment</p>
+                </div>
+                <div class="border border-white/10 p-8 text-center hover:border-terminal transition-colors">
+                    <div class="w-16 h-16 bg-gunmetal rounded-full mx-auto flex items-center justify-center mb-6 text-terminal">
+                        <span class="font-mono font-bold text-xl">LSA</span>
                     </div>
+                    <h3 class="font-mono text-white text-lg mb-2">LEAD SYSTEMS ARCHITECT</h3>
+                    <p class="font-mono text-xs text-gray-500">Oversees Sovereign Vaults</p>
+                </div>
+                <div class="border border-white/10 p-8 text-center hover:border-terminal transition-colors">
+                    <div class="w-16 h-16 bg-gunmetal rounded-full mx-auto flex items-center justify-center mb-6 text-terminal">
+                        <span class="font-mono font-bold text-xl">CG</span>
+                    </div>
+                    <h3 class="font-mono text-white text-lg mb-2">COMPLIANCE GOVERNOR</h3>
+                    <p class="font-mono text-xs text-gray-500">ISO 42001 Protocol</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="access" class="py-32 z-10 relative">
+    <section id="access" class="py-24 bg-void border-t border-white/10 z-10 relative">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="font-mono text-4xl text-white mb-4">ACCESS THE TOP 1%</h2>
-                <p class="font-mono text-sm text-gray-500">
-                    G&P Standards accepts 5 clients per quarter. <br>
-                    Minimum data volume thresholds required for model viability.
-                </p>
+                <h2 class="font-mono text-4xl text-white mb-4 hover-glitch">ACCESS THE TOP 1%</h2>
+                <p class="font-mono text-sm text-gray-500">CLEARANCE PROTOCOL INITIATED</p>
             </div>
 
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-8 glass-panel p-8 md:p-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label class="font-mono text-xs text-terminal tracking-widest">ASSETS UNDER MANAGEMENT</label>
-                        <select name="aum" class="w-full bg-void border-b border-white/20 text-white p-3 focus:outline-none focus:border-terminal appearance-none font-mono text-sm">
-                            <option value="" disabled selected>SELECT RANGE</option>
-                            <option value="low">< $10M (WAITLIST)</option>
-                            <option value="mid">$10M - $50M</option>
-                            <option value="high">> $50M</option>
-                        </select>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <label class="font-mono text-xs text-terminal tracking-widest">WORK EMAIL</label>
-                        <input type="email" name="email" placeholder="CORP DOMAIN ONLY" class="w-full bg-void border-b border-white/20 text-white p-3 focus:outline-none focus:border-terminal font-mono text-sm placeholder-gray-700">
-                    </div>
-                </div>
-
+            <form class="glass-panel p-8 md:p-12 space-y-8" onsubmit="event.preventDefault();">
                 <div class="space-y-2">
-                    <label class="font-mono text-xs text-terminal tracking-widest">PRIMARY OPERATIONAL RISK</label>
-                    <input type="text" name="risk" placeholder="DEFINE THE BOTTLENECK" class="w-full bg-void border-b border-white/20 text-white p-3 focus:outline-none focus:border-terminal font-mono text-sm placeholder-gray-700">
+                    <label class="font-mono text-xs text-terminal tracking-widest">ENTITY SIZE / REVENUE</label>
+                    <select id="entitySize" class="w-full bg-void border border-white/20 text-white p-4 font-mono text-sm focus:border-terminal outline-none appearance-none" onchange="checkClearance()">
+                        <option value="" disabled selected>SELECT CLASSIFICATION</option>
+                        <option value="low">&lt; $5M Revenue / &lt; 10 Attorneys</option>
+                        <option value="high">&gt; $10M Revenue / &gt; 20 Attorneys</option>
+                    </select>
+                    <div id="clearanceMessage" class="font-mono text-xs h-4 pt-2"></div>
                 </div>
 
-                <button type="submit" class="w-full py-5 bg-terminal text-black font-mono font-bold tracking-[0.2em] hover:bg-white hover:text-black transition-colors mt-8">
-                    REQUEST CLEARANCE
-                </button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="font-mono text-xs text-gray-500 tracking-widest">ENTITY NAME</label>
+                        <input type="text" class="w-full bg-void border border-white/20 text-white p-4 font-mono text-sm focus:border-terminal outline-none">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="font-mono text-xs text-gray-500 tracking-widest">SECURE EMAIL</label>
+                        <input type="email" class="w-full bg-void border border-white/20 text-white p-4 font-mono text-sm focus:border-terminal outline-none">
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="submitBtn" class="w-full py-5 bg-white/10 text-gray-500 font-mono font-bold tracking-[0.2em] cursor-not-allowed transition-all" disabled>
+                        AWAITING CLEARANCE...
+                    </button>
+                    <p class="text-center text-[10px] font-mono text-gray-600 mt-4">
+                        Engagements begin at a $15,000 Minimum Threshold.
+                    </p>
+                </div>
             </form>
         </div>
     </section>
 
     <footer class="py-12 border-t border-white/10 bg-void z-10 relative">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-600">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[10px] font-mono text-gray-600 uppercase">
             <div class="mb-4 md:mb-0">
-                &copy; 2026 G&P STANDARDS. ALL RIGHTS RESERVED.
+                &copy; 2026 G&P STANDARDS LLC.
             </div>
-            <div class="flex space-x-8">
-                <span>STATUS: OPERATIONAL</span>
-                <span class="hover:text-white cursor-pointer">PRIVACY PROTOCOL</span>
-                <span class="hover:text-white cursor-pointer">LEGAL</span>
+            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-center md:text-right">
+                <span class="text-terminal">NIST AI RMF ALIGNED</span>
+                <span>ISO 42001 COMPLIANCE</span>
+                <span>GDPR/CCPA SOVEREIGN</span>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize Icons
         lucide.createIcons();
+
+        // Calculator Logic
+        function calculateLoss() {
+            const rate = document.getElementById('rate').value;
+            const hours = document.getElementById('hours').value;
+            const weeks = 52;
+            const total = rate * hours * weeks;
+            
+            // Format Currency
+            const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(total);
+            
+            document.getElementById('result').innerText = formatted;
+        }
+
+        // Gatekeeper Logic
+        function checkClearance() {
+            const size = document.getElementById('entitySize').value;
+            const msg = document.getElementById('clearanceMessage');
+            const btn = document.getElementById('submitBtn');
+
+            if (size === 'low') {
+                msg.innerHTML = '<span class="text-gray-500">Redirecting to Waitlist...</span>';
+                btn.innerText = "ACCESS DENIED";
+                btn.className = "w-full py-5 bg-white/10 text-gray-500 font-mono font-bold tracking-[0.2em] cursor-not-allowed";
+                btn.disabled = true;
+            } else if (size === 'high') {
+                msg.innerHTML = '<span class="text-terminal animate-pulse">>> PRIORITY ACCESS UNLOCKED.</span>';
+                btn.innerText = "REQUEST CLEARANCE";
+                btn.className = "w-full py-5 bg-terminal text-black font-mono font-bold tracking-[0.2em] hover:bg-white transition-colors cursor-pointer";
+                btn.disabled = false;
+            }
+        }
     </script>
 </body>
 </html>
