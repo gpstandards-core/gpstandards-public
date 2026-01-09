@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G&P OS | v4.0.1</title>
+    <title>G&P OS | v5.0 TACTICAL</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
                     },
                     animation: {
                         'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'marquee': 'marquee 25s linear infinite',
+                        'marquee': 'marquee 30s linear infinite',
                     },
                     keyframes: {
                         marquee: {
@@ -50,7 +50,7 @@
         body {
             background-color: #050505;
             color: #FFB000;
-            overflow: hidden; /* OS FEEL - NO SCROLL */
+            overflow: hidden; /* OS FEEL */
         }
         
         /* SCANLINE OVERLAY */
@@ -72,7 +72,7 @@
 
         /* MODAL STYLING */
         dialog {
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(5, 5, 5, 0.98);
             border: 1px solid #FFB000;
             color: #FFB000;
             max-width: 900px;
@@ -81,8 +81,7 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
         dialog::backdrop {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.9);
         }
 
         /* GLITCH HOVER */
@@ -91,12 +90,14 @@
             background: rgba(255, 176, 0, 0.1);
         }
 
-        /* SCROLLBAR FOR LOGS */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .log-scroll {
-            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        /* INPUT REMOVE AUTOFILL BG */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1A1A1A inset !important;
+            -webkit-text-fill-color: white !important;
+            transition: background-color 5000s ease-in-out 0s;
         }
     </style>
 </head>
@@ -105,64 +106,58 @@
     <div class="fixed inset-0 bg-grid-pattern bg-[length:40px_40px] z-0 pointer-events-none"></div>
     <div class="scanline"></div>
 
-    <header class="relative z-50 flex justify-between items-center px-6 py-2 border-b border-grid bg-void text-xs tracking-widest text-dim uppercase">
-        <div class="flex items-center gap-4">
+    <header class="relative z-50 flex justify-between items-center px-6 py-3 border-b border-grid bg-void text-[10px] md:text-xs tracking-widest text-dim uppercase">
+        <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
             <span class="text-terminal">SYSTEM: ONLINE</span>
-            <span>|</span>
-            <span>JURISDICTION: DELAWARE, USA</span>
-            <span>|</span>
+            <span class="hidden md:inline">|</span>
+            <span class="text-white">LEGAL DOMICILE: DELAWARE, USA</span>
+            <span class="hidden md:inline">|</span>
             <span>PROTOCOL: SOVEREIGN</span>
         </div>
         <div class="flex items-center gap-4">
             <button onclick="document.getElementById('modal-alpha').showModal()" class="hover:text-terminal cursor-pointer flex items-center gap-2">
-                <i data-lucide="satellite" class="w-3 h-3"></i> ALPHA FEED
+                <i data-lucide="satellite" class="w-3 h-3"></i> <span class="hidden md:inline">ALPHA FEED</span>
             </button>
             <button onclick="document.getElementById('modal-nodes').showModal()" class="hover:text-terminal cursor-pointer flex items-center gap-2">
-                <i data-lucide="globe" class="w-3 h-3"></i> ESTABLISH UPLINK
+                <i data-lucide="globe" class="w-3 h-3"></i> <span class="hidden md:inline">ESTABLISH UPLINK</span>
             </button>
         </div>
     </header>
 
-    <main class="flex-1 relative z-10 flex flex-col items-center justify-center p-6">
+    <main class="flex-1 relative z-10 flex flex-col items-center justify-center p-6 overflow-y-auto">
         
-        <div class="mb-12 relative group cursor-default">
-            <div class="w-64 h-64 border border-grid rounded-full flex items-center justify-center relative">
+        <div class="mb-12 relative group cursor-default mt-8 md:mt-0">
+            <div class="w-48 h-48 md:w-64 md:h-64 border border-grid rounded-full flex items-center justify-center relative">
                 <div class="absolute inset-0 border border-terminal/20 rounded-full animate-ping"></div>
                 <div class="absolute inset-4 border border-terminal/40 rounded-full animate-pulse-fast"></div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-terminal mb-2">100%</div>
+                    <div class="text-3xl md:text-4xl font-bold text-terminal mb-2">100%</div>
                     <div class="text-[10px] tracking-widest text-dim uppercase">G&P Diversity Engine™<br>STATUS: ACTIVE</div>
                 </div>
             </div>
-            <div class="absolute -bottom-16 left-1/2 -translate-x-1/2 w-96 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p class="text-[10px] text-terminal border border-terminal/30 bg-void p-2">
-                    LOGIC: High-Dimensional Probability Mapping<br>
-                    TARGET: Tail Event Extraction (Alpha)
-                </p>
-            </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 w-full max-w-4xl">
-            <button onclick="openCalculator('LEGAL')" class="btn-glitch flex-1 border border-terminal/50 p-8 text-left transition-all group relative overflow-hidden">
+        <div class="flex flex-col md:flex-row gap-6 w-full max-w-4xl mb-8">
+            <button onclick="openCalculator('LEGAL')" class="btn-glitch flex-1 border border-terminal/50 p-6 md:p-8 text-left transition-all group relative overflow-hidden bg-void">
                 <div class="text-xs text-dim mb-2 uppercase tracking-widest group-hover:text-terminal">/// COMMAND A</div>
-                <div class="text-2xl font-bold text-white mb-2 group-hover:text-terminal">WEALTH PRESERVATION</div>
-                <div class="text-xs text-gray-500 font-normal">EXECUTE LEGAL INFRASTRUCTURE AUDIT</div>
+                <div class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-terminal">WEALTH PRESERVATION</div>
+                <div class="text-[10px] md:text-xs text-gray-500 font-normal">EXECUTE LEGAL INFRASTRUCTURE AUDIT</div>
                 <div class="absolute bottom-0 right-0 p-2 opacity-20">
-                    <i data-lucide="scale" class="w-12 h-12"></i>
+                    <i data-lucide="scale" class="w-10 h-10 md:w-12 md:h-12"></i>
                 </div>
             </button>
 
-            <button onclick="openCalculator('CRE')" class="btn-glitch flex-1 border border-terminal/50 p-8 text-left transition-all group relative overflow-hidden">
+            <button onclick="openCalculator('CRE')" class="btn-glitch flex-1 border border-terminal/50 p-6 md:p-8 text-left transition-all group relative overflow-hidden bg-void">
                 <div class="text-xs text-dim mb-2 uppercase tracking-widest group-hover:text-terminal">/// COMMAND B</div>
-                <div class="text-2xl font-bold text-white mb-2 group-hover:text-terminal">ASSET OPTIMIZATION</div>
-                <div class="text-xs text-gray-500 font-normal">EXECUTE NOI UPLIFT PROTOCOLS</div>
+                <div class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-terminal">ASSET OPTIMIZATION</div>
+                <div class="text-[10px] md:text-xs text-gray-500 font-normal">EXECUTE NOI UPLIFT PROTOCOLS</div>
                 <div class="absolute bottom-0 right-0 p-2 opacity-20">
-                    <i data-lucide="building" class="w-12 h-12"></i>
+                    <i data-lucide="building" class="w-10 h-10 md:w-12 md:h-12"></i>
                 </div>
             </button>
         </div>
 
-        <div class="mt-12">
+        <div>
             <button onclick="document.getElementById('modal-protocols').showModal()" class="text-xs text-dim hover:text-white border-b border-transparent hover:border-terminal transition-colors pb-1 uppercase tracking-[0.2em]">
                 [ VIEW INFRASTRUCTURE TIERS ]
             </button>
@@ -170,17 +165,9 @@
 
     </main>
 
-    <aside class="absolute right-0 top-20 bottom-12 w-64 border-l border-grid bg-void/50 backdrop-blur hidden lg:flex flex-col p-4 z-20">
-        <div class="text-[10px] text-dim uppercase tracking-widest mb-4 border-b border-grid pb-2">/// SYSTEM LOGS</div>
-        <div class="flex-1 overflow-hidden relative log-scroll">
-            <div id="log-feed" class="absolute bottom-0 left-0 right-0 space-y-4 text-[10px]">
-                </div>
-        </div>
-    </aside>
-
     <footer class="relative z-50 border-t border-terminal/30 bg-void h-10 flex items-center overflow-hidden cursor-pointer hover:bg-terminal/10 transition-colors" onclick="document.getElementById('modal-governance').showModal()">
-        <div class="whitespace-nowrap animate-marquee text-xs text-terminal/70 uppercase tracking-widest font-bold">
-            /// ISO 42001 ALIGNED /// ANTI-TRAINING COVENANT ACTIVE: NO PUBLIC MODEL TRAINING /// GDPR COMPLIANT /// HALLUCINATION INDEMNITY PROTOCOL: ONLINE /// DATA SOVEREIGNTY: GUARANTEED ///
+        <div class="whitespace-nowrap animate-marquee text-[10px] md:text-xs text-terminal/80 uppercase tracking-widest font-bold">
+            > SYSTEM LOG: RECOVERED $42,000 (CAM CHARGES) - NY PORTFOLIO &nbsp;&nbsp;///&nbsp;&nbsp; > SYSTEM LOG: INTAKE AUTOMATION ACTIVE - 98% CAPTURE RATE &nbsp;&nbsp;///&nbsp;&nbsp; > SYSTEM LOG: CONFLICT CHECK COMPLETE - 0.2 SECONDS &nbsp;&nbsp;///&nbsp;&nbsp; > ISO 42001 ALIGNED &nbsp;&nbsp;///&nbsp;&nbsp; > ANTI-TRAINING COVENANT ACTIVE
         </div>
     </footer>
 
@@ -195,20 +182,20 @@
                 <div class="space-y-6">
                     <div>
                         <label class="block text-xs text-dim uppercase mb-2">Hourly Billable Rate ($)</label>
-                        <input type="number" id="rate" value="500" class="w-full bg-grid border border-dim p-3 text-white focus:border-terminal focus:outline-none" oninput="calculate()">
+                        <input type="number" id="hourlyRate" value="500" class="w-full bg-grid border border-dim p-3 text-white focus:border-terminal focus:outline-none" oninput="calculateLoss()">
                     </div>
                     <div>
                         <label class="block text-xs text-dim uppercase mb-2">Unbilled Admin Hours / Week</label>
-                        <input type="number" id="hours" value="8" class="w-full bg-grid border border-dim p-3 text-white focus:border-terminal focus:outline-none" oninput="calculate()">
+                        <input type="number" id="unbilledHours" value="5" class="w-full bg-grid border border-dim p-3 text-white focus:border-terminal focus:outline-none" oninput="calculateLoss()">
                     </div>
-                    <div class="pt-4 text-xs text-gray-500">
-                        *Calculated on a 50-week operational year per fee-earner.
+                    <div class="pt-4 text-[10px] text-gray-500 font-mono">
+                        *FORMULA: (RATE * HOURS * 52 WEEKS)
                     </div>
                 </div>
                 <div class="flex flex-col justify-center border-l border-dim pl-12">
                     <div class="mb-8">
                         <div class="text-xs text-alert uppercase tracking-widest mb-2">ANNUAL REVENUE BLEED</div>
-                        <div id="bleed-display" class="text-4xl md:text-5xl font-bold text-alert">$200,000</div>
+                        <div id="totalLoss" class="text-4xl md:text-5xl font-bold text-alert">$130,000</div>
                     </div>
                     <div class="opacity-0 transition-opacity duration-1000" id="recovery-box">
                         <div class="text-xs text-success uppercase tracking-widest mb-2">G&P RECOVERY POTENTIAL</div>
@@ -219,6 +206,54 @@
             <button onclick="document.getElementById('modal-nodes').showModal()" class="w-full mt-8 bg-terminal text-black font-bold py-4 hover:bg-white transition-colors uppercase tracking-widest">
                 EXECUTE RECOVERY PROTOCOL
             </button>
+        </div>
+    </dialog>
+
+    <dialog id="modal-nodes" class="p-0">
+        <div class="border-b border-terminal p-4 flex justify-between items-center bg-terminal/10">
+            <h3 class="text-sm font-bold tracking-widest">/// ESTABLISH UPLINK</h3>
+            <button onclick="this.closest('dialog').close()" class="hover:text-white">✕</button>
+        </div>
+        <div class="p-8 bg-void grid md:grid-cols-2 gap-12">
+            <div class="relative border border-dim bg-grid p-6 min-h-[300px] flex items-center justify-center hidden md:flex">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-32 h-px bg-terminal/30 rotate-45 transform origin-left"></div>
+                    <div class="w-32 h-px bg-terminal/30 -rotate-12 transform origin-right"></div>
+                </div>
+                <div class="absolute top-1/4 left-1/4 text-center">
+                    <div class="w-3 h-3 bg-terminal rounded-full mx-auto animate-ping"></div>
+                    <div class="text-[10px] text-white mt-2">NODE A<br>DELAWARE (HQ)</div>
+                </div>
+                 <div class="absolute bottom-1/4 right-1/4 text-center">
+                    <div class="w-3 h-3 bg-dim rounded-full mx-auto"></div>
+                    <div class="text-[10px] text-gray-500 mt-2">NODE B<br>NY (CLIENTS)</div>
+                </div>
+            </div>
+
+            <div id="uplink-container">
+                <form id="uplink-form" action="mailto:contact@gpstandards.com" method="POST" enctype="text/plain" class="space-y-6">
+                    <div>
+                        <label class="block text-xs text-dim uppercase mb-2">Firm AUM / Revenue</label>
+                        <select name="size" class="w-full bg-grid border border-dim p-3 text-white text-xs focus:border-terminal focus:outline-none uppercase">
+                            <option>Under $10M (Waitlist)</option>
+                            <option>$10M - $50M</option>
+                            <option>$50M - $100M</option>
+                            <option>$100M+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-dim uppercase mb-2">Primary Risk Vector</label>
+                        <input type="text" name="risk" placeholder="E.G. UNBILLED TIME / VACANCY" class="w-full bg-grid border border-dim p-3 text-white text-xs focus:border-terminal focus:outline-none uppercase" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-dim uppercase mb-2">Secure Comms (Email)</label>
+                        <input type="email" name="email" class="w-full bg-grid border border-dim p-3 text-white text-xs focus:border-terminal focus:outline-none" required>
+                    </div>
+                    <button type="submit" class="w-full bg-terminal text-black font-bold py-4 hover:bg-white transition-colors uppercase tracking-widest text-xs">
+                        REQUEST CLEARANCE
+                    </button>
+                </form>
+            </div>
         </div>
     </dialog>
 
@@ -259,56 +294,6 @@
         </div>
     </dialog>
 
-    <dialog id="modal-nodes" class="p-0">
-        <div class="border-b border-terminal p-4 flex justify-between items-center bg-terminal/10">
-            <h3 class="text-sm font-bold tracking-widest">/// ESTABLISH UPLINK</h3>
-            <button onclick="this.closest('dialog').close()" class="hover:text-white">✕</button>
-        </div>
-        <div class="p-8 bg-void grid md:grid-cols-2 gap-12">
-            <div class="relative border border-dim bg-grid p-6 min-h-[300px] flex items-center justify-center">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-32 h-px bg-terminal/30 rotate-45 transform origin-left"></div>
-                    <div class="w-32 h-px bg-terminal/30 -rotate-12 transform origin-right"></div>
-                </div>
-                <div class="absolute top-1/4 left-1/4 text-center">
-                    <div class="w-3 h-3 bg-terminal rounded-full mx-auto animate-ping"></div>
-                    <div class="text-[10px] text-white mt-2">NODE A<br>DELAWARE (HQ)</div>
-                </div>
-                <div class="absolute top-1/2 right-1/4 text-center">
-                    <div class="w-3 h-3 bg-dim rounded-full mx-auto"></div>
-                    <div class="text-[10px] text-gray-500 mt-2">NODE B<br>RIYADH (OPS)</div>
-                </div>
-                 <div class="absolute bottom-1/4 left-1/2 text-center">
-                    <div class="w-3 h-3 bg-dim rounded-full mx-auto"></div>
-                    <div class="text-[10px] text-gray-500 mt-2">NODE C<br>NY (CLIENTS)</div>
-                </div>
-            </div>
-
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
-                <div>
-                    <label class="block text-xs text-dim uppercase mb-2">Firm AUM / Revenue</label>
-                    <select name="size" class="w-full bg-grid border border-dim p-3 text-white text-xs focus:border-terminal focus:outline-none uppercase">
-                        <option>Under $10M (Waitlist)</option>
-                        <option>$10M - $50M</option>
-                        <option>$50M - $100M</option>
-                        <option>$100M+</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs text-dim uppercase mb-2">Primary Risk Vector</label>
-                    <input type="text" name="risk" placeholder="E.G. UNBILLED TIME / VACANCY" class="w-full bg-grid border border-dim p-3 text-white text-xs focus:border-terminal focus:outline-none uppercase">
-                </div>
-                <div>
-                    <label class="block text-xs text-dim uppercase mb-2">Secure Comms (Email)</label>
-                    <input type="email" name="email" class="w-full bg-grid border border-dim p-3 text-white text-xs focus:border-terminal focus:outline-none">
-                </div>
-                <button class="w-full bg-terminal text-black font-bold py-4 hover:bg-white transition-colors uppercase tracking-widest text-xs">
-                    REQUEST CLEARANCE
-                </button>
-            </form>
-        </div>
-    </dialog>
-
     <dialog id="modal-governance" class="p-0">
         <div class="border-b border-terminal p-4 flex justify-between items-center bg-terminal/10">
             <h3 class="text-sm font-bold tracking-widest">/// CONSTITUTIONAL FRAMEWORK</h3>
@@ -346,44 +331,72 @@
         // Init Icons
         lucide.createIcons();
 
-        // Calculator Logic
+        // 1. CALCULATOR LOGIC (REPAIRED)
         function openCalculator(type) {
             document.getElementById('modal-calculator').showModal();
-            // In a real app, we could customize the modal based on 'type' (Legal vs CRE)
-            calculate(); 
+            calculateLoss(); // Run once on open
         }
 
-        function calculate() {
-            const rate = document.getElementById('rate').value;
-            const hours = document.getElementById('hours').value;
-            const bleed = rate * hours * 50; // 50 weeks
+        function calculateLoss() {
+            // Get values (defaulting if empty)
+            const rate = document.getElementById('hourlyRate').value || 0;
+            const hours = document.getElementById('unbilledHours').value || 0;
             
-            // Animate Number (Simple version)
-            document.getElementById('bleed-display').innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(bleed);
+            // Formula: Rate * Hours * 52 Weeks
+            const totalLoss = rate * hours * 52;
             
-            // Trigger Green Reveal
+            // Format currency
+            const formatted = new Intl.NumberFormat('en-US', { 
+                style: 'currency', 
+                currency: 'USD', 
+                maximumFractionDigits: 0 
+            }).format(totalLoss);
+            
+            // Update UI
+            document.getElementById('totalLoss').innerText = formatted;
+            
+            // Trigger Visual Reveal
             setTimeout(() => {
                 document.getElementById('recovery-box').classList.remove('opacity-0');
             }, 500);
         }
 
-        // Victory Log Feed
-        const logs = [
-            { msg: "RECOVERED $50K UNBILLED CAM CHARGES", time: "TODAY 09:42" },
-            { msg: "AUTOMATED 400 LEASE ABSTRACTS", time: "YESTERDAY 14:15" },
-            { msg: "LIABILITY FIREWALL ACTIVATED: FIRM A", time: "YESTERDAY 10:00" },
-            { msg: "NOI UPLIFT PROTOCOL: +12% DETECTED", time: "2 DAYS AGO" },
-            { msg: "ZERO-VACANCY AGENT DEPLOYED: NY", time: "2 DAYS AGO" }
-        ];
+        // 2. FORM UPLINK LOGIC (REPAIRED)
+        document.getElementById('uplink-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page reload
+            
+            const container = document.getElementById('uplink-container');
+            const originalContent = container.innerHTML;
+            
+            // 1. Show Processing State
+            container.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-12 space-y-4">
+                    <div class="w-12 h-12 border-4 border-terminal border-t-transparent rounded-full animate-spin"></div>
+                    <div class="text-terminal text-xs tracking-widest animate-pulse">ENCRYPTING PACKET...</div>
+                </div>
+            `;
 
-        const logContainer = document.getElementById('log-feed');
-        
-        logs.forEach(log => {
-            const el = document.createElement('div');
-            el.innerHTML = `<span class="text-dim">[${log.time}]</span> <span class="text-success">> LOG:</span> <span class="text-gray-400">${log.msg}</span>`;
-            logContainer.appendChild(el);
+            // 2. Simulate Delay & Success (1.5s)
+            setTimeout(() => {
+                container.innerHTML = `
+                    <div class="border border-success/30 bg-success/10 p-8 text-center animate-pulse">
+                        <h4 class="text-success text-xl font-bold mb-2">> UPLINK ESTABLISHED</h4>
+                        <p class="text-white text-xs mb-4">CLEARANCE PACKET SENT TO HQ.</p>
+                        <p class="text-[10px] text-gray-500">Redirecting to Secure Comms...</p>
+                    </div>
+                `;
+                
+                // 3. Backend Fallback (Trigger Mailto)
+                // We create a temporary link to trigger the mail client without breaking the UI
+                setTimeout(() => {
+                    const formData = new FormData(e.target);
+                    const subject = "CLEARANCE REQUEST: " + formData.get('email');
+                    const body = `Entity Size: ${formData.get('size')}%0D%0ARisk Vector: ${formData.get('risk')}`;
+                    window.location.href = `mailto:contact@gpstandards.com?subject=${subject}&body=${body}`;
+                }, 1000);
+
+            }, 1500);
         });
-
     </script>
 </body>
 </html>
