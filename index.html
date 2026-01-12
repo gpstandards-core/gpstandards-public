@@ -20,7 +20,8 @@
                         amber: '#FFB000',
                         signal: '#00F0FF',
                         success: '#10B981',
-                        surface: '#111111'
+                        surface: '#111111',
+                        border: 'rgba(255, 255, 255, 0.1)'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -28,7 +29,7 @@
                     },
                     animation: {
                         'scan': 'scan 3s linear infinite',
-                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -36,7 +37,12 @@
     </script>
 
     <style>
-        body { background-color: #050505; color: #e5e5e5; }
+        /* BASE ATMOSPHERE */
+        body { 
+            background-color: #050505; 
+            color: #e5e5e5; 
+            overflow-x: hidden;
+        }
         
         /* GLASS PANEL EFFECT */
         .glass-panel {
@@ -44,12 +50,11 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
         }
-
-        /* MODAL OVERLAY */
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         /* SCANNING LASER ANIMATION */
@@ -60,16 +65,34 @@
             100% { top: 100%; opacity: 0; }
         }
 
+        /* TEXT GRADIENT */
         .text-gradient {
             background: linear-gradient(to right, #ffffff, #9ca3af);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* ACCORDION UTILITIES */
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.active {
+            opacity: 1;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-btn[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-amber selection:text-black overflow-x-hidden">
+<body class="min-h-screen flex flex-col font-sans selection:bg-amber selection:text-black">
 
-    <nav class="fixed top-0 w-full z-40 bg-void/80 backdrop-blur-md border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-white/10 rounded flex items-center justify-center border border-white/10">
@@ -78,135 +101,193 @@
                 <span class="text-sm font-bold tracking-widest text-gray-300">G&P STANDARDS</span>
             </div>
 
-            <div class="hidden md:flex items-center gap-6 text-[10px] font-mono text-gray-500">
+            <div class="hidden md:flex items-center gap-6 text-[10px] font-mono text-success tracking-wider">
                 <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
                     <span>SYSTEM: ONLINE</span>
                 </div>
-                <div>DOMICILE: DELAWARE</div>
-                <div>ENCRYPTION: AES-256</div>
+                <div class="opacity-70">DOMICILE: US-EAST-4</div>
+                <div class="opacity-70">ENCRYPTION: AES-256</div>
             </div>
-
-            <button onclick="openModal('clearanceModal')" class="bg-white text-black px-5 py-2 text-xs font-bold tracking-wider hover:bg-amber transition-colors">
-                ESTABLISH UPLINK
-            </button>
         </div>
     </nav>
 
-    <main class="relative z-10 pt-32 pb-12 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+    <header class="relative pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
             
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber/20 bg-amber/5 text-amber text-[10px] font-mono tracking-widest w-fit animate-pulse-fast">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber"></span>
-                DATA DOMICILE: US-EAST-4 // ZERO-TRAINING PROTOCOL ACTIVE
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber/30 bg-amber/5 text-amber text-[10px] font-mono tracking-widest mb-8">
+                <i data-lucide="shield-check" class="w-3 h-3"></i>
+                DATA SOVEREIGNTY: AIR-GAPPED // ZERO-TRAINING PROTOCOL
             </div>
 
-            <h1 class="text-5xl md:text-6xl font-bold leading-tight text-white">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight text-white mb-6">
                 We Do Not Rent Intelligence. <br>
                 <span class="text-gradient">We Build Assets.</span>
             </h1>
 
-            <p class="text-lg text-gray-400 max-w-2xl leading-relaxed">
-                Public AI models leak your data. Commodity tools hallucinate your precedents.
-                G&P Standards deploys air-gapped <strong>"Digital Workers"</strong> that live on your servers, learn your history, and secure your legacy.
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
+                Sovereign "Digital Workers" for Law Firms & CRE. <br>
+                No shared models. No data leakage. Your infrastructure, your IP.
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                
-                <button onclick="openEngineModal('LEGAL')" class="glass-panel p-6 rounded-lg text-left hover:border-signal transition-all cursor-pointer group relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <i data-lucide="scale" class="w-6 h-6 text-gray-400 group-hover:text-signal transition-colors"></i>
-                        <span class="text-xs font-mono text-signal border border-signal/30 px-2 py-0.5 rounded bg-signal/5">NOVELTY SCORE: 0.06</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">CONFLICT SIMULATOR</h3>
-                    <p class="text-sm text-gray-400">Pre-litigate your motions against a Digital Twin of the presiding Judge.</p>
-                </button>
-
-                <button onclick="openEngineModal('ASSET')" class="glass-panel p-6 rounded-lg text-left hover:border-amber transition-all cursor-pointer group relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <i data-lucide="building-2" class="w-6 h-6 text-gray-400 group-hover:text-amber transition-colors"></i>
-                        <span class="text-xs font-mono text-amber border border-amber/30 px-2 py-0.5 rounded bg-amber/5">NOVELTY SCORE: 0.04</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">THE ZONING SENTINEL</h3>
-                    <p class="text-sm text-gray-400">
-                        We scrape municipal minutes before they go public. Predict rezoning 6 months early.
-                    </p>
-                </button>
-            </div>
+            <button onclick="scrollToGrid()" class="bg-white text-black px-8 py-4 rounded font-bold text-sm tracking-widest hover:bg-amber hover:text-black transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                INITIATE FORENSIC AUDIT
+            </button>
         </div>
+    </header>
 
-        <div class="lg:col-span-5 space-y-4">
+    <main class="max-w-7xl mx-auto px-6 space-y-24 pb-24">
+
+        <section id="grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <div class="glass-panel rounded-xl relative overflow-hidden border border-white/10 bg-[#0a0a0a]">
-                <div class="bg-black/80 border-b border-white/10 p-3 flex justify-between items-center">
-                    <div class="flex gap-2">
-                        <div class="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                        <div class="w-2.5 h-2.5 rounded-full bg-amber/20 border border-amber/50"></div>
-                        <div class="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></div>
-                    </div>
-                    <div class="text-[10px] font-mono text-gray-500">FORENSIC_AUDIT_V2.EXE</div>
-                </div>
-                <div class="p-4 font-mono text-[10px] space-y-3 relative h-48">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-amber/50 shadow-[0_0_15px_rgba(255,176,0,0.5)] animate-scan z-10 opacity-30"></div>
-                    <div class="flex justify-between border-b border-white/5 pb-1 text-gray-600">
-                        <span>TIMESTAMP</span><span>EVENT</span><span>STATUS</span>
-                    </div>
-                    <div class="flex justify-between text-gray-400"><span>10:42:01</span><span>INV_LEAK_994</span><span class="text-red-500">DETECTED</span></div>
-                    <div class="pl-4 text-gray-600">>> Unbilled Time: 0.4 hrs</div>
-                    <div class="flex justify-between text-gray-400"><span>10:42:05</span><span>LEASE_AUDIT</span><span class="text-amber">FLAGGED</span></div>
-                    <div class="pl-4 text-gray-600">>> CPI Missed: $4,200</div>
-                    <div class="flex justify-between text-gray-400"><span>10:42:12</span><span>RECOVERY_BOT</span><span class="text-success">EXECUTED</span></div>
-                    <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none"></div>
-                </div>
+            <div class="glass-panel p-8 rounded-xl group relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="building-2" class="text-amber w-6 h-6"></i></div>
+                <div class="text-[10px] font-mono text-amber mb-4 border border-amber/20 w-fit px-2 py-1 rounded bg-amber/5">NOVELTY SCORE: 0.04</div>
+                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-amber transition-colors">The Zoning Sentinel</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Scrapes municipal meeting minutes before they go public. Predict rezoning 6 months early. Arbitrage the regulatory gap.
+                </p>
             </div>
 
-            <div onclick="openModal('pdfModal')" class="glass-panel p-4 rounded-xl flex items-center justify-between group cursor-pointer hover:border-amber/50 transition-all">
-                <div class="flex items-center gap-4">
-                    <div class="bg-blue-500/10 p-2 rounded text-blue-400 border border-blue-500/20">
-                        <i data-lucide="file-code" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-bold text-white group-hover:text-amber transition-colors">Technical Architecture</h4>
-                        <div class="flex gap-2 mt-1">
-                            <span class="text-[10px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-gray-400">SOC 2</span>
-                            <span class="text-[10px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-gray-400">AZURE GOV</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="text-xs font-mono border border-white/20 px-3 py-1.5 rounded text-gray-400 group-hover:text-white group-hover:border-white transition-all">
-                    DOWNLOAD PDF
-                </button>
+            <div class="glass-panel p-8 rounded-xl group relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="gavel" class="text-signal w-6 h-6"></i></div>
+                <div class="text-[10px] font-mono text-signal mb-4 border border-signal/20 w-fit px-2 py-1 rounded bg-signal/5">NOVELTY SCORE: 0.02</div>
+                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-signal transition-colors">The Shadow Board</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Pre-litigate motions against a Digital Twin of the presiding Judge. Simulate outcomes and adjust strategy before filing.
+                </p>
             </div>
 
-            <div class="glass-panel p-5 rounded-xl border-l-2 border-amber opacity-90">
-                <h3 class="font-mono text-xs text-amber mb-4 tracking-wider flex items-center gap-2">
-                    <i data-lucide="calculator" class="w-3 h-3"></i> ROI CALCULATOR
-                </h3>
+            <div class="glass-panel p-8 rounded-xl group relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="history" class="text-gray-400 w-6 h-6"></i></div>
+                <div class="text-[10px] font-mono text-gray-500 mb-4 border border-gray-700 w-fit px-2 py-1 rounded">FORENSIC AUDIT</div>
+                <h3 class="text-2xl font-bold text-white mb-3">The Revenue Reclaimer</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Forensic audit of associate calendars vs. billing. Finds the lost $208k/year per associate in unbilled time.
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-xl group relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="shield-alert" class="text-gray-400 w-6 h-6"></i></div>
+                <div class="text-[10px] font-mono text-gray-500 mb-4 border border-gray-700 w-fit px-2 py-1 rounded">RISK MITIGATION</div>
+                <h3 class="text-2xl font-bold text-white mb-3">The Conflict Engine</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Semantic conflict checks across 50,000 docs in 0.2 seconds. Zero hallucination risk. Pure structural analysis.
+                </p>
+            </div>
+        </section>
+
+        <section class="glass-panel rounded-xl relative overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-2xl">
+            <div class="bg-black/80 border-b border-white/10 p-3 flex justify-between items-center">
+                <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber/20 border border-amber/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                </div>
+                <div class="text-[10px] font-mono text-gray-500">FORENSIC_AUDIT_V2.EXE</div>
+            </div>
+
+            <div class="p-6 font-mono text-xs space-y-4 relative h-64 overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-amber/50 shadow-[0_0_15px_rgba(255,176,0,0.5)] animate-[scan_3s_linear_infinite] z-10 opacity-30"></div>
+
+                <div class="flex justify-between border-b border-white/5 pb-2 text-gray-600 mb-4">
+                    <span>TIMESTAMP</span><span>EVENT_ID</span><span>STATUS</span>
+                </div>
+
                 <div class="space-y-3">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] font-mono text-gray-500 mb-1">RATE ($/HR)</label>
-                            <input type="number" id="hourlyRate" value="500" class="w-full bg-void border border-white/10 rounded p-2 text-white font-mono text-sm focus:border-amber focus:outline-none transition-colors" oninput="calculate()">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-mono text-gray-500 mb-1">LEAKAGE (HRS/WK)</label>
-                            <input type="number" id="unbilledHours" value="8" class="w-full bg-void border border-white/10 rounded p-2 text-white font-mono text-sm focus:border-amber focus:outline-none transition-colors" oninput="calculate()">
-                        </div>
+                    <div class="flex justify-between text-gray-400">
+                        <span>10:42:01</span><span>INV_LEAK_994</span><span class="text-red-500">DETECTED</span>
                     </div>
-                    <div class="pt-3 border-t border-white/5">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-400">ANNUAL LOSS</span>
-                            <span id="lossOutput" class="text-lg font-bold font-mono text-red-500">$208,000</span>
-                        </div>
+                    <div class="pl-4 text-gray-600 border-l border-white/10 ml-2">>> Unbilled Time: 0.4 hrs (Client Meeting)</div>
+
+                    <div class="flex justify-between text-gray-400">
+                        <span>10:42:05</span><span>LEASE_AUDIT_X</span><span class="text-amber">FLAGGED</span>
+                    </div>
+                    <div class="pl-4 text-gray-600 border-l border-white/10 ml-2">>> CAM Slippage: $4,200 Impact</div>
+
+                    <div class="flex justify-between text-gray-400">
+                        <span>10:42:12</span><span>RECOVERY_BOT</span><span class="text-success">INITIATED</span>
+                    </div>
+                    <div class="pl-4 text-gray-600 border-l border-white/10 ml-2">>> Recovery Invoice Generated: #8821</div>
+                    
+                    <div class="flex justify-between text-gray-400 opacity-50">
+                        <span>10:42:15</span><span>SYNC_LOG</span><span>WAITING...</span>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+            </div>
+        </section>
+
+        <section class="max-w-3xl mx-auto">
+            <h2 class="text-sm font-mono text-gray-500 mb-8 tracking-widest uppercase border-b border-white/10 pb-2">DUE DILIGENCE // PROTOCOLS</h2>
+            
+            <div class="space-y-4">
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a1')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">Do you indemnify us against AI hallucinations?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a1" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            Yes. Our 'Human-in-the-Loop' protocol mandates senior review for high-stakes outputs. We sell Insured Intelligence.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a2')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">Does OpenAI/Anthropic train on our case files?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a2" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            No. We deploy via Azure Government/Enterprise with Zero Data Retention (ZDR) policies. We provide a signed Anti-Training Covenant.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a3')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">If we fire you, do we keep the 'Digital Brain'?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a3" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            Yes. You buy Sovereign Infrastructure. The vector database and model weights belong to you.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a4')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">How do you prove ROI?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a4" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            We bill on Revenue Reclaimed. If the Revenue Reclaimer agent doesn't find $5k in unbilled time in 30 days, we refund the deployment fee.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a5')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">Are you just a wrapper?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a5" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            No. We utilize proprietary orchestration layers on air-gapped nodes. GoHighLevel is only the communication pipe; the reasoning engine is ours.
+                        </p>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
     </main>
 
-    <footer class="mt-auto border-t border-white/5 bg-black py-16 relative z-10">
+    <footer class="border-t border-white/5 bg-black py-16">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-xs font-mono">
             
             <div class="space-y-4">
@@ -214,253 +295,81 @@
                     <div class="w-6 h-6 bg-white/10 rounded flex items-center justify-center border border-white/10">GP</div>
                     G&P STANDARDS
                 </div>
-                <button onclick="openModal('techModal')" class="text-gray-500 hover:text-white text-left transition-colors">
-                    Sovereign Intelligence Architecture.
-                </button>
-                <div class="flex gap-4">
-                    <a href="https://www.linkedin.com/company/genesis-prime-standards-llc" target="_blank" class="text-gray-500 hover:text-white"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-                </div>
+                <p class="text-gray-500">Sovereign Intelligence Architecture.</p>
+                <div class="text-gray-600">&copy; 2026 G&P STANDARDS LLC.</div>
             </div>
             
             <div class="space-y-4">
-                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Trust & Compliance</h4>
-                <div class="flex flex-col gap-3 text-gray-500">
-                    <button onclick="openModal('complianceModal')" class="flex items-center gap-2 hover:text-white transition-colors group text-left">
-                        <i data-lucide="shield-ban" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Trust Center</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li onclick="downloadSecureDoc('Anti-Training Covenant')" class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
                         Anti-Training Covenant
                         <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_rgba(16,185,129,0.5)]"></span>
-                    </button>
-                    <button onclick="openModal('baaModal')" class="flex items-center gap-2 hover:text-white transition-colors group text-left">
+                    </li>
+                    <li onclick="downloadSecureDoc('HIPAA BAA Framework')" class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
                         <i data-lucide="file-key" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
                         HIPAA BAA Framework
-                    </button>
-                    <button onclick="openModal('socModal')" class="flex items-center gap-2 hover:text-white transition-colors group text-left">
+                    </li>
+                    <li onclick="downloadSecureDoc('SOC 2 Type II Alignment')" class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
                         <i data-lucide="lock" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
                         SOC 2 Type II Alignment
-                    </button>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Operational Status</h4>
-                <ul class="space-y-3 text-gray-500">
-                    <li class="flex justify-between items-center border-b border-white/5 pb-1">
-                        <span>UPTIME (30D)</span> <span class="text-success">99.99%</span>
-                    </li>
-                    <li class="flex justify-between items-center border-b border-white/5 pb-1">
-                        <span>LATENCY</span> <span class="text-success">12ms</span>
-                    </li>
-                    <li class="flex justify-between items-center border-b border-white/5 pb-1">
-                        <span>ENCRYPTION</span> <span class="text-white">AES-256-GCM</span>
                     </li>
                 </ul>
             </div>
-            
-             <div class="space-y-4">
-                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Legal</h4>
+
+            <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Legal Protocol</h4>
                 <div class="flex flex-col gap-2 text-gray-600">
-                    <button onclick="openModal('privacyModal')" class="hover:text-amber transition-colors text-left">Privacy Protocol</button>
-                    <button onclick="openModal('termsModal')" class="hover:text-amber transition-colors text-left">Terms of Service</button>
-                    <button onclick="openModal('dpaModal')" class="hover:text-amber transition-colors text-left">Data Processing Addendum</button>
-                    <p class="mt-4">&copy; 2026 G&P STANDARDS LLC.</p>
+                    <a href="#" class="hover:text-amber transition-colors">Privacy Protocol</a>
+                    <a href="#" class="hover:text-amber transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-amber transition-colors">Data Processing Addendum</a>
+                </div>
+            </div>
+
+             <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Secure Uplink</h4>
+                <div class="flex flex-col gap-2 text-gray-600">
+                    <a href="mailto:clearance@gpstandards.com" class="hover:text-amber transition-colors">clearance@gpstandards.com</a>
+                    <p class="text-[10px] pt-2 text-gray-700">PGP Key Available Upon Request.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div id="clearanceModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-amber/30 p-8 rounded-lg max-w-md w-full relative shadow-[0_0_50px_rgba(255,176,0,0.1)]">
-            <button onclick="closeModal('clearanceModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-2 tracking-wider">CLEARANCE PROTOCOL</h2>
-            <p class="text-xs text-gray-400 mb-6 font-mono">G&P Standards accepts 5 partners per quarter. Minimum data thresholds apply.</p>
-            <form id="contactForm" class="space-y-4">
-                <input type="email" name="email" required placeholder="Enter corporate email..." class="w-full bg-white/5 border border-white/10 text-white p-3 rounded text-sm focus:border-amber outline-none">
-                <button type="submit" class="w-full bg-white text-black font-bold py-3 text-xs tracking-widest hover:bg-amber transition-colors">ESTABLISH UPLINK</button>
-            </form>
-            <div id="contactSuccess" class="hidden mt-4 text-center text-green-500 text-xs font-mono">>> UPLINK ESTABLISHED. AGENT WILL RESPOND.</div>
-        </div>
-    </div>
-
-    <div id="engineModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#111] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('engineModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div id="engineContent"></div>
-        </div>
-    </div>
-
-    <div id="pdfModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-blue-500/30 p-8 rounded-lg max-w-sm w-full relative shadow-[0_0_50px_rgba(59,130,246,0.1)]">
-            <button onclick="closeModal('pdfModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div class="flex items-center gap-3 mb-4 text-blue-500"><i data-lucide="lock" class="w-5 h-5"></i><span class="text-xs font-mono font-bold">RESTRICTED DOCUMENT</span></div>
-            <h2 class="text-lg font-bold text-white mb-2">Technical Architecture</h2>
-            <form id="pdfForm" class="space-y-4">
-                <input type="email" name="email" required placeholder="Corporate Email" class="w-full bg-white/5 border border-white/10 text-white p-3 rounded text-sm focus:border-blue-500 outline-none">
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 text-xs tracking-widest hover:bg-blue-500 transition-colors">AUTHENTICATE & DOWNLOAD</button>
-            </form>
-            <div id="pdfSuccess" class="hidden mt-6 text-center text-green-500 text-xs font-mono">>> CREDENTIALS VERIFIED. CHECK INBOX.</div>
-        </div>
-    </div>
-
-    <div id="complianceModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-green-500/30 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('complianceModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div class="text-green-500 font-mono text-xs mb-2 flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> ACTIVE PROTOCOL</div>
-            <h2 class="text-xl font-bold text-white mb-4">Anti-Training Covenant</h2>
-            <div class="text-gray-400 text-sm font-mono leading-relaxed space-y-4">
-                <p>G&P Standards warrants that Client Data is processed in an ephemeral state and is strictly prohibited from being used to train public foundation models (OpenAI, Anthropic, Google).</p>
-                <p>All inference occurs within isolated containers. Weights are frozen. No data egress to model providers is technically permitted.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="baaModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('baaModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-4">HIPAA BAA Framework</h2>
-            <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                We execute standard Business Associate Agreements (BAA) for all healthcare-adjacent clients. Our infrastructure is HIPAA-compliant via Azure Government containment protocols.
-            </p>
-        </div>
-    </div>
-
-    <div id="socModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('socModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-4">SOC 2 Type II Alignment</h2>
-            <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Our security controls map directly to SOC 2 Type II Trust Services Criteria (Security, Availability, Confidentiality). Audit logs are retained for 7 years.
-            </p>
-        </div>
-    </div>
-
-    <div id="privacyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-4">Privacy Protocol</h2>
-            <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Data minimization is enforced by code. We only collect data necessary for the immediate inference task. Data is purged from cache immediately upon session termination.
-            </p>
-        </div>
-    </div>
-
-    <div id="termsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-4">Terms of Service</h2>
-            <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Services provided on a dedicated retainer basis. Intellectual Property generated by the Sovereign Models belongs exclusively to the Client.
-            </p>
-        </div>
-    </div>
-
-    <div id="dpaModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('dpaModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-4">Data Processing Addendum</h2>
-            <p class="text-gray-400 text-sm font-mono leading-relaxed">
-                Our DPA incorporates Standard Contractual Clauses (SCCs) for cross-border data transfers, ensuring GDPR and CCPA compliance.
-            </p>
-        </div>
-    </div>
-
-    <div id="techModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-amber/30 p-8 rounded-lg max-w-2xl w-full relative">
-            <button onclick="closeModal('techModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-6">Sovereign Intelligence Architecture</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center font-mono text-xs">
-                <div class="border border-white/10 p-4 rounded bg-white/5">
-                    <i data-lucide="server" class="w-6 h-6 mx-auto mb-2 text-gray-400"></i>
-                    <h3 class="text-white font-bold mb-1">NODE 1</h3>
-                    <p class="text-gray-500">Client Premise</p>
-                </div>
-                <div class="flex items-center justify-center text-amber">
-                    <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
-                    <span class="mx-2">AIR GAP</span>
-                    <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
-                </div>
-                <div class="border border-white/10 p-4 rounded bg-white/5">
-                    <i data-lucide="globe-lock" class="w-6 h-6 mx-auto mb-2 text-amber"></i>
-                    <h3 class="text-white font-bold mb-1">NODE 2</h3>
-                    <p class="text-gray-500">G&P Secure Core</p>
-                </div>
-            </div>
-            <p class="mt-6 text-gray-400 text-sm font-mono leading-relaxed">
-                Traffic is routed through encrypted tunnels. The "Public Internet" cannot address your instance directly.
-            </p>
-        </div>
-    </div>
-
     <script>
+        // 1. Initialize Icons
         lucide.createIcons();
 
-        // ---------------------------------------------------------
-        // *** CRITICAL: PASTE YOUR FORMSPREE IDs BELOW ***
-        // ---------------------------------------------------------
-        const CONTACTS_FORM_ID = "xdaoprgr"; // Based on your previous upload
-        const INFO_FORM_ID = "YOUR_SECOND_ID"; // Paste the ID for the Tech Specs form
-        // ---------------------------------------------------------
+        // 2. Accordion Logic
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const btn = content.previousElementSibling;
+            
+            // Toggle Active Class
+            content.classList.toggle('active');
+            
+            // Handle ARIA
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !isExpanded);
 
-        // 1. CALCULATOR LOGIC
-        function calculate() {
-            const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
-            const hours = parseFloat(document.getElementById('unbilledHours').value) || 0;
-            const weeks = 52;
-            const total = rate * hours * weeks;
-            document.getElementById('lossOutput').innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(total);
-        }
-
-        // 2. MODAL CONTROLLERS (Generic)
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        // 3. ENGINE CONTENT CONTROLLER
-        function openEngineModal(type) {
-            const contentDiv = document.getElementById('engineContent');
-            if(type === 'LEGAL') {
-                contentDiv.innerHTML = `
-                    <div class="flex items-center gap-2 text-signal mb-4 font-mono text-xs"><i data-lucide="scale"></i> LEGAL ENGINE</div>
-                    <h2 class="text-2xl font-bold text-white mb-4">The Conflict Simulator</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Pre-litigate your motions against a Digital Twin of the presiding Judge. We simulate rulings based on 10 years of case history.</p>
-                    <button onclick="openModal('clearanceModal'); closeModal('engineModal')" class="w-full border border-white/20 text-white py-2 text-xs hover:bg-white hover:text-black transition-all">REQUEST SIMULATION</button>
-                `;
+            // Animate Height
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
             } else {
-                contentDiv.innerHTML = `
-                    <div class="flex items-center gap-2 text-amber mb-4 font-mono text-xs"><i data-lucide="building-2"></i> ASSET ENGINE</div>
-                    <h2 class="text-2xl font-bold text-white mb-4">The Zoning Sentinel</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">We scrape municipal meeting minutes before they go public. Predict rezoning 6 months early and arbitrage the regulatory gap.</p>
-                    <button onclick="openModal('clearanceModal'); closeModal('engineModal')" class="w-full border border-white/20 text-white py-2 text-xs hover:bg-white hover:text-black transition-all">REQUEST SURVEILLANCE</button>
-                `;
+                content.style.maxHeight = content.scrollHeight + "px";
             }
-            lucide.createIcons();
-            openModal('engineModal');
         }
 
-        // 4. FORM HANDLER (CONTACTS)
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = "ENCRYPTING...";
-            const formData = new FormData(this);
-            try {
-                const response = await fetch(`https://formspree.io/f/${CONTACTS_FORM_ID}`, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-                if (response.ok) { this.style.display = 'none'; document.getElementById('contactSuccess').classList.remove('hidden'); }
-                else { alert("Connection Refused."); btn.innerText = originalText; }
-            } catch (error) { alert("Uplink Error."); btn.innerText = originalText; }
-        });
+        // 3. Scroll Helper
+        function scrollToGrid() {
+            document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
+        }
 
-        // 5. FORM HANDLER (PDF)
-        document.getElementById('pdfForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            btn.innerText = "VERIFYING...";
-            const formData = new FormData(this);
-            try {
-                const response = await fetch(`https://formspree.io/f/${INFO_FORM_ID}`, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-                if (response.ok) { this.style.display = 'none'; document.getElementById('pdfSuccess').classList.remove('hidden'); }
-                else { btn.innerText = "AUTH FAILED"; }
-            } catch (error) { btn.innerText = "ERROR"; }
-        });
+        // 4. Secure Doc Simulation
+        function downloadSecureDoc(docName) {
+            alert(`[SECURE DOWNLOAD INITIATED]\n\nRetrieving: ${docName}\nEncryption: AES-256\n\nPlease check your secure inbox.`);
+        }
     </script>
 </body>
 </html>
