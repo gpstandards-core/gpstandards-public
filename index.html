@@ -18,13 +18,17 @@
                     colors: {
                         void: '#050505',
                         amber: '#FFB000',
-                        signal: '#3B82F6',
+                        signal: '#00F0FF',
                         success: '#10B981',
                         surface: '#111111'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'scan': 'scan 3s linear infinite',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -34,7 +38,7 @@
     <style>
         body { background-color: #050505; color: #e5e5e5; }
         
-        /* GLASS PANEL */
+        /* GLASS PANEL EFFECT */
         .glass-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -48,17 +52,16 @@
             backdrop-filter: blur(5px);
         }
 
-        /* SCANNING LASER */
+        /* SCANNING LASER ANIMATION */
         @keyframes scan {
             0% { top: 0%; opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
         }
-        .animate-scan { animation: scan 3s linear infinite; }
 
         .text-gradient {
-            background: linear-gradient(to right, #ffffff, #6b7280);
+            background: linear-gradient(to right, #ffffff, #9ca3af);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -81,6 +84,7 @@
                     <span>SYSTEM: ONLINE</span>
                 </div>
                 <div>DOMICILE: DELAWARE</div>
+                <div>ENCRYPTION: AES-256</div>
             </div>
 
             <button onclick="openModal('clearanceModal')" class="bg-white text-black px-5 py-2 text-xs font-bold tracking-wider hover:bg-amber transition-colors">
@@ -91,10 +95,11 @@
 
     <main class="relative z-10 pt-32 pb-12 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <div class="lg:col-span-7 flex flex-col justify-center space-y-8">
-            <div class="inline-flex items-center space-x-2 text-amber text-xs font-mono tracking-[0.2em] uppercase">
-                <i data-lucide="shield-check" class="w-4 h-4"></i>
-                <span>Sovereign Intelligence Architecture</span>
+        <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber/20 bg-amber/5 text-amber text-[10px] font-mono tracking-widest w-fit animate-pulse-fast">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber"></span>
+                DATA DOMICILE: US-EAST-4 // ZERO-TRAINING PROTOCOL ACTIVE
             </div>
 
             <h1 class="text-5xl md:text-6xl font-bold leading-tight text-white">
@@ -104,17 +109,18 @@
 
             <p class="text-lg text-gray-400 max-w-2xl leading-relaxed">
                 Public AI models leak your data. Commodity tools hallucinate your precedents.
-                G&P Standards deploys air-gapped <strong>"Digital Workers"</strong> that live on your servers.
+                G&P Standards deploys air-gapped <strong>"Digital Workers"</strong> that live on your servers, learn your history, and secure your legacy.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                
                 <button onclick="openEngineModal('LEGAL')" class="glass-panel p-6 rounded-lg text-left hover:border-signal transition-all cursor-pointer group relative overflow-hidden">
                     <div class="flex justify-between items-start mb-4">
                         <i data-lucide="scale" class="w-6 h-6 text-gray-400 group-hover:text-signal transition-colors"></i>
                         <span class="text-xs font-mono text-gray-500 group-hover:text-signal">LEGAL ENGINE</span>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">High-Stakes Litigation</h3>
-                    <p class="text-sm text-gray-400">Automate discovery synthesis.</p>
+                    <p class="text-sm text-gray-400">Automate discovery synthesis and eliminate conflict check paralysis.</p>
                 </button>
 
                 <button onclick="openEngineModal('ASSET')" class="glass-panel p-6 rounded-lg text-left hover:border-amber transition-all cursor-pointer group relative overflow-hidden">
@@ -122,8 +128,18 @@
                         <i data-lucide="building-2" class="w-6 h-6 text-gray-400 group-hover:text-amber transition-colors"></i>
                         <span class="text-xs font-mono text-gray-500 group-hover:text-amber">ASSET ENGINE</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Commercial Real Estate</h3>
-                    <p class="text-sm text-gray-400">Hyper-local zoning arbitrage.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">THE ZONING SENTINEL</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        We monitor 
+                        <span class="text-amber inline-flex items-center gap-1.5 font-mono text-xs">
+                            municipal meeting minutes
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-amber"></span>
+                            </span>
+                        </span> 
+                        in [Delaware] to predict zoning changes before they're public. Arbitrage the regulatory gap.
+                    </p>
                 </button>
             </div>
         </div>
@@ -139,20 +155,17 @@
                     </div>
                     <div class="text-[10px] font-mono text-gray-500">FORENSIC_AUDIT_V2.EXE</div>
                 </div>
-                <div class="p-4 font-mono text-[10px] space-y-3 relative h-56">
+                <div class="p-4 font-mono text-[10px] space-y-3 relative h-48">
                     <div class="absolute top-0 left-0 w-full h-1 bg-amber/50 shadow-[0_0_15px_rgba(255,176,0,0.5)] animate-scan z-10 opacity-30"></div>
                     <div class="flex justify-between border-b border-white/5 pb-1 text-gray-600">
                         <span>TIMESTAMP</span><span>EVENT</span><span>STATUS</span>
                     </div>
-                    <div class="flex justify-between text-gray-400"><span>10:42:01</span><span>INV_LEAK</span><span class="text-red-500">DETECTED</span></div>
+                    <div class="flex justify-between text-gray-400"><span>10:42:01</span><span>INV_LEAK_994</span><span class="text-red-500">DETECTED</span></div>
                     <div class="pl-4 text-gray-600">>> Unbilled Time: 0.4 hrs</div>
                     <div class="flex justify-between text-gray-400"><span>10:42:05</span><span>LEASE_AUDIT</span><span class="text-amber">FLAGGED</span></div>
                     <div class="pl-4 text-gray-600">>> CPI Missed: $4,200</div>
+                    <div class="flex justify-between text-gray-400"><span>10:42:12</span><span>RECOVERY_BOT</span><span class="text-success">EXECUTED</span></div>
                     <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none"></div>
-                </div>
-                <div class="bg-white/5 border-t border-white/10 p-4 flex justify-between items-center">
-                    <span class="text-xs font-mono text-gray-400">REVENUE RECLAIMED</span>
-                    <span class="text-xl font-bold font-mono text-success">$1,240.00</span>
                 </div>
             </div>
 
@@ -174,8 +187,93 @@
                 </button>
             </div>
 
+            <div class="glass-panel p-5 rounded-xl border-l-2 border-amber opacity-90">
+                <h3 class="font-mono text-xs text-amber mb-4 tracking-wider flex items-center gap-2">
+                    <i data-lucide="calculator" class="w-3 h-3"></i> ROI CALCULATOR
+                </h3>
+                <div class="space-y-3">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-mono text-gray-500 mb-1">RATE ($/HR)</label>
+                            <input type="number" id="hourlyRate" value="500" class="w-full bg-void border border-white/10 rounded p-2 text-white font-mono text-sm focus:border-amber focus:outline-none transition-colors" oninput="calculate()">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono text-gray-500 mb-1">LEAKAGE (HRS/WK)</label>
+                            <input type="number" id="unbilledHours" value="8" class="w-full bg-void border border-white/10 rounded p-2 text-white font-mono text-sm focus:border-amber focus:outline-none transition-colors" oninput="calculate()">
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-white/5">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-400">ANNUAL LOSS</span>
+                            <span id="lossOutput" class="text-lg font-bold font-mono text-red-500">$208,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
+
+    <footer class="mt-auto border-t border-white/5 bg-black py-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-xs font-mono">
+            
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 text-white font-bold tracking-widest">
+                    <div class="w-6 h-6 bg-white/10 rounded flex items-center justify-center border border-white/10">GP</div>
+                    G&P STANDARDS
+                </div>
+                <p class="text-gray-500">Sovereign Intelligence Architecture.</p>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/company/genesis-prime-standards-llc" target="_blank" class="text-gray-500 hover:text-white"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Trust & Compliance</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li class="flex items-center gap-2 hover:text-white transition-colors group cursor-pointer">
+                        <i data-lucide="shield-ban" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
+                        Anti-Training Covenant
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_rgba(16,185,129,0.5)]"></span>
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-white transition-colors group cursor-pointer">
+                        <i data-lucide="file-key" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
+                        HIPAA BAA Framework
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-white transition-colors group cursor-pointer">
+                        <i data-lucide="lock" class="w-4 h-4 text-gray-400 group-hover:text-amber transition-colors"></i>
+                        SOC 2 Type II Alignment
+                    </li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Operational Status</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li class="flex justify-between items-center border-b border-white/5 pb-1">
+                        <span>UPTIME (30D)</span> <span class="text-success">99.99%</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-white/5 pb-1">
+                        <span>LATENCY</span> <span class="text-success">12ms</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-white/5 pb-1">
+                        <span>ENCRYPTION</span> <span class="text-white">AES-256-GCM</span>
+                    </li>
+                </ul>
+            </div>
+            
+             <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Legal</h4>
+                <div class="flex flex-col gap-2 text-gray-600">
+                    <a href="#" class="hover:text-amber transition-colors">Privacy Protocol</a>
+                    <a href="#" class="hover:text-amber transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-amber transition-colors">Data Processing Addendum</a>
+                    <p class="mt-4">&copy; 2026 G&P STANDARDS LLC.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <div id="clearanceModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
         <div class="bg-[#0a0a0a] border border-amber/30 p-8 rounded-lg max-w-md w-full relative shadow-[0_0_50px_rgba(255,176,0,0.1)]">
@@ -258,13 +356,32 @@
         lucide.createIcons();
 
         // ---------------------------------------------------------
-        // *** CRITICAL: PASTE YOUR FORMSPREE IDs HERE ***
+        // *** CRITICAL: PASTE YOUR FORMSPREE IDs BELOW ***
         // ---------------------------------------------------------
-        const CONTACTS_FORM_ID = "YOUR_CONTACTS_FORM_ID"; // e.g. "xpznqwer" (For Clearance Protocol)
-        const INFO_FORM_ID = "YOUR_INFO_FORM_ID";         // e.g. "mkwlpoaq" (For PDF Gate)
+        // 1. Paste the ID for 'GP Standards Leads' (e.g. xdaoprgr)
+        const CONTACTS_FORM_ID = "YOUR_CONTACTS_FORM_ID"; 
+        
+        // 2. Paste the ID for 'Tech Specs' (the new one you created)
+        const INFO_FORM_ID = "YOUR_INFO_FORM_ID";         
         // ---------------------------------------------------------
 
-        // Modal Controllers
+        // 1. CALCULATOR LOGIC
+        function calculate() {
+            const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+            const hours = parseFloat(document.getElementById('unbilledHours').value) || 0;
+            const weeks = 52;
+            const total = rate * hours * weeks;
+            
+            const formatted = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0
+            }).format(total);
+            
+            document.getElementById('lossOutput').innerText = formatted;
+        }
+
+        // 2. MODAL CONTROLLERS
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
         }
@@ -272,7 +389,7 @@
             document.getElementById(id).classList.add('hidden');
         }
 
-        // Engine Content Controller
+        // 3. ENGINE CONTENT CONTROLLER
         function openEngineModal(type) {
             const contentDiv = document.getElementById('engineContent');
             if(type === 'LEGAL') {
@@ -296,11 +413,11 @@
             } else {
                 contentDiv.innerHTML = `
                     <div class="flex items-center gap-2 text-amber mb-4 font-mono text-xs">
-                        <i data-lucide="building-2"></i> ASSET INTELLIGENCE ENGINE
+                        <i data-lucide="building-2"></i> THE ZONING SENTINEL
                     </div>
                     <h2 class="text-2xl font-bold text-white mb-4">CRE Portfolio Synthesis</h2>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Connect your rent rolls (Yardi/MRI) with local zoning data to identify arbitrage opportunities instantly.
+                        We monitor municipal meeting minutes to predict zoning changes before they're public. Arbitrage the regulatory gap.
                     </p>
                     <ul class="space-y-2 text-sm text-gray-300 mb-6 font-mono">
                         <li class="flex gap-2"><span class="text-amber">></span> Lease Audit (CAM Reconciliation)</li>
@@ -312,11 +429,11 @@
                     </button>
                 `;
             }
-            lucide.createIcons(); // Re-render icons in new content
+            lucide.createIcons();
             openModal('engineModal');
         }
 
-        // FORM HANDLER 1: CLEARANCE PROTOCOL (contacts@)
+        // 4. FORM HANDLER (CONTACTS)
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('button');
@@ -343,7 +460,7 @@
             }
         });
 
-        // FORM HANDLER 2: PDF GATE (info@)
+        // 5. FORM HANDLER (PDF INFO)
         document.getElementById('pdfForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('button');
