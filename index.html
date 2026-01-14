@@ -300,12 +300,72 @@
                     </button>
                     <div id="a5" class="accordion-content px-4 bg-black/30">
                         <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            <strong class="text-white">Yes.</strong> Our agents scrape municipal meeting minutes and council agendas. We identify 'intent to rezone' signals 3–6 months before the official public listing.
+                            <strong class="text-white">Yes.</strong> Our agents scrape municipal meeting minutes and council agendas. We identify 'intent to rezone' signals 3–6 months before the official public listing, allowing for pre-market arbitrage.
                         </p>
                     </div>
                 </div>
 
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a6')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">Do you integrate with legacy on-premise servers?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a6" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            We do not require you to migrate to the cloud. Our 'Air-Gapped' nodes can sit on top of your existing legacy server (e.g., local iManage or Yardi instances), indexing data locally without moving it to the public cloud.
+                        </p>
+                    </div>
                 </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a7')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">What is your 'No Cure, No Pay' metric?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a7" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            We do not bill for hours. We bill for Revenue Reclaimed. If our Revenue Reclaimer agent does not identify at least $5,000 in unbilled time or missed leads in the first 30 days, we refund your deployment fee.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a8')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">Can lawyers use this while driving?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a8" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            <strong class="text-white">Yes.</strong> 75% of legal AI is desktop-only. Ours is voice-native. You can query your case files via secure voice command while driving to court, and the system reads the relevant precedent back to you.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a9')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">How do you prove the ROI to my partners?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a9" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            We provide a real-time 'Leakage vs. Recovery' dashboard. You will see exactly how many dollars were saved in admin time and how much revenue was recovered from dead leads, updated daily.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
+                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a10')" aria-expanded="false">
+                        <span class="font-bold text-white text-sm">Are you just a GoHighLevel wrapper?</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
+                    </button>
+                    <div id="a10" class="accordion-content px-4 bg-black/30">
+                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
+                            <strong class="text-white">No.</strong> We use GHL for the 'pipes' (communication), but the 'brain' is a proprietary orchestration of fine-tuned LLMs and vector databases hosted on Azure Gov. GHL cannot do reasoning; our Sovereign Agents can.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -369,12 +429,29 @@
             <div class="space-y-4">
                 <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Trust Center</h4>
                 <ul class="space-y-3 text-gray-500">
-                    <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white">Anti-Training Covenant</li>
+                    <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white flex items-center gap-2">
+                        Anti-Training Covenant <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    </li>
                     <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white">HIPAA BAA Framework</li>
                     <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white">SOC 2 Type II Alignment</li>
                 </ul>
             </div>
+            <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Legal Protocol</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li class="cursor-pointer hover:text-white">Privacy Protocol</li>
+                    <li class="cursor-pointer hover:text-white">Terms of Service</li>
+                    <li class="cursor-pointer hover:text-white">Data Processing Addendum</li>
+                </ul>
             </div>
+            <div class="space-y-4">
+                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Secure Uplink</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li class="hover:text-amber"><a href="mailto:clearance@gpstandards.com">clearance@gpstandards.com</a></li>
+                    <li class="text-[10px] text-gray-700">PGP Key Available Upon Request.</li>
+                </ul>
+            </div>
+        </div>
     </footer>
 
     <div id="clearanceModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
