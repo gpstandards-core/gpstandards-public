@@ -102,6 +102,14 @@
             100% { top: 100%; opacity: 0; }
         }
 
+        /* TICKER ANIMATION (RESTORED) */
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .ticker-wrap { overflow: hidden; white-space: nowrap; }
+        .ticker-content { display: inline-block; animation: ticker 40s linear infinite; }
+
         .text-gradient {
             background: linear-gradient(to right, #ffffff, #9ca3af);
             -webkit-background-clip: text;
@@ -455,10 +463,22 @@
 
     </main>
 
-    <footer class="border-t border-white/5 bg-black py-16">
+    <div class="fixed bottom-0 w-full bg-[#0a0a0a] border-t border-white/10 h-10 flex items-center z-30 md:mb-0 mb-[footer-height-if-needed]">
+        <div class="w-24 h-full bg-[#0a0a0a] z-20 absolute left-0 flex items-center justify-center border-r border-white/10">
+            <span class="text-[10px] font-mono text-amber font-bold">LIVE FEED ></span>
+        </div>
+        <div class="ticker-wrap w-full pl-24">
+            <div class="ticker-content font-mono text-xs text-gray-400">
+               <span class="mx-8">NY CRE PORTFOLIO: <span class="text-success">$42K RECOVERED (CAM AUDIT)</span></span> • <span class="mx-8">DALLAS LITIGATION: CONFLICT CHECK <span class="text-success">0.2s</span></span> • <span class="mx-8">MIAMI ZONING: ARBITRAGE SIGNAL DETECTED</span> • <span class="mx-8">ISO 42001: COMPLIANCE AUDIT PASSED</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-t border-white/5 bg-black py-16 mb-10">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-xs font-mono">
             <div class="space-y-4">
-                <div class="font-bold text-white tracking-widest text-lg">G&P STANDARDS</div>
+                <img src="image.png" alt="G&P Standards Logo" class="h-12 w-auto filter invert grayscale brightness-200">
+                
                 <p class="text-gray-500">Sovereign Intelligence Architecture.</p>
                 
                 <p class="text-gray-600">
