@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy Protocol | G&P Standards</title>
+    <style>
+        body { background: #050505; color: #a3a3a3; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 60px; line-height: 1.8; font-size: 14px; max-width: 900px; margin: 0 auto; }
+        h1 { color: #fff; font-size: 32px; letter-spacing: 1px; border-bottom: 2px solid #00F0FF; padding-bottom: 20px; margin-bottom: 40px; text-transform: uppercase; }
+        h2 { color: #e5e5e5; font-size: 18px; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; border-left: 3px solid #00F0FF; padding-left: 15px; }
+        h3 { color: #fff; font-size: 15px; margin-top: 25px; font-weight: bold; }
+        p { margin-bottom: 15px; text-align: justify; }
+        ul { list-style-type: disc; padding-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        strong { color: #fff; }
+        .header-meta { font-family: 'Courier New', monospace; font-size: 11px; color: #666; margin-bottom: 50px; border: 1px solid #333; padding: 15px; }
+        a { color: #00F0FF; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="header-meta">
+        PROTOCOL ID: GPS-PRIV-2026-V2<br>
+        COMPLIANCE: SOC 2 TYPE II // ISO 42001<br>
+        SCOPE: GLOBAL / US-EAST-4<br>
+        ENTITY: GENESIS & PRIME STANDARDS LLC
+    </div>
+
+    <h1>Sovereign Privacy Protocol</h1>
+    <p><strong>Last Updated:</strong> January 15, 2026</p>
+
+    <p>At Genesis & Prime Standards LLC ("G&P Standards," "we," "us," or "our"), we operate on a philosophy of Data Sovereignty. This Privacy Protocol outlines our rigid data handling practices, our "Zero-Training" covenant, and your rights as a Sovereign Partner. This policy applies to our website, our Digital Worker infrastructure, and our proprietary APIs.</p>
+
+    <h2>1. The "Zero-Training" Covenant</h2>
+    <p><strong>1.1 No Model Training.</strong> We definitively state that G&P Standards does not use Customer Data (including case files, rent rolls, or client communications) to train, fine-tune, or improve our foundational Large Language Models (LLMs) or those of our third-party providers (e.g., OpenAI, Anthropic).</p>
+    <p><strong>1.2 Isolation.</strong> All inference tasks are executed in isolated, ephemeral containers. Once a session is closed or a "Digital Worker" completes its task, the context window is purged from memory. No data persists in the inference layer.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>We collect strictly limited categories of data to facilitate the "Secure Uplink":</p>
+    <ul>
+        <li><strong>Account Authority Data:</strong> Names, corporate emails, and IP addresses of authorized personnel (Admins/Associates) accessing the G&P Console.</li>
+        <li><strong>System Telemetry:</strong> Anonymized technical logs (e.g., latency, error rates, uptime status) used solely for forensic debugging and infrastructure stability.</li>
+        <li><strong>Financial Data:</strong> We do not store full credit card numbers. All payment processing is handled by Stripe or our invoiced banking partners (Delaware C-Corp Accounts).</li>
+    </ul>
+
+    <h2>3. How We Process Data (Architecture)</h2>
+    <p>Our infrastructure is designed to minimize exposure ("Attack Surface").</p>
+    <ul>
+        <li><strong>Region:</strong> Unless otherwise requested, all processing occurs within the United States (US-East-4 or US-Gov-Virginia).</li>
+        <li><strong>Encryption:</strong> Data is encrypted at rest using AES-256 and in transit using TLS 1.3. Keys are managed via Azure Key Vault.</li>
+        <li><strong>Vector Storage:</strong> Customer Knowledge Bases (RAG) are stored in dedicated vector namespaces. Data is never commingled between clients.</li>
+    </ul>
+
+    <h2>4. Authorized Subprocessors</h2>
+    <p>To deliver Sovereign Intelligence, we engage specific high-trust subprocessors. All have signed Data Processing Addendums (DPAs) enforcing Zero Data Retention (ZDR):</p>
+    <ul>
+        <li><strong>Microsoft Azure Government:</strong> Cloud Hosting & Compute.</li>
+        <li><strong>OpenAI Enterprise:</strong> Inference API (Zero Retention Policy Active).</li>
+        <li><strong>Pinecone / Weaviate:</strong> Vector Database Infrastructure.</li>
+        <li><strong>Ketch:</strong> Consent Management Platform.</li>
+    </ul>
+
+    <h2>5. Data Egress & Sharing</h2>
+    <p>We do not sell, rent, or trade your data. Data only leaves the secure enclave under two conditions:</p>
+    <p><strong>5.1 Client Directive.</strong> When your authorized user explicitly instructs a Digital Worker to email a report or file a document externally.</p>
+    <p><strong>5.2 Legal Compulsion.</strong> If compelled by a valid subpoena, court order, or search warrant issued by a competent United States court. We will attempt to notify you of such requests unless prohibited by law.</p>
+
+    <h2>6. Your Rights (CCPA, GDPR, VCDPA)</h2>
+    <p>Regardless of your location, we extend high-standard rights to all Sovereign Partners:</p>
+    <ul>
+        <li><strong>Right to Access:</strong> Request a copy of all telemetry data linked to your account.</li>
+        <li><strong>Right to Erasure ("The Kill Switch"):</strong> Request the permanent deletion of your vector indexes and account data. We execute this within 48 hours of verification.</li>
+        <li><strong>Right to Opt-Out:</strong> You may opt out of non-essential cookies via our Ketch Consent Manager.</li>
+    </ul>
+
+    <h2>7. Contacting the Compliance Officer</h2>
+    <p>For high-priority privacy concerns, "Right to be Forgotten" executions, or security audit requests, initiate a secure channel:</p>
+    <p><strong>Email:</strong> <a href="mailto:privacy@gpstandards.com">privacy@gpstandards.com</a><br>
+    <strong>Physical Mail:</strong> Genesis & Prime Standards LLC, 1201 N Orange St, Wilmington, DE 19801.</p>
+
+    <br><br>
+    <hr style="border-color: #333;">
+    <p style="text-align: center; font-size: 10px; color: #555;">&copy; 2026 GENESIS & PRIME STANDARDS LLC. ALL RIGHTS RESERVED.</p>
+
+</body>
+</html>
