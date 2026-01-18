@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# GEO & AEO VIP List (The "Good" AIs)
+User-agent: Googlebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap Location (Connects GSC to the Map)
+Sitemap: https://gpstandards.com/sitemap.xml
