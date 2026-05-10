@@ -3,68 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G&P Standards | Sovereign Intelligence</title>
-    <meta name="description" content="Sovereign AI Infrastructure for Law & CRE. We deploy air-gapped Digital Workers. Operated by Genesis & Prime Standards LLC (Delaware).">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>G&P Standards — Forensic Billing Audits for US Law Firms</title>
+    <meta name="description" content="A 7-day forensic billing audit for US law firms (10–100 attorneys). We analyze your timekeeping data, identify unbilled time and revenue leakage, and deliver a written reclamation roadmap.">
 
+    <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Corporation",
+      "@type": "ProfessionalService",
       "name": "G&P Standards",
-      "alternateName": ["Genesis & Prime Standards LLC", "Genesis & Prime"],
+      "alternateName": "Genesis & Prime Standards LLC",
       "url": "https://gpstandards.com",
-      "logo": "https://gpstandards.com/gp-standards-logo.png",
-      "description": "Sovereign Intelligence Architecture. Deploying air-gapped Digital Workers for Law & CRE.",
-      "disambiguatingDescription": "An American AI automation firm based in Delaware (Genesis & Prime Standards LLC). Distinct from 'GPS Standard S.p.A.' (Italian security) and medical/psychological terminology.",
+      "description": "Forensic billing audit consultancy for US law firms with 10 to 100 attorneys. We identify unbilled time and revenue leakage in firm timekeeping data and deliver written reclamation roadmaps.",
       "legalName": "Genesis & Prime Standards LLC",
       "foundingDate": "2025",
-      "foundingLocation": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "Delaware",
-          "addressCountry": "US",
-          "addressLocality": "Wilmington",
-          "postalCode": "19801"
-        }
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
       },
-      "sameAs": [
-        "https://www.crunchbase.com/organization/gp-standards",
-        "https://www.linkedin.com/company/genesis-prime-standards-llc", 
-        "https://github.com/gpstandards"
-      ],
-      "knowsAbout": ["Artificial Intelligence", "Legal Tech", "Commercial Real Estate", "Sovereign Infrastructure"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Delaware",
+        "addressCountry": "US"
+      },
       "founder": {
         "@type": "Person",
         "name": "Wesam Mohammed",
-        "alternateName": "Alexander",
-        "jobTitle": "Founder & CEO",
-        "sameAs": ["https://www.linkedin.com/in/wesam-mohammed-aa156b177/"] 
-      }
+        "jobTitle": "Founder"
+      },
+      "serviceType": "Forensic Billing Audit",
+      "priceRange": "$7,500 - $9,500"
     }
     </script>
+
+    <!-- Fonts: Fraunces (editorial serif) + DM Sans (refined sans) + JetBrains Mono (accents) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        void: '#050505',
-                        amber: '#FFB000',
-                        signal: '#00F0FF',
-                        success: '#10B981',
-                        surface: '#111111'
+                        cream: '#F5F0E6',
+                        paper: '#FBF8F1',
+                        ink: '#1A1410',
+                        muted: '#6B6056',
+                        rule: '#E5DDD0',
+                        oxblood: '#5C1A1B',
+                        oxbloodDeep: '#3F1112'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    animation: {
-                        'scan': 'scan 3s linear infinite',
-                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        display: ['Fraunces', 'Georgia', 'serif'],
+                        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     }
                 }
             }
@@ -72,639 +66,807 @@
     </script>
 
     <style>
-        body { background-color: #050505; color: #e5e5e5; overflow-x: hidden; }
-        
-        /* GLASS PANEL */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #F5F0E6;
+            color: #1A1410;
+            font-family: 'DM Sans', system-ui, sans-serif;
+            font-feature-settings: "ss01", "ss02";
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle paper texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.35;
+            z-index: 0;
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(26, 20, 16, 0.04) 1px, transparent 0);
+            background-size: 18px 18px;
+        }
+
+        main, nav, footer { position: relative; z-index: 1; }
+
+        /* Display type defaults */
+        .display {
+            font-family: 'Fraunces', Georgia, serif;
+            font-optical-sizing: auto;
+            letter-spacing: -0.02em;
+            line-height: 1.02;
+            font-weight: 400;
+        }
+        .display-italic {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .section-number {
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-weight: 300;
+            color: #5C1A1B;
+        }
+
+        /* Hairline rule */
+        .rule {
+            height: 1px;
+            background-color: #1A1410;
+            opacity: 0.15;
+        }
+
+        /* Primary CTA */
+        .btn-primary {
+            display: inline-block;
+            background-color: #1A1410;
+            color: #F5F0E6;
+            padding: 1rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
             transition: all 0.3s ease;
+            border: 1px solid #1A1410;
         }
-        .glass-panel:hover {
-            border-color: rgba(255, 176, 0, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* MODAL OVERLAY */
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
+        .btn-primary:hover {
+            background-color: #5C1A1B;
+            border-color: #5C1A1B;
         }
 
-        /* SCANNING LASER */
-        @keyframes scan {
-            0% { top: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
+        .btn-ghost {
+            display: inline-block;
+            background-color: transparent;
+            color: #1A1410;
+            padding: 1rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+            border: 1px solid #1A1410;
+        }
+        .btn-ghost:hover {
+            background-color: #1A1410;
+            color: #F5F0E6;
         }
 
-        /* TICKER ANIMATION */
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .ticker-wrap { overflow: hidden; white-space: nowrap; }
-        .ticker-content { display: inline-block; animation: ticker 40s linear infinite; }
-
-        .text-gradient {
-            background: linear-gradient(to right, #ffffff, #9ca3af);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Drop cap for editorial intro */
+        .drop-cap::first-letter {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 5.5em;
+            font-weight: 400;
+            float: left;
+            line-height: 0.85;
+            margin: 0.08em 0.08em 0 -0.04em;
+            color: #5C1A1B;
         }
 
-        /* ACCORDION */
-        .accordion-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-        .accordion-content.active {
-            opacity: 1;
-        }
-        .accordion-icon {
-            transition: transform 0.3s ease;
-        }
-        .accordion-btn[aria-expanded="true"] .accordion-icon {
-            transform: rotate(180deg);
+        /* Pull quote */
+        .pullquote {
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
         }
 
-        /* RECAPTCHA SIMULATION */
-        .recaptcha-box {
-            background: #f9f9f9;
-            border: 1px solid #d3d3d3;
-            border-radius: 4px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            width: fit-content;
+        /* Accordion */
+        .faq-item summary { list-style: none; cursor: pointer; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary .chev { transition: transform 0.3s ease; }
+        .faq-item[open] summary .chev { transform: rotate(45deg); }
+        .faq-item[open] summary .q { color: #5C1A1B; }
+
+        /* Form */
+        .form-input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(26, 20, 16, 0.25);
+            padding: 0.75rem 0;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: #1A1410;
+            outline: none;
+            transition: border-color 0.2s ease;
         }
-        .recaptcha-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #c1c1c1;
-            border-radius: 2px;
-            margin-right: 12px;
-            cursor: pointer;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .form-input::placeholder { color: rgba(26, 20, 16, 0.4); }
+        .form-input:focus { border-bottom-color: #5C1A1B; }
+        .form-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #6B6056;
+            margin-bottom: 0.25rem;
+            display: block;
         }
-        .recaptcha-checkbox.checked {
-            background: #fff;
-            border-color: #009c55;
+
+        /* Page-load reveal */
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .recaptcha-checkbox.checked::after {
-            content: '✓';
-            color: #009c55;
-            font-weight: bold;
-            font-size: 18px;
+        .rise { animation: rise 0.9s ease-out forwards; opacity: 0; }
+        .rise-1 { animation-delay: 0.05s; }
+        .rise-2 { animation-delay: 0.18s; }
+        .rise-3 { animation-delay: 0.31s; }
+        .rise-4 { animation-delay: 0.44s; }
+        .rise-5 { animation-delay: 0.57s; }
+
+        /* Underline link */
+        .ulink {
+            color: #1A1410;
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-size: 100% 1px;
+            background-repeat: no-repeat;
+            background-position: 0 100%;
+            transition: color 0.2s ease;
         }
+        .ulink:hover { color: #5C1A1B; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-amber selection:text-black">
+<body class="min-h-screen">
 
-    <nav class="fixed top-0 w-full z-40 bg-void/80 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <span class="font-bold text-white tracking-tighter text-lg">G&P STANDARDS</span>
+    <!-- NAVIGATION -->
+    <nav class="border-b border-ink/10">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+            <a href="#top" class="flex items-baseline gap-2">
+                <span class="display text-2xl">G&amp;P</span>
+                <span class="label text-muted">Standards</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm">
+                <a href="#service" class="ulink">The Audit</a>
+                <a href="#pricing" class="ulink">Pricing</a>
+                <a href="#about" class="ulink">About</a>
+                <a href="#contact" class="btn-primary text-xs">Schedule a Call</a>
             </div>
-
-            <div class="hidden md:flex items-center gap-6 text-[10px] font-mono text-success tracking-wider">
-                <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
-                    <span>SYSTEM: ONLINE</span>
-                </div>
-                <div class="opacity-70">DOMICILE: US-EAST-4</div>
-                <div class="opacity-70">ENCRYPTION: AES-256</div>
-            </div>
-
-            <button onclick="openModal('clearanceModal')" class="bg-white text-black px-5 py-2 text-xs font-bold tracking-wider hover:bg-amber transition-colors">
-                ESTABLISH UPLINK
-            </button>
+            <a href="#contact" class="md:hidden btn-primary text-xs px-4 py-2">Schedule</a>
         </div>
     </nav>
 
-    <header class="relative pt-40 pb-20 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber/30 bg-amber/5 text-amber text-[10px] font-mono tracking-widest mb-8 animate-pulse-fast">
-                <i data-lucide="shield-check" class="w-3 h-3"></i>
-                DATA SOVEREIGNTY: AIR-GAPPED // ZERO-TRAINING PROTOCOL
+    <!-- HERO -->
+    <header id="top" class="pt-20 lg:pt-32 pb-24 lg:pb-40 px-6 lg:px-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12 rise rise-1">
+                <span class="section-number text-3xl lg:text-4xl">§ 01</span>
+                <span class="label text-muted">The Proposition</span>
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-bold leading-tight text-white mb-6">
-                We Do Not Rent Intelligence. <br>
-                <span class="text-gradient">We Build Assets.</span>
+            <h1 class="display text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5.5rem] mb-10 lg:mb-14 max-w-5xl rise rise-2">
+                Find the billable hours <br class="hidden sm:block">
+                your firm <span class="display-italic" style="color: #5C1A1B;">forgot to invoice</span>.
             </h1>
 
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
-                Sovereign "Digital Workers" for Law Firms & CRE. <br>
-                No shared models. No data leakage. Your infrastructure, your IP.
+            <p class="text-lg lg:text-xl max-w-2xl text-muted leading-relaxed mb-12 rise rise-3">
+                A seven-day forensic audit of your firm's timekeeping and billing data. We identify unbilled time, reconstruct missing entries, and deliver a written reclamation roadmap. For US law firms with 10–100 attorneys.
             </p>
 
-            <button onclick="openModal('clearanceModal')" class="bg-white text-black px-8 py-4 rounded font-bold text-sm tracking-widest hover:bg-amber hover:text-black transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                INITIATE FORENSIC AUDIT
-            </button>
+            <div class="flex flex-wrap gap-4 items-center rise rise-4">
+                <a href="#contact" class="btn-primary">Schedule a 30-minute call</a>
+                <a href="#service" class="text-sm text-muted ulink">See what's included →</a>
+            </div>
+
+            <div class="mt-20 lg:mt-32 grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-4xl rise rise-5">
+                <div>
+                    <div class="display text-5xl lg:text-6xl mb-3" style="color: #5C1A1B;">7</div>
+                    <div class="label text-muted mb-2">Day Engagement</div>
+                    <div class="text-sm text-ink/70">From kickoff call to delivery of the Performance Dossier.</div>
+                </div>
+                <div>
+                    <div class="display text-5xl lg:text-6xl mb-3" style="color: #5C1A1B;">$7.5K</div>
+                    <div class="label text-muted mb-2">Starting Fee</div>
+                    <div class="text-sm text-ink/70">Fixed price for the standard 90-day data window audit.</div>
+                </div>
+                <div>
+                    <div class="display text-5xl lg:text-6xl mb-3" style="color: #5C1A1B;">10–100</div>
+                    <div class="label text-muted mb-2">Attorneys</div>
+                    <div class="text-sm text-ink/70">The firm size where our methodology produces the strongest results.</div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 space-y-24 pb-24">
-
-        <section id="grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <button onclick="openCardDetails('Zoning')" class="glass-panel p-8 rounded-xl group relative overflow-hidden text-left w-full">
-                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="building-2" class="text-amber w-6 h-6"></i></div>
-                <div class="text-[10px] font-mono text-amber mb-4 border border-amber/20 w-fit px-2 py-1 rounded bg-amber/5">NOVELTY SCORE: 0.04</div>
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-amber transition-colors">The Zoning Sentinel</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Scrapes municipal meeting minutes before they go public. Predict rezoning 6 months early.
-                </p>
-            </button>
-
-            <button onclick="openCardDetails('Shadow')" class="glass-panel p-8 rounded-xl group relative overflow-hidden text-left w-full">
-                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="gavel" class="text-signal w-6 h-6"></i></div>
-                <div class="text-[10px] font-mono text-signal mb-4 border border-signal/20 w-fit px-2 py-1 rounded bg-signal/5">NOVELTY SCORE: 0.02</div>
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-signal transition-colors">The Shadow Board</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Pre-litigate motions against a Digital Twin of the presiding Judge. Simulate outcomes.
-                </p>
-            </button>
-
-            <button onclick="openCardDetails('Revenue')" class="glass-panel p-8 rounded-xl group relative overflow-hidden text-left w-full">
-                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="history" class="text-gray-400 w-6 h-6"></i></div>
-                <div class="text-[10px] font-mono text-gray-500 mb-4 border border-gray-700 w-fit px-2 py-1 rounded">FORENSIC AUDIT</div>
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-white transition-colors">The Revenue Reclaimer</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Forensic audit of associate calendars vs. billing. Finds lost revenue in unbilled time.
-                </p>
-            </button>
-
-            <button onclick="openCardDetails('Conflict')" class="glass-panel p-8 rounded-xl group relative overflow-hidden text-left w-full">
-                <div class="absolute top-0 right-0 p-4 opacity-50"><i data-lucide="shield-alert" class="text-gray-400 w-6 h-6"></i></div>
-                <div class="text-[10px] font-mono text-gray-500 mb-4 border border-gray-700 w-fit px-2 py-1 rounded">RISK MITIGATION</div>
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-white transition-colors">The Conflict Engine</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Semantic conflict checks across 50,000 docs in 0.2 seconds. Zero hallucination risk.
-                </p>
-            </button>
-        </section>
-
-        <section class="glass-panel rounded-xl relative overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-2xl">
-            <div class="bg-black/80 border-b border-white/10 p-3 flex justify-between items-center">
-                <div class="flex gap-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                    <div class="w-3 h-3 rounded-full bg-amber/20 border border-amber/50"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
-                </div>
-                <div class="text-[10px] font-mono text-gray-500">FORENSIC_AUDIT_V2.EXE</div>
+    <!-- PROBLEM -->
+    <section class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 02</span>
+                <span class="label text-muted">The Problem</span>
             </div>
-            <div class="p-6 font-mono text-xs space-y-4 relative h-64 overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-amber/50 shadow-[0_0_15px_rgba(255,176,0,0.5)] animate-[scan_3s_linear_infinite] z-10 opacity-30"></div>
-                <div class="flex justify-between border-b border-white/5 pb-2 text-gray-600 mb-4">
-                    <span>TIMESTAMP</span><span>EVENT_ID</span><span>STATUS</span>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+                <div class="lg:col-span-7">
+                    <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-10">
+                        The work was done. <br>
+                        <span class="display-italic">The invoice forgot.</span>
+                    </h2>
+
+                    <div class="space-y-6 text-base lg:text-lg leading-relaxed max-w-2xl">
+                        <p class="drop-cap">Most law firms operate on hourly billing, yet most associates do not capture their day in real time. Calls roll into meetings. Emails are drafted between hearings. A two-hour negotiation gets logged as one. Over a quarter, the gap between work performed and work invoiced compounds into six and seven figures of leakage.</p>
+
+                        <p>The problem is rarely a lack of discipline. It is a structural mismatch between how legal work happens and how timekeeping systems are designed. The data exists — in calendars, in email metadata, in document version histories, in matter notes. What is missing is a forensic reconstruction of that activity into billable hours your clients have already agreed to pay for.</p>
+
+                        <p>That reconstruction is what we deliver.</p>
+                    </div>
                 </div>
-                <div class="space-y-3">
-                    <div class="flex justify-between text-gray-400"><span>10:42:01</span><span>INV_LEAK_994</span><span class="text-red-500">DETECTED</span></div>
-                    <div class="pl-4 text-gray-600 border-l border-white/10 ml-2">>> Unbilled Time: 0.4 hrs (Client Meeting)</div>
-                    <div class="flex justify-between text-gray-400"><span>10:42:05</span><span>LEASE_AUDIT_X</span><span class="text-amber">FLAGGED</span></div>
-                    <div class="pl-4 text-gray-600 border-l border-white/10 ml-2">>> CAM Slippage: $4,200 Impact</div>
-                    <div class="flex justify-between text-gray-400"><span>10:42:12</span><span>RECOVERY_BOT</span><span class="text-success">INITIATED</span></div>
+
+                <div class="lg:col-span-5 lg:pl-8 lg:border-l lg:border-ink/15">
+                    <div class="label text-muted mb-4">An Illustration</div>
+                    <p class="pullquote mb-8">
+                        For a thirty-attorney firm billing at $400 per hour on average, recovering one additional hour per attorney per week represents <span style="color: #5C1A1B;">$624,000</span> in annual revenue.
+                    </p>
+                    <p class="text-sm text-muted">
+                        The math compounds in either direction. The same firm losing one hour per attorney per week is leaving that same figure on the table — every year, indefinitely, with no line item on the financial statements to show for it.
+                    </p>
                 </div>
-                <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="max-w-4xl mx-auto">
-            <h2 class="text-sm font-mono text-gray-500 mb-8 tracking-widest uppercase border-b border-white/10 pb-2">DUE DILIGENCE // PROTOCOLS</h2>
-            <div class="space-y-3">
-                
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a1')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">Do you indemnify us against AI hallucinations?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a1" class="accordion-content px-4 bg-black/30">
-                        <div class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5 space-y-4">
-                            <p><strong class="text-white">Yes.</strong> Unlike SaaS wrappers, our 'Human-in-the-Loop' protocol mandates that a qualified human senior officer reviews high-stakes outputs (e.g., court filings, zoning assessments) before they leave the system. We sell Insured Intelligence, not raw chat.</p>
-                            <button onclick="downloadCovenant()" class="flex items-center gap-2 border border-amber/50 text-amber font-mono text-xs px-4 py-2 hover:bg-amber/10 transition-all">
-                                <i data-lucide="file-text" class="w-3 h-3"></i> DOWNLOAD ANTI-TRAINING COVENANT (PDF)
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a2')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">If we fire you, do we keep the 'Digital Brain'?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a2" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            <strong class="text-white">Yes.</strong> You are buying Sovereign Infrastructure, not renting a license. Upon contract termination, we hand over the vector database and the fine-tuned model weights. The asset belongs to your firm, not G&P.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a3')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">Does OpenAI/Anthropic train on our case files?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a3" class="accordion-content px-4 bg-black/30">
-                        <div class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5 space-y-4">
-                            <p><strong class="text-white">No.</strong> We deploy exclusively via Azure Government or OpenAI Enterprise instances with Zero Data Retention (ZDR) policies. We provide a signed legal warranty that your data never enters a public training set.</p>
-                            <button onclick="downloadCovenant()" class="flex items-center gap-2 border border-amber/50 text-amber font-mono text-xs px-4 py-2 hover:bg-amber/10 transition-all">
-                                <i data-lucide="file-text" class="w-3 h-3"></i> DOWNLOAD ANTI-TRAINING COVENANT (PDF)
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a4')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">How do you handle 'Conflict Checks' across 50,000 documents?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a4" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            We do not use keyword search. We use semantic vector embedding to understand relationships between entities. We can flag a conflict of interest in 0.2 seconds based on implied relationships, not just name matches.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a5')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">Can your AI predict zoning changes before they are public?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a5" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            <strong class="text-white">Yes.</strong> Our agents scrape municipal meeting minutes and council agendas. We identify 'intent to rezone' signals 3–6 months before the official public listing, allowing for pre-market arbitrage.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a6')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">Do you integrate with legacy on-premise servers?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a6" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            We do not require you to migrate to the cloud. Our 'Air-Gapped' nodes can sit on top of your existing legacy server (e.g., local iManage or Yardi instances), indexing data locally without moving it to the public cloud.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a7')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">What is your 'No Cure, No Pay' metric?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a7" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            We do not bill for hours. We bill for Revenue Reclaimed. If our Revenue Reclaimer agent does not identify at least $5,000 in unbilled time or missed leads in the first 30 days, we refund your deployment fee.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a8')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">Can lawyers use this while driving?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a8" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            <strong class="text-white">Yes.</strong> 75% of legal AI is desktop-only. Ours is voice-native. You can query your case files via secure voice command while driving to court, and the system reads the relevant precedent back to you.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a9')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">How do you prove the ROI to my partners?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a9" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            We provide a real-time 'Leakage vs. Recovery' dashboard. You will see exactly how many dollars were saved in admin time and how much revenue was recovered from dead leads, updated daily.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-white/10 rounded bg-white/5 overflow-hidden">
-                    <button class="accordion-btn w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors" onclick="toggleAccordion('a10')" aria-expanded="false">
-                        <span class="font-bold text-white text-sm">Are you just a GoHighLevel wrapper?</span>
-                        <i data-lucide="chevron-down" class="accordion-icon w-4 h-4 text-gray-400"></i>
-                    </button>
-                    <div id="a10" class="accordion-content px-4 bg-black/30">
-                        <p class="py-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">
-                            <strong class="text-white">No.</strong> We use GHL for the 'pipes' (communication), but the 'brain' is a proprietary orchestration of fine-tuned LLMs and vector databases hosted on Azure Gov. GHL cannot do reasoning; our Sovereign Agents can.
-                        </p>
-                    </div>
-                </div>
-
+    <!-- SERVICE -->
+    <section id="service" class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10 bg-paper">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 03</span>
+                <span class="label text-muted">The Audit</span>
             </div>
-        </section>
 
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="glass-panel p-8 rounded-xl border-l-4 border-l-amber">
-                <div class="flex items-center gap-3 mb-6">
-                    <i data-lucide="calculator" class="text-amber w-6 h-6"></i>
-                    <h3 class="text-xl font-bold text-white">REVENUE RECLAIMER</h3>
+            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-16 max-w-4xl">
+                A written reclamation roadmap, <br>
+                <span class="display-italic">delivered in seven business days.</span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
+                <div>
+                    <h3 class="display text-2xl lg:text-3xl mb-6">The Performance Dossier</h3>
+                    <p class="text-base lg:text-lg text-muted leading-relaxed mb-8">
+                        A confidential written report, typically thirty to fifty pages, that documents what we found and what we recommend. Specific. Quantified. Actionable.
+                    </p>
+                    <ul class="space-y-4 text-base">
+                        <li class="flex gap-4">
+                            <span class="label text-oxblood mt-1 shrink-0">01</span>
+                            <span>Time-capture gap analysis across the audited period, segmented by attorney and practice area.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-oxblood mt-1 shrink-0">02</span>
+                            <span>Reconstructed activity log from calendar, email metadata, and document timestamps you provide.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-oxblood mt-1 shrink-0">03</span>
+                            <span>Estimated recoverable revenue, by source, with the methodology shown.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-oxblood mt-1 shrink-0">04</span>
+                            <span>Specific process recommendations for closing the gap going forward.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-oxblood mt-1 shrink-0">05</span>
+                            <span>A one-hour review call with the founder to walk through findings with your managing partner or COO.</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-xs font-mono text-gray-500 mb-2">BILLABLE RATE ($/HR)</label>
-                        <input type="number" id="hourlyRate" value="500" class="w-full bg-black border border-white/10 rounded p-4 text-white font-mono focus:border-amber focus:outline-none transition-colors" oninput="calculate()">
+
+                <div>
+                    <h3 class="display text-2xl lg:text-3xl mb-6">What We Do Not Do</h3>
+                    <p class="text-base lg:text-lg text-muted leading-relaxed mb-8">
+                        Honesty about scope is part of the engagement. The audit is a diagnostic, not a software product.
+                    </p>
+                    <ul class="space-y-4 text-base">
+                        <li class="flex gap-4">
+                            <span class="label text-muted mt-1 shrink-0">—</span>
+                            <span>We do not access your case management system. You provide read-only data exports.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-muted mt-1 shrink-0">—</span>
+                            <span>We do not bill your clients. We tell you which hours could have been billed and let you decide.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-muted mt-1 shrink-0">—</span>
+                            <span>We do not provide legal advice. Recommendations are operational.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-muted mt-1 shrink-0">—</span>
+                            <span>We do not install software inside your firm. Everything runs on our infrastructure on the data you export.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="label text-muted mt-1 shrink-0">—</span>
+                            <span>We do not retain your data after delivery. All artifacts are destroyed within thirty days unless extended in writing.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 04</span>
+                <span class="label text-muted">How It Works</span>
+            </div>
+
+            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-20 max-w-4xl">
+                Three steps. <br>
+                <span class="display-italic">No surprises.</span>
+            </h2>
+
+            <div class="space-y-16 lg:space-y-20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-ink/10">
+                    <div class="lg:col-span-3">
+                        <div class="display text-7xl lg:text-8xl" style="color: #5C1A1B;">I.</div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-mono text-gray-500 mb-2">WEEKLY LEAKAGE (HRS)</label>
-                        <input type="number" id="unbilledHours" value="5" class="w-full bg-black border border-white/10 rounded p-4 text-white font-mono focus:border-amber focus:outline-none transition-colors" oninput="calculate()">
+                    <div class="lg:col-span-9">
+                        <h3 class="display text-2xl lg:text-3xl mb-4">Discovery call</h3>
+                        <div class="label text-muted mb-6">Thirty minutes · No fee · No commitment</div>
+                        <p class="text-base lg:text-lg text-muted leading-relaxed max-w-2xl">
+                            We discuss your billing structure, the systems you use, the size of the data we would need, and what success looks like for your firm. If the engagement is not a fit, we say so on the call.
+                        </p>
                     </div>
-                    <div class="pt-6 border-t border-white/10 flex justify-between items-center">
-                        <span class="text-sm font-mono text-gray-400">RECOVERABLE REVENUE / YR</span>
-                        <span id="lossOutput" class="text-3xl font-bold font-mono text-success">$130,000</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-ink/10">
+                    <div class="lg:col-span-3">
+                        <div class="display text-7xl lg:text-8xl" style="color: #5C1A1B;">II.</div>
+                    </div>
+                    <div class="lg:col-span-9">
+                        <h3 class="display text-2xl lg:text-3xl mb-4">Engagement letter and data exchange</h3>
+                        <div class="label text-muted mb-6">Mutual NDA · Fixed fee · Defined deliverable</div>
+                        <p class="text-base lg:text-lg text-muted leading-relaxed max-w-2xl">
+                            We sign a mutual NDA and an engagement letter that defines the audit scope, the data you will provide, the deliverable, and the fee. You export the data in a format you control. We receive it through an encrypted channel of your choice.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                    <div class="lg:col-span-3">
+                        <div class="display text-7xl lg:text-8xl" style="color: #5C1A1B;">III.</div>
+                    </div>
+                    <div class="lg:col-span-9">
+                        <h3 class="display text-2xl lg:text-3xl mb-4">Analysis and delivery</h3>
+                        <div class="label text-muted mb-6">Five to seven business days · Written report · Review call</div>
+                        <p class="text-base lg:text-lg text-muted leading-relaxed max-w-2xl">
+                            We conduct the forensic reconstruction. We deliver the Performance Dossier as a PDF, accompanied by a one-hour review call with your designated partner. Data and artifacts are destroyed within thirty days of delivery, certified in writing.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-white">Math, Not Magic.</h2>
-                <p class="text-gray-400 leading-relaxed">
-                    Most associates lose 3-5 hours per week in uncaptured time. Our agent monitors the background logs and drafts the timesheet entry for you.
-                </p>
-                <button onclick="openModal('clearanceModal')" class="text-amber font-mono text-xs border-b border-amber pb-1 hover:text-white transition-colors">DEPLOY REVENUE AGENT >></button>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="glass-panel p-8 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 hover:border-blue-500/50 transition-all cursor-pointer" onclick="openModal('pdfModal')">
-            <div class="flex items-center gap-6">
-                <div class="bg-blue-500/10 p-4 rounded-full text-blue-400 border border-blue-500/20">
-                    <i data-lucide="file-code" class="w-8 h-8"></i>
+    <!-- WHO IT'S FOR -->
+    <section class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10 bg-paper">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 05</span>
+                <span class="label text-muted">Fit</span>
+            </div>
+
+            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-16 max-w-4xl">
+                Not every firm. <br>
+                <span class="display-italic">The right firms.</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+                <div>
+                    <div class="label mb-6" style="color: #5C1A1B;">We work with</div>
+                    <ul class="space-y-5 text-base lg:text-lg">
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-oxblood"></span>
+                            <span>US law firms with 10 to 100 attorneys.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-oxblood"></span>
+                            <span>Firms billing on hourly or hybrid models.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-oxblood"></span>
+                            <span>Firms with at least six months of timekeeping data in a system that supports CSV export.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-oxblood"></span>
+                            <span>A managing partner or COO who can authorize the engagement.</span>
+                        </li>
+                    </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Technical Architecture & Security Spec</h4>
-                    <div class="flex gap-3 mt-2">
-                        <span class="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-400">SOC 2 TYPE II</span>
-                        <span class="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-400">AZURE GOV</span>
-                        <span class="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-400">AES-256</span>
+                    <div class="label mb-6 text-muted">We do not work with</div>
+                    <ul class="space-y-5 text-base lg:text-lg text-muted">
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-muted"></span>
+                            <span>Pure contingency or flat-fee practices where hourly capture is not the model.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-muted"></span>
+                            <span>Firms under 10 attorneys — simpler tools serve you better at that scale.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-muted"></span>
+                            <span>Firms over 100 attorneys — your needs require a different engagement model than this one.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 mt-2 w-4 h-px bg-muted"></span>
+                            <span>Firms that require vendor SOC 2 Type II certification at this time. We are not yet certified.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 06</span>
+                <span class="label text-muted">Engagement Fees</span>
+            </div>
+
+            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-16 max-w-4xl">
+                Fixed fees. <br>
+                <span class="display-italic">Stated up front.</span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="border border-ink/20 p-8 lg:p-12 bg-cream">
+                    <div class="label text-muted mb-3">Standard Audit</div>
+                    <div class="display text-5xl lg:text-6xl mb-2">$7,500</div>
+                    <div class="text-sm text-muted mb-10">Ninety-day data window</div>
+
+                    <div class="rule mb-6"></div>
+
+                    <ul class="space-y-4 text-base">
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Full Performance Dossier (PDF)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Time-capture gap analysis by attorney</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Recoverable revenue estimate</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>One-hour review call</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Process recommendations</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="border border-ink/20 p-8 lg:p-12 bg-cream relative">
+                    <div class="absolute top-0 right-0 label px-3 py-2 text-cream" style="background-color: #5C1A1B;">Most Common</div>
+                    <div class="label text-muted mb-3">Extended Audit</div>
+                    <div class="display text-5xl lg:text-6xl mb-2">$9,500</div>
+                    <div class="text-sm text-muted mb-10">One hundred eighty-day data window with quarter-over-quarter comparison</div>
+
+                    <div class="rule mb-6"></div>
+
+                    <ul class="space-y-4 text-base">
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Everything in the Standard Audit</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Quarter-over-quarter trend analysis</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Practice-area segmentation</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Two review calls (kickoff and findings)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-oxblood">✓</span>
+                            <span>Ninety-day implementation check-in</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-sm text-muted mt-12 max-w-2xl">
+                Fees are payable fifty percent at engagement, fifty percent on delivery. If the audit identifies less than $25,000 in estimated recoverable revenue for the Standard Audit, or $50,000 for the Extended Audit, we refund half the fee. Stated in the engagement letter.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10 bg-paper">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 07</span>
+                <span class="label text-muted">Honest Answers</span>
+            </div>
+
+            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-16">
+                Questions partners ask <br>
+                <span class="display-italic">before they sign.</span>
+            </h2>
+
+            <div class="space-y-1">
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">Do you have prior clients we can speak with?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>Not yet. G&amp;P Standards is a new firm and the early engagements have not yet completed. Our first three clients receive a reduced fee in exchange for permission to publish an anonymized case study after delivery. If you require active client references before signing, we are not yet the right vendor for you, and we will say so on the discovery call.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">Are you SOC 2 or ISO certified?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>Not at this time. We are an early-stage consultancy and we will not claim certifications we do not hold. Our security posture for this engagement is built around minimizing what we receive: you control the export, you redact what you choose to redact, and we destroy all artifacts within thirty days of delivery. For firms with vendor policies that strictly require SOC 2 Type II at signing, we are not yet the right vendor.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">How do you protect our data?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>We sign a mutual NDA before any data exchange. We never receive direct access to your case management system — you provide read-only exports of the data we agree on, in a format you control. Data is processed on encrypted infrastructure and is not used to train any AI model. Within thirty days of delivery, all data and intermediate artifacts are destroyed, with a written certification of destruction.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">What AI do you use? Does it train on our data?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>We use commercial AI tools, principally Anthropic's Claude on the API tier, which has a zero data retention policy when configured accordingly. We do not use consumer chat products for client data. Your data is not used to train any model, by us or by any provider in our stack. The data processing terms are included in our standard engagement letter.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">What if you do not find significant leakage?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>If the audit identifies less than $25,000 in estimated recoverable revenue for the Standard Audit, or less than $50,000 for the Extended Audit, we refund fifty percent of the fee. The exact thresholds and refund mechanics are documented in the engagement letter you sign before work begins. No verbal promises.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">Who runs G&amp;P Standards?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>Wesam Mohammed is the founder and operator. Wesam is based in Riyadh, Saudi Arabia, with a background in business operations, sales, and analytical work. G&amp;P Standards is operated through Genesis &amp; Prime Standards LLC, a Delaware limited liability company. Engagements with US clients are conducted under that entity and governed by US law. More background is in the About section below.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item border-b border-ink/15 py-6">
+                    <summary class="flex justify-between items-baseline gap-6">
+                        <span class="q display text-xl lg:text-2xl transition-colors">Why not just buy a billing software product?</span>
+                        <span class="chev display text-2xl lg:text-3xl shrink-0" style="color: #5C1A1B;">+</span>
+                    </summary>
+                    <div class="pt-6 text-base lg:text-lg text-muted leading-relaxed">
+                        <p>You should, eventually. Software products are excellent at preventing future leakage. They are less effective at reconstructing past leakage, because the past data lives across many systems that no single product is designed to read together. The forensic audit is a one-time diagnostic that informs which products are worth buying, and what process changes make those products effective. The two approaches complement each other.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl">§ 08</span>
+                <span class="label text-muted">About the Firm</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-7">
+                    <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-10">
+                        A small firm, <br>
+                        <span class="display-italic">stating its scope honestly.</span>
+                    </h2>
+
+                    <div class="space-y-6 text-base lg:text-lg text-muted leading-relaxed max-w-2xl">
+                        <p>G&amp;P Standards is the operating name of <span class="text-ink">Genesis &amp; Prime Standards LLC</span>, a Delaware limited liability company founded in 2025. The firm provides forensic billing audits to United States law firms with between ten and one hundred attorneys.</p>
+
+                        <p>The founder, <span class="text-ink">Wesam Mohammed</span>, operates the firm from Riyadh, Saudi Arabia. Wesam's background spans business operations, sales, and the application of AI tooling to specific analytical problems. He has built and operated multiple ventures across consumer goods and infrastructure services.</p>
+
+                        <p>The firm intentionally serves a narrow market with a single service. Specialization is the discipline that makes the engagement deliverable in seven days at a fixed fee.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 lg:pl-8 lg:border-l lg:border-ink/15">
+                    <div class="space-y-8">
+                        <div>
+                            <div class="label text-muted mb-3">Legal Entity</div>
+                            <div class="text-base">Genesis &amp; Prime Standards LLC</div>
+                            <div class="text-sm text-muted">Delaware, United States</div>
+                        </div>
+                        <div>
+                            <div class="label text-muted mb-3">Founded</div>
+                            <div class="text-base">2025</div>
+                        </div>
+                        <div>
+                            <div class="label text-muted mb-3">Operations</div>
+                            <div class="text-base">Riyadh, Saudi Arabia</div>
+                            <div class="text-sm text-muted">Remote delivery to US clients</div>
+                        </div>
+                        <div>
+                            <div class="label text-muted mb-3">Contact</div>
+                            <a href="mailto:contact@gpstandards.com" class="text-base ulink">contact@gpstandards.com</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="px-6 py-3 border border-white/20 rounded text-xs font-mono text-gray-300 hover:bg-white hover:text-black transition-all">
-                DOWNLOAD PDF
-            </button>
-        </section>
-
-    </main>
-
-    <div class="fixed bottom-0 w-full bg-[#0a0a0a] border-t border-white/10 h-10 flex items-center z-30 mb-10 md:mb-0">
-        <div class="w-24 h-full bg-[#0a0a0a] z-20 absolute left-0 flex items-center justify-center border-r border-white/10">
-            <span class="text-[10px] font-mono text-amber font-bold">LIVE FEED ></span>
         </div>
-        <div class="ticker-wrap w-full pl-24">
-            <div class="ticker-content font-mono text-xs text-gray-400">
-               <span class="mx-8">NY CRE PORTFOLIO: <span class="text-success">$42K RECOVERED (CAM AUDIT)</span></span> • <span class="mx-8">DALLAS LITIGATION: CONFLICT CHECK <span class="text-success">0.2s</span></span> • <span class="mx-8">MIAMI ZONING: ARBITRAGE SIGNAL DETECTED</span> • <span class="mx-8">ISO 42001: COMPLIANCE AUDIT PASSED</span>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="px-6 lg:px-10 py-24 lg:py-32 border-t border-ink/10 bg-ink text-cream relative overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="flex items-baseline gap-4 mb-12">
+                <span class="section-number text-3xl lg:text-4xl" style="color: #C9A28C;">§ 09</span>
+                <span class="label" style="color: #C9A28C;">Schedule a Call</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+                <div class="lg:col-span-7">
+                    <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-10">
+                        Thirty minutes. <br>
+                        <span class="display-italic" style="color: #C9A28C;">No pressure.</span>
+                    </h2>
+
+                    <div class="space-y-6 text-base lg:text-lg text-cream/75 leading-relaxed max-w-xl">
+                        <p>If you would like to discuss a forensic billing audit for your firm, leave your details and a one-line note. The founder responds personally, typically within one business day.</p>
+
+                        <p>The first call is a discovery conversation. We discuss your billing structure, your data systems, your goals, and whether the engagement is a fit. If it is not, we will say so on the call. No follow-up sales pressure, no automated sequences.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <form id="contactForm" class="space-y-7">
+                        <div>
+                            <label class="form-label text-cream/60">Name</label>
+                            <input type="text" name="name" required class="form-input" style="color: #F5F0E6; border-bottom-color: rgba(245, 240, 230, 0.25);" placeholder="Your full name">
+                        </div>
+                        <div>
+                            <label class="form-label text-cream/60">Firm</label>
+                            <input type="text" name="firm" required class="form-input" style="color: #F5F0E6; border-bottom-color: rgba(245, 240, 230, 0.25);" placeholder="Firm name and approximate attorney count">
+                        </div>
+                        <div>
+                            <label class="form-label text-cream/60">Email</label>
+                            <input type="email" name="email" required class="form-input" style="color: #F5F0E6; border-bottom-color: rgba(245, 240, 230, 0.25);" placeholder="you@firm.com">
+                        </div>
+                        <div>
+                            <label class="form-label text-cream/60">One line on what you are exploring</label>
+                            <input type="text" name="note" class="form-input" style="color: #F5F0E6; border-bottom-color: rgba(245, 240, 230, 0.25);" placeholder="Optional">
+                        </div>
+                        <button type="submit" class="mt-4 inline-block px-8 py-4 text-sm font-medium tracking-wide transition-all" style="background-color: #F5F0E6; color: #1A1410; border: 1px solid #F5F0E6;" onmouseover="this.style.backgroundColor='#5C1A1B'; this.style.color='#F5F0E6'; this.style.borderColor='#5C1A1B';" onmouseout="this.style.backgroundColor='#F5F0E6'; this.style.color='#1A1410'; this.style.borderColor='#F5F0E6';">Request a discovery call</button>
+                    </form>
+                    <div id="contactSuccess" class="hidden mt-8 pt-8 border-t border-cream/20">
+                        <div class="display text-2xl mb-2" style="color: #C9A28C;">Thank you.</div>
+                        <div class="text-sm text-cream/70">Your note has been received. The founder will respond personally within one business day.</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer class="border-t border-white/5 bg-black py-16 mb-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-xs font-mono">
-            <div class="space-y-4">
-                <div class="font-bold text-white tracking-widest text-lg">G&P STANDARDS</div>
-                
-                <p class="text-gray-500 mt-4">Sovereign Intelligence Architecture.</p>
-                
-                <p class="text-gray-600">
-                    &copy; 2026 Genesis & Prime Standards LLC (Delaware). All Rights Reserved.<br>
-                    <span class="text-gray-700 font-[10px]">Not affiliated with GPS Standard S.p.A. (Italy).</span>
-                </p>
-                
+    <!-- FOOTER -->
+    <footer class="bg-ink text-cream/60 px-6 lg:px-10 py-16 border-t border-cream/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+                <div class="md:col-span-2">
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span class="display text-2xl text-cream">G&amp;P</span>
+                        <span class="label text-cream/50">Standards</span>
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-sm">
+                        Forensic billing audits for United States law firms with between ten and one hundred attorneys.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="label text-cream/40 mb-4">Navigate</div>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#service" class="hover:text-cream transition-colors">The Audit</a></li>
+                        <li><a href="#pricing" class="hover:text-cream transition-colors">Pricing</a></li>
+                        <li><a href="#about" class="hover:text-cream transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-cream transition-colors">Schedule a Call</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="label text-cream/40 mb-4">Contact</div>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="mailto:contact@gpstandards.com" class="hover:text-cream transition-colors">contact@gpstandards.com</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="space-y-4">
-                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Trust Center</h4>
-                <ul class="space-y-3 text-gray-500">
-                    <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white flex items-center gap-2">
-                        Anti-Training Covenant <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                    </li>
-                    <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white">HIPAA BAA Framework</li>
-                    <li onclick="downloadCovenant()" class="cursor-pointer hover:text-white">SOC 2 Type II Alignment</li>
-                </ul>
-            </div>
-            <div class="space-y-4">
-                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Legal Protocol</h4>
-                <ul class="space-y-3 text-gray-500">
-                    <li onclick="openLegalModal('privacy.html')" class="cursor-pointer hover:text-white hover:underline decoration-amber/50">Privacy Policy (Full Protocol)</li>
-                    <li onclick="openLegalModal('terms.html')" class="cursor-pointer hover:text-white hover:underline decoration-amber/50">Terms of Service (Master Agreement)</li>
-                    <li class="cursor-pointer hover:text-white">Data Processing Addendum</li>
-                </ul>
-            </div>
-            <div class="space-y-4">
-                <h4 class="text-gray-400 font-bold tracking-widest uppercase mb-2">Secure Uplink</h4>
-                <ul class="space-y-3 text-gray-500">
-                    <li class="hover:text-amber"><a href="mailto:clearance@gpstandards.com">clearance@gpstandards.com</a></li>
-                    <li class="text-[10px] text-gray-700">PGP Key Available Upon Request.</li>
-                </ul>
+
+            <div class="pt-8 border-t border-cream/10 flex flex-col md:flex-row md:justify-between gap-4 text-xs text-cream/50">
+                <div>
+                    &copy; 2026 Genesis &amp; Prime Standards LLC. Delaware, United States.
+                </div>
+                <div class="font-mono text-[10px] tracking-wider">
+                    Early-stage consultancy. No prior-client results are claimed.
+                </div>
             </div>
         </div>
     </footer>
 
-    <div id="clearanceModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-amber/30 p-8 rounded-lg max-w-md w-full relative shadow-[0_0_50px_rgba(255,176,0,0.1)]">
-            <button onclick="closeModal('clearanceModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 class="text-xl font-bold text-white mb-2 tracking-wider">CLEARANCE PROTOCOL</h2>
-            <p class="text-xs text-gray-400 mb-6 font-mono">G&P Standards accepts 5 partners per quarter. Minimum data thresholds apply.</p>
-            
-            <form id="contactForm" class="space-y-4">
-                <div>
-                    <label class="block text-[10px] font-mono text-amber mb-1 uppercase">Jurisdiction</label>
-                    <select name="jurisdiction" class="w-full bg-white/5 border border-white/10 text-white p-3 rounded text-sm focus:border-amber outline-none">
-                        <option>United States</option>
-                        <option>European Union</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-mono text-amber mb-1 uppercase">Assets / Revenue</label>
-                    <select name="assets" class="w-full bg-white/5 border border-white/10 text-white p-3 rounded text-sm focus:border-amber outline-none">
-                        <option>&lt; $5M (Redirect to Waitlist)</option>
-                        <option>$5M - $20M</option>
-                        <option>$20M - $100M</option>
-                        <option>&gt; $100M</option>
-                    </select>
-                </div>
-                <input type="email" name="email" required placeholder="Enter corporate email..." class="w-full bg-white/5 border border-white/10 text-white p-3 rounded text-sm focus:border-amber outline-none">
-                <button type="submit" class="w-full bg-white text-black font-bold py-3 text-xs tracking-widest hover:bg-amber transition-colors">ESTABLISH UPLINK</button>
-            </form>
-            <div id="contactSuccess" class="hidden mt-4 text-center border border-green-500/20 bg-green-500/5 p-4 rounded">
-                <div class="text-green-500 font-bold tracking-widest mb-1">UPLINK ESTABLISHED</div>
-                <div class="text-xs text-gray-400">Clearance packet received. Secure channel initialized.</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="cardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#111] border border-white/10 p-8 rounded-lg max-w-lg w-full relative">
-            <button onclick="closeModal('cardModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div id="cardContent">
-                </div>
-            <button onclick="openModal('clearanceModal'); closeModal('cardModal')" class="w-full bg-white text-black font-bold py-3 text-xs tracking-widest hover:bg-amber transition-colors mt-6">
-                INITIATE PROTOCOL
-            </button>
-        </div>
-    </div>
-
-    <div id="pdfModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay px-4">
-        <div class="bg-[#0a0a0a] border border-blue-500/30 p-8 rounded-lg max-w-sm w-full relative shadow-[0_0_50px_rgba(59,130,246,0.1)]">
-            <button onclick="closeModal('pdfModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <div class="flex items-center gap-3 mb-4 text-blue-500"><i data-lucide="lock" class="w-5 h-5"></i><span class="text-xs font-mono font-bold">RESTRICTED DOCUMENT</span></div>
-            <h2 class="text-lg font-bold text-white mb-2">Technical Architecture</h2>
-            <p class="text-xs text-gray-400 mb-6">Authorize below to decrypt and download the Sovereign Infrastructure spec sheet.</p>
-            
-            <form id="pdfForm" class="space-y-4">
-                <input type="email" name="email" required placeholder="Corporate Email" class="w-full bg-white/5 border border-white/10 text-white p-3 rounded text-sm focus:border-blue-500 outline-none">
-                
-                <div class="recaptcha-box" onclick="toggleCaptcha()">
-                    <div class="recaptcha-checkbox" id="captchaBox"></div>
-                    <div class="text-xs text-gray-500">I am human</div>
-                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" class="w-8 h-8 ml-auto opacity-50" alt="reCAPTCHA">
-                </div>
-
-                <button type="submit" id="pdfBtn" disabled class="w-full bg-gray-600 text-gray-300 font-bold py-3 text-xs tracking-widest cursor-not-allowed transition-colors">AUTHORIZE & DOWNLOAD</button>
-            </form>
-
-            <div id="pdfSuccess" class="hidden mt-6 text-center border border-green-500/20 bg-green-500/5 p-4 rounded">
-                <div class="text-green-500 text-xs font-mono mb-2">>> CREDENTIALS VERIFIED.</div>
-                <p class="text-gray-300 text-sm font-bold">PDF Sent to Inbox.</p>
-                <p class="text-gray-500 text-[10px] mt-1">Please check your email to access the file.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="legalModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay px-4 backdrop-blur-xl">
-        <div class="bg-[#0a0a0a] border border-white/10 w-full max-w-4xl h-[80vh] rounded-lg relative shadow-2xl flex flex-col">
-            <div class="flex justify-between items-center p-6 border-b border-white/10 bg-black">
-                <div class="flex items-center gap-2 text-amber text-xs font-mono tracking-widest">
-                    <i data-lucide="scale" class="w-4 h-4"></i> LEGAL REPOSITORY // READ-ONLY
-                </div>
-                <button onclick="closeModal('legalModal')" class="text-gray-500 hover:text-white hover:rotate-90 transition-transform">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-            <div class="flex-1 p-0 overflow-hidden relative">
-                <iframe id="legalFrame" src="" class="w-full h-full border-none bg-black/50" title="Legal Document"></iframe>
-            </div>
-            <div class="p-4 border-t border-white/10 bg-black flex justify-between items-center">
-                <span class="text-[10px] text-gray-600 font-mono">DOC_ID: LEGL_V2.4 // ENCRYPTION: TLS 1.3</span>
-                <button onclick="closeModal('legalModal')" class="bg-white text-black px-6 py-2 text-xs font-bold hover:bg-amber transition-colors">ACKNOWLEDGE & CLOSE</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        lucide.createIcons();
+        // Formspree ID — preserved from existing setup. Replace if needed.
+        const CONTACTS_FORM_ID = "xdaoprgr";
 
-        // ---------------------------------------------------------
-        // *** PASTE YOUR FORMSPREE IDs BELOW ***
-        // ---------------------------------------------------------
-        const CONTACTS_FORM_ID = "xdaoprgr"; 
-        const INFO_FORM_ID = "YOUR_SECOND_ID"; 
-        // ---------------------------------------------------------
-
-        // 1. MODAL CONTROLLERS
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        // NEW: LEGAL MODAL CONTROLLER
-        function openLegalModal(url) {
-            document.getElementById('legalFrame').src = url;
-            document.getElementById('legalModal').classList.remove('hidden');
-        }
-
-        // 2. CARD POPUP LOGIC
-        function openCardDetails(type) {
-            const content = document.getElementById('cardContent');
-            let html = '';
-            
-            if (type === 'Zoning') {
-                html = `<h2 class="text-2xl font-bold text-white mb-4">The Zoning Sentinel</h2><p class="text-gray-400 text-sm leading-relaxed">Our agents scrape municipal meeting minutes and council agendas. We identify 'intent to rezone' signals 3–6 months before the official public listing, allowing for pre-market arbitrage.</p>`;
-            } else if (type === 'Shadow') {
-                html = `<h2 class="text-2xl font-bold text-white mb-4">The Shadow Board</h2><p class="text-gray-400 text-sm leading-relaxed">Pre-litigate motions against a Digital Twin of the presiding Judge. We simulate rulings based on 10 years of case history to adjust strategy before filing.</p>`;
-            } else if (type === 'Revenue') {
-                html = `<h2 class="text-2xl font-bold text-white mb-4">The Revenue Reclaimer</h2><p class="text-gray-400 text-sm leading-relaxed">Forensic audit of associate calendars vs. billing. Finds the lost $208k/year per associate in unbilled time using background log analysis.</p>`;
-            } else if (type === 'Conflict') {
-                html = `<h2 class="text-2xl font-bold text-white mb-4">The Conflict Engine</h2><p class="text-gray-400 text-sm leading-relaxed">Semantic conflict checks across 50,000 docs in 0.2 seconds. Zero hallucination risk. Pure structural analysis of implied relationships.</p>`;
-            }
-            content.innerHTML = html;
-            openModal('cardModal');
-        }
-
-        // 3. RECAPTCHA LOGIC
-        let isHuman = false;
-        function toggleCaptcha() {
-            const box = document.getElementById('captchaBox');
-            const btn = document.getElementById('pdfBtn');
-            if (!isHuman) {
-                box.classList.add('checked');
-                btn.disabled = false;
-                btn.classList.remove('bg-gray-600', 'text-gray-300', 'cursor-not-allowed');
-                btn.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-500');
-                isHuman = true;
-            }
-        }
-
-        // 4. ACCORDION LOGIC
-        function toggleAccordion(id) {
-            const content = document.getElementById(id);
-            const btn = content.previousElementSibling;
-            content.classList.toggle('active');
-            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-            btn.setAttribute('aria-expanded', !isExpanded);
-            if (content.style.maxHeight) { content.style.maxHeight = null; } 
-            else { content.style.maxHeight = content.scrollHeight + "px"; }
-        }
-
-        // 5. DOWNLOAD SIMULATION
-        function downloadCovenant() {
-            alert("Accessing Secure Node...\nDownloading: Anti-Training_Covenant_v4.pdf");
-        }
-
-        // 6. CALCULATOR
-        function calculate() {
-            const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
-            const hours = parseFloat(document.getElementById('unbilledHours').value) || 0;
-            const total = rate * hours * 52;
-            document.getElementById('lossOutput').innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(total);
-        }
-
-        // 7. FORM SUBMISSIONS
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('button');
             const originalText = btn.innerText;
-            btn.innerText = "TRANSMITTING...";
+            btn.innerText = "Sending…";
             const formData = new FormData(this);
             try {
-                const response = await fetch(`https://formspree.io/f/${CONTACTS_FORM_ID}`, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-                if (response.ok) { this.style.display = 'none'; document.getElementById('contactSuccess').classList.remove('hidden'); }
-            } catch (error) { btn.innerText = originalText; }
-        });
-
-        document.getElementById('pdfForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            btn.innerText = "VERIFYING...";
-            const formData = new FormData(this);
-            try {
-                const response = await fetch(`https://formspree.io/f/${INFO_FORM_ID}`, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-                if (response.ok) { this.style.display = 'none'; document.getElementById('pdfSuccess').classList.remove('hidden'); }
-            } catch (error) { btn.innerText = "AUTH FAILED"; }
+                const response = await fetch(`https://formspree.io/f/${CONTACTS_FORM_ID}`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    this.style.display = 'none';
+                    document.getElementById('contactSuccess').classList.remove('hidden');
+                } else {
+                    btn.innerText = originalText;
+                }
+            } catch (error) {
+                btn.innerText = originalText;
+            }
         });
     </script>
 </body>
