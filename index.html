@@ -449,6 +449,272 @@
                     <p class="text-ink/80 font-light leading-relaxed">Engagement fees are quoted following the discovery briefing and scale with vendor spend under review.</p>
                 </div>
             </div>
+
+            <!-- Illustrative Magnitude: Calculator + Two Charts -->
+            <div class="mt-24 lg:mt-32 pt-16 lg:pt-20 border-t border-navy/15">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <span class="section-mark text-2xl lg:text-3xl">~</span>
+                    <span class="label text-muted">Illustrative Magnitude</span>
+                </div>
+
+                <h3 class="display text-3xl lg:text-5xl mb-5 text-navy max-w-4xl">
+                    What this scale of leakage <br>
+                    <span class="display-italic" style="color: #996420;">looks like in dollars.</span>
+                </h3>
+
+                <p class="text-base lg:text-lg text-ink/70 mb-14 max-w-3xl font-light leading-relaxed">
+                    The figures below are industry estimates drawn from published findings of established firms. They illustrate the magnitude typically identified in mid-market audit engagements &mdash; not a recovery commitment by Genesis &amp; Prime Standards LLC.
+                </p>
+
+                <!-- Calculator -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-16 pb-16 border-b border-navy/10">
+                    <div class="lg:col-span-5">
+                        <label class="label text-muted mb-4 block" for="annualSpend">Annual Vendor Spend (USD)</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-navy text-2xl font-light pointer-events-none">$</span>
+                            <input
+                                type="text"
+                                id="annualSpend"
+                                placeholder="50,000,000"
+                                autocomplete="off"
+                                inputmode="numeric"
+                                class="w-full pl-10 pr-4 py-4 text-xl text-ink bg-paper border border-navy/25 focus:border-navy focus:outline-none transition-colors"
+                                style="font-family: 'JetBrains Mono', monospace; font-weight: 400;"
+                            />
+                        </div>
+                        <p class="text-xs text-muted mt-3 leading-relaxed">
+                            <span style="font-family: 'JetBrains Mono', monospace;">Typical mid-market range:</span> $5M to $100M annual vendor spend
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <div class="space-y-7">
+                            <div class="border-l-2 border-gold/40 pl-6">
+                                <div class="label text-muted mb-2">Conservative Estimate &mdash; 3 to 5 percent</div>
+                                <div class="display text-2xl lg:text-3xl text-navy" id="conservativeRange">
+                                    Enter a figure to calculate
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-gold/40 pl-6">
+                                <div class="label text-muted mb-2">Industry Midpoint &mdash; 5 to 8 percent</div>
+                                <div class="display text-2xl lg:text-3xl text-navy" id="midpointRange">
+                                    &mdash;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart 1: Where leakage hides -->
+                <div class="mb-16 pb-16 border-b border-navy/10">
+                    <h4 class="display text-2xl lg:text-3xl mb-3 text-navy">
+                        Where the leakage hides
+                    </h4>
+                    <p class="text-base text-ink/70 mb-10 max-w-3xl font-light leading-relaxed">
+                        A typology of categories where mid-market vendor leakage is most often identified, by approximate frequency of occurrence and magnitude per finding.
+                    </p>
+
+                    <div>
+                        <!-- Header row (desktop only) -->
+                        <div class="hidden lg:grid grid-cols-12 gap-6 pb-4 mb-2 border-b border-navy/15">
+                            <div class="col-span-4">
+                                <span class="label text-muted">Category</span>
+                            </div>
+                            <div class="col-span-4">
+                                <span class="label text-muted">Frequency of Occurrence</span>
+                            </div>
+                            <div class="col-span-4">
+                                <span class="label text-muted">Magnitude per Finding</span>
+                            </div>
+                        </div>
+
+                        <!-- Row 1 -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 py-5 border-b border-navy/10">
+                            <div class="lg:col-span-4">
+                                <span class="text-ink font-medium text-base">Volume discount realization</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-gold" style="width: 75%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Frequent</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-navy" style="width: 80%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Large</span>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 py-5 border-b border-navy/10">
+                            <div class="lg:col-span-4">
+                                <span class="text-ink font-medium text-base">Service-level credit recovery</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-gold" style="width: 45%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Occasional</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-navy" style="width: 65%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Medium</span>
+                            </div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 py-5 border-b border-navy/10">
+                            <div class="lg:col-span-4">
+                                <span class="text-ink font-medium text-base">Duplicate and orphaned charges</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-gold" style="width: 90%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Very common</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-navy" style="width: 50%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Small &ndash; Med</span>
+                            </div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 py-5 border-b border-navy/10">
+                            <div class="lg:col-span-4">
+                                <span class="text-ink font-medium text-base">Auto-renewal and escalator anomalies</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-gold" style="width: 65%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Common</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-navy" style="width: 95%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Largest</span>
+                            </div>
+                        </div>
+
+                        <!-- Row 5 -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 py-5 border-b border-navy/10">
+                            <div class="lg:col-span-4">
+                                <span class="text-ink font-medium text-base">Tax and surcharge misapplication</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-gold" style="width: 40%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Occasional</span>
+                            </div>
+                            <div class="lg:col-span-4 flex items-center gap-3">
+                                <div class="flex-1 h-1.5 bg-navy/10 overflow-hidden">
+                                    <div class="h-full bg-navy" style="width: 45%"></div>
+                                </div>
+                                <span class="text-xs text-muted shrink-0 w-20 text-right" style="font-family: 'JetBrains Mono', monospace;">Small &ndash; Med</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-muted mt-8 leading-relaxed max-w-3xl" style="font-family: 'JetBrains Mono', monospace;">
+                        Relative scale based on aggregate audit findings published by PRGX, SC&amp;H Group, and industry benchmark research. Individual engagements vary substantially by industry, vendor mix, and audit window.
+                    </p>
+                </div>
+
+                <!-- Chart 2: Vendor Tier Distribution -->
+                <div>
+                    <h4 class="display text-2xl lg:text-3xl mb-3 text-navy">
+                        Spend concentration versus finding concentration
+                    </h4>
+                    <p class="text-base text-ink/70 mb-10 max-w-3xl font-light leading-relaxed">
+                        Top vendors dominate spend, but the tail produces a disproportionate share of recoverable findings per dollar reviewed.
+                    </p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+                        <!-- Share of Spend -->
+                        <div>
+                            <div class="label text-muted mb-6">Share of Annual Vendor Spend</div>
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span class="text-sm text-ink">Tier 1 &mdash; Top 10 vendors</span>
+                                        <span class="text-xs text-muted" style="font-family: 'JetBrains Mono', monospace;">~65%</span>
+                                    </div>
+                                    <div class="h-2 bg-navy/10 overflow-hidden">
+                                        <div class="h-full bg-navy" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span class="text-sm text-ink">Tier 2 &mdash; Next 20 vendors</span>
+                                        <span class="text-xs text-muted" style="font-family: 'JetBrains Mono', monospace;">~20%</span>
+                                    </div>
+                                    <div class="h-2 bg-navy/10 overflow-hidden">
+                                        <div class="h-full bg-navy" style="width: 20%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span class="text-sm text-ink">Tier 3 &mdash; The tail</span>
+                                        <span class="text-xs text-muted" style="font-family: 'JetBrains Mono', monospace;">~15%</span>
+                                    </div>
+                                    <div class="h-2 bg-navy/10 overflow-hidden">
+                                        <div class="h-full bg-navy" style="width: 15%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Share of Findings -->
+                        <div>
+                            <div class="label text-muted mb-6">Share of Recoverable Findings</div>
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span class="text-sm text-ink">Tier 1 &mdash; Top 10 vendors</span>
+                                        <span class="text-xs text-muted" style="font-family: 'JetBrains Mono', monospace;">~50%</span>
+                                    </div>
+                                    <div class="h-2 bg-gold/15 overflow-hidden">
+                                        <div class="h-full bg-gold" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span class="text-sm text-ink">Tier 2 &mdash; Next 20 vendors</span>
+                                        <span class="text-xs text-muted" style="font-family: 'JetBrains Mono', monospace;">~30%</span>
+                                    </div>
+                                    <div class="h-2 bg-gold/15 overflow-hidden">
+                                        <div class="h-full bg-gold" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span class="text-sm text-ink">Tier 3 &mdash; The tail</span>
+                                        <span class="text-xs text-muted" style="font-family: 'JetBrains Mono', monospace;">~20%</span>
+                                    </div>
+                                    <div class="h-2 bg-gold/15 overflow-hidden">
+                                        <div class="h-full bg-gold" style="width: 20%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-muted mt-10 leading-relaxed max-w-3xl" style="font-family: 'JetBrains Mono', monospace;">
+                        The 15 percent tail produces 20 percent of findings &mdash; the highest finding-rate per dollar of any tier. This is why our methodology samples the tail rather than ignoring it.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -464,10 +730,86 @@
                 <span class="label text-goldLight">Methodology</span>
             </div>
 
-            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-20 max-w-4xl text-cream">
+            <h2 class="display text-4xl lg:text-5xl xl:text-6xl mb-12 max-w-4xl text-cream">
                 Four phases. <br>
                 <span class="display-italic" style="color: #B58447;">Defined deliverables at each.</span>
             </h2>
+
+            <!-- Engagement Arc Timeline -->
+            <div class="mb-16 lg:mb-20 pb-12 lg:pb-16 border-b border-goldLight/20">
+                <div class="label text-goldLight mb-8">Engagement Arc</div>
+
+                <p class="text-cream/70 text-sm lg:text-base font-light max-w-3xl mb-10 leading-relaxed">
+                    The audit work itself spans fourteen working days. The surrounding phases bracket the engagement with diligence at the front and care at the close.
+                </p>
+
+                <!-- Desktop timeline -->
+                <div class="hidden md:block">
+                    <div class="relative">
+                        <!-- Background track -->
+                        <div class="absolute left-[8%] right-[8%] top-[7px] h-px bg-cream/20"></div>
+
+                        <!-- Active band: spans Phase II through IV (the 14 days + signing) -->
+                        <div class="absolute top-[6px] left-[32%] right-[14%] h-[3px] bg-goldLight"></div>
+
+                        <!-- Phase nodes -->
+                        <div class="relative grid grid-cols-4 gap-4">
+                            <div class="text-center">
+                                <div class="w-3.5 h-3.5 border-2 border-goldLight bg-navy rounded-full mx-auto"></div>
+                                <div class="mt-5">
+                                    <div class="label text-goldLight mb-1">Phase I</div>
+                                    <div class="text-sm text-cream/80 font-light mb-1">Discovery</div>
+                                    <div class="text-xs text-cream/45" style="font-family: 'JetBrains Mono', monospace;">Pre-engagement</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-3.5 h-3.5 border-2 border-goldLight bg-navy rounded-full mx-auto"></div>
+                                <div class="mt-5">
+                                    <div class="label text-goldLight mb-1">Phase II</div>
+                                    <div class="text-sm text-cream/80 font-light mb-1">Engagement</div>
+                                    <div class="text-xs text-cream/45" style="font-family: 'JetBrains Mono', monospace;">Day 0</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-4 h-4 bg-goldLight rounded-full mx-auto -mt-[1px]"></div>
+                                <div class="mt-5">
+                                    <div class="label text-goldLight mb-1">Phase III</div>
+                                    <div class="text-sm text-cream/80 font-light mb-1">Forensic Analysis</div>
+                                    <div class="text-xs text-cream/45" style="font-family: 'JetBrains Mono', monospace;">Days 1 &ndash; 12</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-3.5 h-3.5 border-2 border-goldLight bg-navy rounded-full mx-auto"></div>
+                                <div class="mt-5">
+                                    <div class="label text-goldLight mb-1">Phase IV</div>
+                                    <div class="text-sm text-cream/80 font-light mb-1">Delivery</div>
+                                    <div class="text-xs text-cream/45" style="font-family: 'JetBrains Mono', monospace;">Days 13 &ndash; 14</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile timeline -->
+                <div class="md:hidden space-y-5 border-l border-goldLight/30 pl-6">
+                    <div>
+                        <div class="label text-goldLight mb-1">Phase I &mdash; Discovery</div>
+                        <div class="text-xs text-cream/60" style="font-family: 'JetBrains Mono', monospace;">Pre-engagement briefing</div>
+                    </div>
+                    <div>
+                        <div class="label text-goldLight mb-1">Phase II &mdash; Engagement</div>
+                        <div class="text-xs text-cream/60" style="font-family: 'JetBrains Mono', monospace;">Day 0 &mdash; Letter signed, data exchanged</div>
+                    </div>
+                    <div>
+                        <div class="label text-goldLight mb-1">Phase III &mdash; Forensic Analysis</div>
+                        <div class="text-xs text-cream/60" style="font-family: 'JetBrains Mono', monospace;">Days 1 to 12 &mdash; Reconciliation and quantification</div>
+                    </div>
+                    <div>
+                        <div class="label text-goldLight mb-1">Phase IV &mdash; Delivery</div>
+                        <div class="text-xs text-cream/60" style="font-family: 'JetBrains Mono', monospace;">Days 13 to 14 &mdash; Dossier and executive review</div>
+                    </div>
+                </div>
+            </div>
 
             <div class="space-y-14 lg:space-y-16">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-14 border-b border-goldLight/25">
@@ -950,6 +1292,58 @@
                 btn.innerText = originalText;
             }
         });
+
+        // Illustrative Magnitude Calculator
+        (function() {
+            const input = document.getElementById('annualSpend');
+            const consEl = document.getElementById('conservativeRange');
+            const midEl = document.getElementById('midpointRange');
+
+            if (!input || !consEl || !midEl) return;
+
+            function formatCurrency(num) {
+                if (!num || isNaN(num) || num < 1) return '—';
+                return '$' + Math.round(num).toLocaleString('en-US');
+            }
+
+            function parseSpend(value) {
+                if (!value) return 0;
+                return parseFloat(value.toString().replace(/[^\d.]/g, ''));
+            }
+
+            function updateCalculator() {
+                const raw = parseSpend(input.value);
+
+                if (!raw || raw < 1000) {
+                    consEl.textContent = 'Enter a figure to calculate';
+                    midEl.textContent = '—';
+                    return;
+                }
+
+                const consLow = raw * 0.03;
+                const consHigh = raw * 0.05;
+                const midLow = raw * 0.05;
+                const midHigh = raw * 0.08;
+
+                consEl.textContent = formatCurrency(consLow) + ' – ' + formatCurrency(consHigh);
+                midEl.textContent = formatCurrency(midLow) + ' – ' + formatCurrency(midHigh);
+            }
+
+            input.addEventListener('input', function(e) {
+                const cursorPos = e.target.selectionStart;
+                const oldLength = e.target.value.length;
+                let value = e.target.value.replace(/[^\d]/g, '');
+                if (value) {
+                    e.target.value = parseInt(value).toLocaleString('en-US');
+                    const newLength = e.target.value.length;
+                    const newPos = cursorPos + (newLength - oldLength);
+                    e.target.setSelectionRange(newPos, newPos);
+                } else {
+                    e.target.value = '';
+                }
+                updateCalculator();
+            });
+        })();
     </script>
 </body>
 </html>
