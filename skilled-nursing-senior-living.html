@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Contract Leakage Audit for Skilled Nursing &amp; Senior Living Operators — G&amp;P Standards</title>
+    <meta name="description" content="Forensic vendor contract leakage audits for US skilled nursing facilities (SNFs) and senior living operators. Pharmacy and medical supply audit, GPO compliance reconciliation, food service vendor review, therapy and ancillary services audit.">
+    <link rel="canonical" href="https://gpstandards.com/sectors/skilled-nursing-senior-living">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://gpstandards.com/sectors/skilled-nursing-senior-living",
+          "url": "https://gpstandards.com/sectors/skilled-nursing-senior-living",
+          "name": "Vendor Contract Leakage Audit for Skilled Nursing & Senior Living Operators",
+          "isPartOf": { "@id": "https://gpstandards.com/#website" },
+          "about": { "@id": "https://gpstandards.com/#organization" },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gpstandards.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Sectors", "item": "https://gpstandards.com/sectors" },
+              { "@type": "ListItem", "position": 3, "name": "Skilled Nursing & Senior Living" }
+            ]
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Vendor Contract Leakage Audit for Skilled Nursing & Senior Living Operators",
+          "provider": { "@id": "https://gpstandards.com/#organization" },
+          "areaServed": { "@type": "Country", "name": "United States" },
+          "serviceType": "Forensic Vendor Contract Leakage Audit",
+          "audience": {
+            "@type": "BusinessAudience",
+            "audienceType": "Skilled nursing facility operators, senior living and assisted living operators, post-acute care platforms, CCRC operators"
+          },
+          "description": "Forensic reconciliation of vendor invoices against contract terms for US skilled nursing and senior living operators &mdash; surfacing pharmacy and medical supply pricing variance, GPO compliance gaps, food service rebate misses, and ancillary services leakage."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What leakage range is typical for a skilled nursing or senior living operator?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Across US skilled nursing and senior living operators, forensic vendor audits typically surface recoverable leakage in the 4% to 10% range of audited vendor spend. The upper end is most common in multi-state platforms with operational pharmacy, food service, and therapy ancillary contracts that have grown through acquisition without consolidated procurement governance."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does GPO membership affect what an audit can recover?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "GPO membership (Premier, Vizient, HealthTrust, Innovatix) sets price ceilings but does not guarantee compliant ordering at the facility level. Forensic audits reconcile actual purchasing against GPO tier eligibility, contract compliance percentages, and rebate funding programs. Common gaps: off-contract purchasing, missed administrative fee rebates, and tier-level pricing not flowing through to facility orders."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the highest-recovery category in senior living vendor audits?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pharmacy services typically. Long-term care pharmacies (Omnicare, PharMerica, Pharmscript, Guardian, regional LTC pharmacies) operate complex pricing structures with per-day, per-resident, per-prescription, and ancillary service fee layers. Reconciliation against contract terms commonly surfaces 6% to 14% of recoverable variance against pharmacy spend."
+                }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the audit interfere with regulatory compliance or survey readiness?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The audit operates against historical AP data and contract files in our environment. Clinical operations, MDS coordinators, DONs, administrators, and survey-readiness functions are not involved. Facility staff are not interviewed. The engagement is invisible to operations unless the operator elects to act on findings."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { navy: '#0B2F4D', navyDeep: '#071F33', gold: '#996420', goldLight: '#B58447', cream: '#F5EFE4', paper: '#FBF7EE', ink: '#0E1620', muted: '#5E6878', rule: '#D9D2C3' },
+            fontFamily: { display: ['EB Garamond', 'Garamond', 'Georgia', 'serif'], sans: ['Poppins', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+        }}}
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #FBF7EE; color: #0E1620; font-family: 'Poppins', system-ui, sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .display { font-family: 'EB Garamond', Garamond, Georgia, serif; font-weight: 500; letter-spacing: -0.015em; line-height: 1.05; }
+        .display-italic { font-family: 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; }
+        .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+        .logo-stack { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; }
+        .logo-gp { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 1.65rem; letter-spacing: -0.01em; color: #0B2F4D; }
+        .logo-standards { font-family: 'EB Garamond', serif; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.18em; color: #996420; text-transform: uppercase; margin-top: 1px; }
+        .logo-gp-light { color: #F5EFE4; }
+        .logo-standards-light { color: #B58447; }
+        .btn-primary { display: inline-block; background-color: #0B2F4D; color: #F5EFE4; padding: 0.95rem 1.85rem; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.3s ease; border: 1px solid #0B2F4D; }
+        .btn-primary:hover { background-color: #996420; border-color: #996420; }
+        .btn-ghost-light { display: inline-block; background-color: transparent; color: #F5EFE4; padding: 0.95rem 1.85rem; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.3s ease; border: 1px solid #B58447; }
+        .btn-ghost-light:hover { background-color: #996420; border-color: #996420; color: #F5EFE4; }
+        .ulink { font-size: 13px; font-weight: 400; color: #0B2F4D; position: relative; transition: color 0.3s ease; }
+        .ulink:hover { color: #996420; }
+        .ulink::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background-color: #996420; transition: width 0.3s ease; }
+        .ulink:hover::after { width: 100%; }
+        .rule { height: 1px; background-color: rgba(11, 47, 77, 0.18); }
+        .rule-gold { height: 1px; background-color: #996420; opacity: 0.4; }
+        .grain { position: relative; }
+        .grain::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.4; background-image: radial-gradient(rgba(11, 47, 77, 0.06) 1px, transparent 1px); background-size: 3px 3px; }
+        .pattern-row { display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(11, 47, 77, 0.15); }
+        .pattern-row:last-child { border-bottom: none; }
+        .pattern-num { font-family: 'EB Garamond', serif; font-style: italic; font-weight: 500; font-size: 1.75rem; color: #996420; line-height: 1; }
+        .stat-box { background-color: #FBF7EE; border: 1px solid rgba(11, 47, 77, 0.15); padding: 2rem 1.75rem; }
+        .breadcrumb { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245, 239, 228, 0.55); }
+        .breadcrumb a { color: rgba(245, 239, 228, 0.75); transition: color 0.3s ease; }
+        .breadcrumb a:hover { color: #B58447; }
+        .qa-block { padding: 2rem 0; border-bottom: 1px solid rgba(11, 47, 77, 0.12); }
+        .qa-block:last-child { border-bottom: none; }
+        .qa-num { font-family: 'EB Garamond', serif; font-style: italic; color: #996420; font-size: 1rem; display: inline-block; margin-right: 0.5rem; }
+    </style>
+</head>
+
+<body>
+
+<nav class="border-b border-navy/10 bg-cream/95 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+        <a href="/" class="logo-stack">
+            <span class="logo-gp">G&amp;P</span>
+            <span class="logo-standards">Standards</span>
+        </a>
+        <div class="hidden md:flex items-center gap-10">
+            <a href="/#practice-01" class="ulink">Practices</a>
+            <a href="/#methodology" class="ulink">Methodology</a>
+            <a href="/answers" class="ulink">Answers</a>
+            <a href="/#about" class="ulink">The Firm</a>
+            <a href="/#inquiry" class="btn-primary">Request Engagement</a>
+        </div>
+        <a href="/#inquiry" class="md:hidden btn-primary text-[11px] px-4 py-2">Engage</a>
+    </div>
+</nav>
+
+<header class="bg-navy text-cream px-6 lg:px-10 py-20 lg:py-32 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto relative z-10">
+        <div class="breadcrumb mb-8">
+            <a href="/">Home</a> &nbsp;&middot;&nbsp; <a href="/#practice-01">Sectors</a> &nbsp;&middot;&nbsp; <span>Skilled Nursing &amp; Senior Living</span>
+        </div>
+        <div class="label text-goldLight mb-8">Sector Focus &mdash; Post-Acute &amp; Senior Living</div>
+        <h1 class="display text-5xl lg:text-7xl mb-10 max-w-5xl">
+            Vendor contract leakage in <span class="display-italic text-goldLight">skilled nursing</span> and senior living operators.
+        </h1>
+        <div class="rule-gold max-w-md mb-10"></div>
+        <p class="text-lg lg:text-xl text-cream/80 font-light max-w-3xl leading-relaxed">
+            Post-acute and senior living platforms operate against thin reimbursement margins, complex regulatory overhead, and vendor relationships that span pharmacy, medical supply, food service, therapy, laundry, waste, and IT. The leakage compounds quietly across the contract base while operational attention sits with surveys, staffing, and census.
+        </p>
+    </div>
+</header>
+
+<section class="grain px-6 lg:px-10 py-20 lg:py-28 border-b border-navy/10">
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="label text-gold mb-8">§ 01 &nbsp;&middot;&nbsp; The Pattern</div>
+        <h2 class="display text-3xl lg:text-5xl text-navy mb-10 leading-tight max-w-4xl">
+            Why this sector <span class="display-italic text-gold">cannot prioritize</span> its own contract enforcement.
+        </h2>
+        <div class="rule mb-10 max-w-md"></div>
+        <div class="space-y-6 text-navy/85 font-light leading-relaxed text-base lg:text-lg max-w-3xl">
+            <p>
+                Skilled nursing and senior living operators run businesses where operational attention is consumed by census management, staffing, regulatory surveys, and reimbursement cycles. Procurement and contract enforcement &mdash; functions that would surface vendor leakage &mdash; sit at the bottom of the priority stack at most facilities, and often at corporate as well.
+            </p>
+            <p>
+                GPO membership creates a comforting illusion of procurement discipline. The GPO contract sets price ceilings and rebate-eligibility tiers, but enforcement at the facility ordering level is operator responsibility. Forensic audits routinely surface off-contract purchasing, missed administrative fee rebates, and tier-pricing that did not flow through to facility orders.
+            </p>
+            <p>
+                Pharmacy services compound the issue. Long-term care pharmacy contracts contain per-day, per-resident, per-prescription, dispensing fees, and ancillary service charges layered in ways that resist line-level reconciliation without forensic methodology. Therapy services (Genesis Rehab, Aegis, RehabCare, Reliant) carry similar contract complexity.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-cream grain px-6 lg:px-10 py-20 lg:py-28 border-b border-navy/10">
+    <div class="max-w-6xl mx-auto relative z-10">
+        <div class="label text-gold mb-8">§ 02 &nbsp;&middot;&nbsp; Common Findings</div>
+        <h2 class="display text-3xl lg:text-5xl text-navy mb-12 max-w-4xl">
+            What a forensic audit <span class="display-italic text-gold">typically surfaces.</span>
+        </h2>
+
+        <div class="space-y-0">
+            <div class="pattern-row">
+                <div class="pattern-num">i.</div>
+                <div>
+                    <div class="label text-gold mb-2">Long-Term Care Pharmacy Pricing</div>
+                    <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                        Omnicare, PharMerica, Pharmscript, Guardian, and regional LTC pharmacies billing at rates above contract; dispensing fees, delivery fees, technology surcharges, and per-resident-day fees compounding silently; rebate funding programs unrealized. Typical variance reconciled at the line level: 6% to 14% against pharmacy spend.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pattern-row">
+                <div class="pattern-num">ii.</div>
+                <div>
+                    <div class="label text-gold mb-2">GPO Compliance Gaps</div>
+                    <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                        Premier, Vizient, HealthTrust, Innovatix membership creates contractual price ceilings and rebate funding, but realization depends on facility-level ordering against contract. Common gaps: off-contract purchases through non-contracted distributors, missed administrative fee rebates, tier-level pricing not flowing through to facility orders, and compliance-percentage shortfalls that disqualify rebate tiers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pattern-row">
+                <div class="pattern-num">iii.</div>
+                <div>
+                    <div class="label text-gold mb-2">Medical &amp; Incontinence Supply</div>
+                    <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                        Medline, McKesson, Cardinal Health, Direct Supply, NDC invoicing at rates that drift from GPO-tier or directly negotiated pricing. Incontinence and wound care products commonly carry the largest variance. Custom-bid programs and standing orders frequently revert to list pricing without notice.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pattern-row">
+                <div class="pattern-num">iv.</div>
+                <div>
+                    <div class="label text-gold mb-2">Food Service &amp; Dining</div>
+                    <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                        Sysco, US Foods, Sodexo, Morrison Living, Aramark, Healthcare Services Group operating under either broadline distribution or managed dining contracts. Rebate misses on volume tiers, menu mix shifts not reflected in pricing, contract renewal escalators compounding, and dietitian/clinical nutrition fees not enforced against contract.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pattern-row">
+                <div class="pattern-num">v.</div>
+                <div>
+                    <div class="label text-gold mb-2">Therapy &amp; Ancillary Services</div>
+                    <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                        Contract therapy (PT, OT, SLP) vendors billing at rates above contract; therapy minute productivity not aligned with contract assumptions; ancillary services (mobile imaging, lab, podiatry, dentistry, optometry) commonly carry pricing variance and duplicative service charges across operator transitions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pattern-row">
+                <div class="pattern-num">vi.</div>
+                <div>
+                    <div class="label text-gold mb-2">Linen, Laundry &amp; Waste</div>
+                    <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                        Cintas, Healthcare Services Group, regional linen and laundry providers auto-renewing at escalated prices; lost-linen charges above contractual loss factors; environmental fees and fuel surcharges escalating beyond caps. Medical waste (Stericycle, Daniels Health) commonly carries 15% to 25% overpayment when reconciled against contract terms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="px-6 lg:px-10 py-20 lg:py-28 border-b border-navy/10 grain">
+    <div class="max-w-6xl mx-auto relative z-10">
+        <div class="label text-gold mb-8">§ 03 &nbsp;&middot;&nbsp; Benchmark Figures</div>
+        <h2 class="display text-3xl lg:text-5xl text-navy mb-12 max-w-3xl">
+            What the <span class="display-italic text-gold">numbers say.</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+            <div class="stat-box">
+                <div class="display text-5xl text-gold mb-3">4&ndash;10<span class="text-3xl">%</span></div>
+                <div class="label text-navy mb-3">Typical Recoverable Leakage</div>
+                <div class="text-sm text-navy/70 font-light leading-relaxed">Of audited vendor spend in US skilled nursing and senior living operators, with the upper end common in multi-state platforms post-acquisition.</div>
+            </div>
+            <div class="stat-box">
+                <div class="display text-5xl text-gold mb-3">6&ndash;14<span class="text-3xl">%</span></div>
+                <div class="label text-navy mb-3">LTC Pharmacy Variance</div>
+                <div class="text-sm text-navy/70 font-light leading-relaxed">Common variance between contracted pharmacy pricing and invoiced amounts when reconciled at the per-resident-day and per-prescription line level.</div>
+            </div>
+            <div class="stat-box">
+                <div class="display text-5xl text-gold mb-3">15&ndash;25<span class="text-3xl">%</span></div>
+                <div class="label text-navy mb-3">Medical Waste Premium</div>
+                <div class="text-sm text-navy/70 font-light leading-relaxed">Common overpayment range on medical waste and hazardous waste services when reconciled against contract terms across multi-facility platforms.</div>
+            </div>
+        </div>
+
+        <p class="text-sm text-navy/65 font-light italic max-w-3xl">
+            Ranges drawn from public industry benchmarks (KPMG Supplier Management commentary on contractual leakage; LeadingAge operational benchmarks; AHCA/NCAL cost reporting). Specific recovery figures depend on facility count, payer mix, GPO membership, and procurement maturity.
+        </p>
+    </div>
+</section>
+
+<section class="bg-navy text-cream px-6 lg:px-10 py-20 lg:py-28 border-b border-navy/10 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="label text-goldLight mb-8">§ 04 &nbsp;&middot;&nbsp; Representative Engagement</div>
+        <h2 class="display text-3xl lg:text-5xl mb-10 max-w-4xl">
+            What a typical operator <span class="display-italic text-goldLight">engagement looks like.</span>
+        </h2>
+        <p class="text-cream/70 font-light italic mb-12 text-sm max-w-3xl">
+            Illustrative scope and structure. Specific findings vary by operator and are confidential to the engagement.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <div class="label text-goldLight mb-4">Engagement Profile</div>
+                <ul class="space-y-3 text-cream/85 font-light leading-relaxed">
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; SNF or senior living operator, 15&ndash;80 facilities</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; Annual vendor spend $30M&ndash;$120M</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; GPO member (Premier, Vizient, HealthTrust, or Innovatix)</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; LTC pharmacy contract, food service vendor, contract therapy</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; Engagement sourced by CFO, COO, or PE sponsor operating partner</li>
+                </ul>
+            </div>
+            <div>
+                <div class="label text-goldLight mb-4">Workstream Structure</div>
+                <ul class="space-y-3 text-cream/85 font-light leading-relaxed">
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; Phase 0 data readiness: 7&ndash;10 business days</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; Forensic execution: 4&ndash;6 weeks</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; Dossier delivery + CFO/COO briefing: 1 week</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; 24-month lookback against AP file, pharmacy invoices, GPO admin fee statements</li>
+                    <li><span class="text-goldLight">&middot;</span> &nbsp; Clinical and survey-readiness functions are not involved</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-16 pt-12 border-t border-cream/15">
+            <p class="text-cream/85 font-light leading-relaxed max-w-3xl mb-8">
+                Findings are delivered as a confidential dossier with line-item evidence, vendor-by-vendor recovery prioritization, and a 90-day implementation roadmap. Pharmacy and GPO findings are presented with specific recovery and renegotiation strategies that can be executed without disrupting clinical or survey operations.
+            </p>
+            <a href="/partnerships" class="btn-ghost-light">For Operating Partners &amp; Advisors &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<section class="bg-cream grain px-6 lg:px-10 py-20 lg:py-28 border-b border-navy/10">
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="label text-gold mb-8">§ 05 &nbsp;&middot;&nbsp; Sector FAQ</div>
+        <h2 class="display text-3xl lg:text-5xl text-navy mb-12 max-w-3xl">
+            Questions specific to <span class="display-italic text-gold">this sector.</span>
+        </h2>
+
+        <div class="space-y-0">
+            <div class="qa-block">
+                <h3 class="display text-xl lg:text-2xl text-navy mb-3 leading-snug">
+                    <span class="qa-num">i.</span> What leakage range is typical for a skilled nursing or senior living operator?
+                </h3>
+                <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                    Across US skilled nursing and senior living operators, forensic vendor audits typically surface recoverable leakage in the 4% to 10% range of audited vendor spend. The upper end is most common in multi-state platforms with operational pharmacy, food service, and therapy ancillary contracts that have grown through acquisition without consolidated procurement governance.
+                </p>
+            </div>
+            <div class="qa-block">
+                <h3 class="display text-xl lg:text-2xl text-navy mb-3 leading-snug">
+                    <span class="qa-num">ii.</span> How does GPO membership affect what an audit can recover?
+                </h3>
+                <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                    GPO membership (Premier, Vizient, HealthTrust, Innovatix) sets price ceilings but does not guarantee compliant ordering at the facility level. Forensic audits reconcile actual purchasing against GPO tier eligibility, contract compliance percentages, and rebate funding programs. Common gaps: off-contract purchasing, missed administrative fee rebates, and tier-level pricing not flowing through to facility orders.
+                </p>
+            </div>
+            <div class="qa-block">
+                <h3 class="display text-xl lg:text-2xl text-navy mb-3 leading-snug">
+                    <span class="qa-num">iii.</span> What is the highest-recovery category in senior living vendor audits?
+                </h3>
+                <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                    Pharmacy services typically. Long-term care pharmacies (Omnicare, PharMerica, Pharmscript, Guardian, regional LTC pharmacies) operate complex pricing structures with per-day, per-resident, per-prescription, and ancillary service fee layers. Reconciliation against contract terms commonly surfaces 6% to 14% of recoverable variance against pharmacy spend.
+                </p>
+            </div>
+            <div class="qa-block">
+                <h3 class="display text-xl lg:text-2xl text-navy mb-3 leading-snug">
+                    <span class="qa-num">iv.</span> Does the audit interfere with regulatory compliance or survey readiness?
+                </h3>
+                <p class="text-navy/80 font-light leading-relaxed max-w-3xl">
+                    No. The audit operates against historical AP data and contract files in our environment. Clinical operations, MDS coordinators, DONs, administrators, and survey-readiness functions are not involved. Facility staff are not interviewed. The engagement is invisible to operations unless the operator elects to act on findings.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-16 pt-12 border-t border-navy/15 flex flex-col md:flex-row justify-between items-start gap-6">
+            <p class="text-navy/75 font-light max-w-xl">
+                For broader questions about scope, methodology, and engagement structure, see the full Answers page.
+            </p>
+            <div class="flex gap-4">
+                <a href="/answers" class="btn-primary">All Answers</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-navyDeep text-cream/70 px-6 lg:px-10 py-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-cream/10">
+            <div>
+                <a href="/" class="logo-stack mb-6">
+                    <span class="logo-gp logo-gp-light">G&amp;P</span>
+                    <span class="logo-standards logo-standards-light">Standards</span>
+                </a>
+                <p class="text-sm text-cream/60 font-light leading-relaxed mt-6 max-w-sm">
+                    Genesis &amp; Prime Standards LLC. A Delaware-registered forensic boutique serving the US mid-market and its advisors.
+                </p>
+            </div>
+            <div>
+                <div class="label text-goldLight mb-5">Sectors</div>
+                <div class="space-y-3 text-sm">
+                    <a href="/sectors/healthcare-services" class="block text-cream/70 hover:text-goldLight">Healthcare Services</a>
+                    <a href="/sectors/specialty-trade-construction" class="block text-cream/70 hover:text-goldLight">Specialty Trade &amp; Construction</a>
+                    <a href="/sectors/multi-unit-restaurants" class="block text-cream/70 hover:text-goldLight">Multi-Unit Restaurants</a>
+                    <a href="/sectors/skilled-nursing-senior-living" class="block text-goldLight">Skilled Nursing &amp; Senior Living</a>
+                    <a href="/sectors/mid-market-manufacturing" class="block text-cream/70 hover:text-goldLight">Mid-Market Manufacturing</a>
+                </div>
+            </div>
+            <div>
+                <div class="label text-goldLight mb-5">Site</div>
+                <div class="space-y-3 text-sm">
+                    <a href="/" class="block text-cream/70 hover:text-goldLight">Practices</a>
+                    <a href="/answers" class="block text-cream/70 hover:text-goldLight">Answers</a>
+                    <a href="/partnerships" class="block text-cream/70 hover:text-goldLight">For Advisors &amp; Operating Partners</a>
+                    <a href="/founder" class="block text-cream/70 hover:text-goldLight">Founder</a>
+                    <a href="/terms" class="block text-cream/70 hover:text-goldLight">Terms</a>
+                    <a href="/privacy" class="block text-cream/70 hover:text-goldLight">Privacy</a>
+                </div>
+            </div>
+        </div>
+        <div class="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="text-xs text-cream/50 font-mono uppercase tracking-widest">
+                &copy; 2026 Genesis &amp; Prime Standards LLC &middot; Delaware, USA
+            </div>
+            <div class="text-xs text-cream/40 font-mono uppercase tracking-widest">
+                Confidential &middot; Engagement-Priced &middot; MSA-Ready
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
