@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURUM Forensic Console — G&P Standards (Demonstration)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2F4D; --navyDeep:#071F33; --black:#050A0F; --panel:#0a1f33;
+  --gold:#996420; --goldLight:#B58447; --goldBright:#C9923B;
+  --cream:#F5EFE4; --paper:#FBF7EE; --ink:#0E1620; --muted:#5E6878;
+  --line:rgba(245,239,228,0.12); --line2:rgba(245,239,228,0.2);
+  --green:#4a9d6e; --red:#c0613f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Poppins',sans-serif;font-weight:300;color:var(--cream);
+  background:radial-gradient(ellipse at 50% -10%, #0c2a44 0%, #050A0F 60%);
+  background-attachment:fixed;min-height:100vh;
+  -webkit-font-smoothing:antialiased;line-height:1.6;
+}
+.display{font-family:'EB Garamond',serif;font-weight:500;letter-spacing:-0.015em;line-height:1.05;}
+.italic{font-family:'EB Garamond',serif;font-style:italic;font-weight:400;}
+.label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;font-weight:500;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.gold{color:var(--gold);}.goldL{color:var(--goldLight);}.goldB{color:var(--goldBright);}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+/* demo ribbon */
+.ribbon{background:var(--gold);color:var(--cream);text-align:center;padding:7px 12px;font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;}
+
+/* header */
+header{padding:26px 0 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);}
+.brand{display:flex;align-items:center;gap:11px;}
+.brand svg{height:34px;width:auto;}
+.brand .nm{font-family:'EB Garamond',serif;font-weight:600;font-size:17px;color:var(--cream);line-height:1;}
+.brand .nm span{color:var(--goldLight);}
+.brand .nm small{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:3px;font-weight:400;}
+header .eng{text-align:right;}
+header .eng .e1{font-family:'EB Garamond';font-style:italic;font-size:16px;color:var(--goldBright);}
+header .eng .e2{font-family:'JetBrains Mono';font-size:8px;letter-spacing:0.18em;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+
+/* hero */
+.hero{padding:40px 0 26px;text-align:center;}
+.hero .label{color:var(--goldLight);margin-bottom:16px;}
+.hero h1{font-size:clamp(30px,4.6vw,46px);margin-bottom:14px;max-width:18ch;margin-inline:auto;}
+.hero h1 .italic{color:var(--goldBright);}
+.hero p{font-size:14px;color:rgba(245,239,228,0.75);max-width:60ch;margin:0 auto;}
+
+/* steps */
+.stepwrap{display:flex;gap:10px;justify-content:center;margin:30px 0 26px;flex-wrap:wrap;}
+.stepwrap .st{display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.stepwrap .st .num{width:22px;height:22px;border:1px solid var(--line2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.stepwrap .st.on{color:var(--goldBright);}
+.stepwrap .st.on .num{border-color:var(--goldBright);color:var(--goldBright);}
+.stepwrap .sep{width:24px;height:1px;background:var(--line2);align-self:center;}
+
+/* panels */
+.panel{background:linear-gradient(180deg, rgba(11,47,77,0.55), rgba(7,31,51,0.55));border:1px solid var(--line);backdrop-filter:blur(4px);padding:30px;margin-bottom:22px;}
+.panel-title{font-family:'EB Garamond';font-weight:600;font-size:20px;color:var(--cream);margin-bottom:5px;}
+.panel-sub{font-size:12px;color:var(--muted);margin-bottom:22px;}
+
+/* sector cards */
+.sectors{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:760px){.sectors{grid-template-columns:repeat(2,1fr);}}
+.sect{background:rgba(255,255,255,0.03);border:1px solid var(--line);padding:18px 16px;cursor:pointer;transition:all .2s;text-align:left;position:relative;}
+.sect:hover{border-color:var(--goldLight);background:rgba(201,146,59,0.06);}
+.sect.sel{border-color:var(--goldBright);background:rgba(201,146,59,0.10);}
+.sect.sel::after{content:'✓';position:absolute;top:12px;right:14px;color:var(--goldBright);font-size:13px;}
+.sect .sicon{font-family:'EB Garamond';font-size:24px;color:var(--goldBright);margin-bottom:8px;}
+.sect .sname{font-family:'EB Garamond';font-weight:600;font-size:15px;color:var(--cream);line-height:1.2;margin-bottom:5px;}
+.sect .sdesc{font-size:10.5px;color:var(--muted);line-height:1.45;}
+
+/* upload */
+.upload{border:1.5px dashed var(--line2);background:rgba(255,255,255,0.02);padding:34px;text-align:center;transition:all .2s;cursor:pointer;margin-top:4px;}
+.upload:hover{border-color:var(--goldLight);background:rgba(201,146,59,0.04);}
+.upload.has{border-color:var(--goldBright);border-style:solid;background:rgba(201,146,59,0.07);}
+.upload .uicon{font-size:30px;color:var(--goldLight);margin-bottom:12px;}
+.upload .utitle{font-family:'EB Garamond';font-size:18px;color:var(--cream);margin-bottom:5px;}
+.upload .usub{font-size:12px;color:var(--muted);}
+.upload .ufile{font-family:'JetBrains Mono';font-size:12px;color:var(--goldBright);margin-top:10px;}
+.orsample{text-align:center;margin-top:16px;}
+.orsample .or{font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
+.linkbtn{background:none;border:none;color:var(--goldLight);font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.05em;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+.linkbtn:hover{color:var(--goldBright);}
+
+/* analyze button */
+.analyze-wrap{text-align:center;margin-top:24px;}
+.analyze{background:var(--gold);color:var(--cream);border:none;font-family:'Poppins';font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:17px 44px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.analyze:hover:not(:disabled){background:var(--goldBright);transform:translateY(-1px);}
+.analyze:disabled{opacity:0.35;cursor:not-allowed;}
+.analyze .hint{display:block;font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.12em;color:rgba(245,239,228,0.6);margin-top:14px;text-transform:none;font-weight:400;}
+
+/* scan console */
+.console{display:none;background:var(--black);border:1px solid var(--line2);font-family:'JetBrains Mono';font-size:12px;padding:0;margin-top:4px;overflow:hidden;}
+.console.show{display:block;}
+.console .ctop{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,0.02);}
+.console .ctop .dot{width:9px;height:9px;border-radius:50%;}
+.console .ctop .d1{background:#c0613f;}.console .ctop .d2{background:#c9923b;}.console .ctop .d3{background:#4a9d6e;}
+.console .ctop .ctitle{margin-left:8px;font-size:10px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;}
+.console .clog{padding:18px 18px 8px;min-height:230px;}
+.logline{display:flex;gap:10px;margin-bottom:9px;opacity:0;animation:fadein .3s forwards;}
+.logline .t{color:var(--muted);flex-shrink:0;}
+.logline .m{color:rgba(245,239,228,0.85);}
+.logline .ok{color:var(--green);}
+.logline .flag{color:var(--goldBright);}
+@keyframes fadein{to{opacity:1;}}
+.progress{height:3px;background:rgba(245,239,228,0.08);margin:8px 18px 18px;position:relative;overflow:hidden;}
+.progress .pf{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--goldBright));transition:width .4s linear;}
+
+/* report */
+.report{display:none;}
+.report.show{display:block;animation:fadein .5s;}
+.rhero{background:radial-gradient(ellipse at 50% 0%, #0c2a44, #050A0F);border:1px solid var(--line2);padding:40px;text-align:center;margin-bottom:18px;position:relative;overflow:hidden;}
+.rhero::before{content:'';position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(rgba(245,239,228,0.05) 1px,transparent 1px);background-size:4px 4px;}
+.rhero>*{position:relative;z-index:1;}
+.rhero .label{color:var(--goldLight);margin-bottom:14px;}
+.rhero .bignum{font-family:'EB Garamond';font-weight:600;font-size:clamp(48px,9vw,84px);color:var(--goldBright);line-height:1;letter-spacing:-0.02em;}
+.rhero .bigcap{font-size:13px;color:rgba(245,239,228,0.7);margin-top:10px;}
+.rhero .rmeta{display:flex;gap:30px;justify-content:center;margin-top:24px;flex-wrap:wrap;}
+.rhero .rmeta .rm .rmv{font-family:'EB Garamond';font-size:24px;color:var(--cream);font-weight:600;}
+.rhero .rmeta .rm .rml{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+
+.findhead{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 14px;}
+.findhead .fh1{font-family:'EB Garamond';font-weight:600;font-size:21px;color:var(--cream);}
+.findhead .fh2{font-family:'JetBrains Mono';font-size:10px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;}
+
+.finding{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-left:2px solid var(--goldBright);padding:18px 20px;margin-bottom:12px;opacity:0;transform:translateX(-10px);}
+.finding.in{animation:slidein .5s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes slidein{to{opacity:1;transform:none;}}
+.finding .ftop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12px;}
+.finding .fvendor{font-family:'EB Garamond';font-weight:600;font-size:16px;color:var(--cream);}
+.finding .fpattern{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:0.1em;color:var(--goldLight);text-transform:uppercase;margin-top:3px;}
+.finding .famt{font-family:'JetBrains Mono';font-size:19px;color:var(--goldBright);font-weight:700;white-space:nowrap;}
+.finding .fcompare{display:flex;gap:12px;margin-bottom:11px;flex-wrap:wrap;}
+.finding .fbox{flex:1;min-width:200px;padding:11px 13px;border:1px solid var(--line);background:rgba(0,0,0,0.2);}
+.finding .fbox .fbl{font-family:'JetBrains Mono';font-size:8px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:5px;}
+.finding .fbox.contract .fbl{color:var(--green);}
+.finding .fbox.invoice .fbl{color:var(--red);}
+.finding .fbox .fbv{font-size:12px;color:rgba(245,239,228,0.9);line-height:1.45;}
+.finding .fnote{font-size:11.5px;color:var(--muted);line-height:1.5;}
+.finding .fverify{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.06em;color:var(--green);text-transform:uppercase;}
+.finding .fverify .vd{width:6px;height:6px;border-radius:50%;background:var(--green);}
+
+/* report CTA */
+.rcta{background:radial-gradient(ellipse at 50% 0%, #0c2a44, #050A0F);border:1px solid var(--line2);padding:40px;text-align:center;margin-top:22px;}
+.rcta h3{font-family:'EB Garamond';font-weight:500;font-size:clamp(24px,4vw,32px);color:var(--cream);margin-bottom:12px;}
+.rcta h3 .italic{color:var(--goldLight);}
+.rcta p{font-size:13.5px;color:rgba(245,239,228,0.8);max-width:52ch;margin:0 auto 24px;}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{text-decoration:none;font-family:'Poppins';font-size:12px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;padding:15px 28px;transition:all .2s;cursor:pointer;border:none;}
+.btn-solid{background:var(--gold);color:var(--cream);}
+.btn-solid:hover{background:var(--goldBright);}
+.btn-ghost{border:1px solid var(--goldLight);color:var(--cream);background:none;}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);}
+
+/* disclosure / footer */
+.disc{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);}
+.disc p{font-family:'EB Garamond';font-style:italic;font-size:12px;color:var(--muted);line-height:1.6;max-width:90ch;}
+footer{padding:28px 0 50px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line);margin-top:24px;}
+footer .mono{font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+footer a{color:var(--goldLight);text-decoration:none;}
+
+.reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes rise{to{opacity:1;transform:none;}}
+.d1{animation-delay:.05s;}.d2{animation-delay:.13s;}.d3{animation-delay:.22s;}
+.hidden{display:none!important;}
+</style>
+</head>
+<body>
+
+<div class="ribbon">Demonstration · Synthetic Data · Not a Live Engagement</div>
+
+<div class="wrap">
+  <header class="reveal d1">
+    <div class="brand">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C9923B"/><stop offset="100%" stop-color="#996420"/></linearGradient></defs>
+        <path d="M30 6 A24 24 0 1 0 54 30" stroke="#F5EFE4" stroke-width="6" stroke-linecap="round" opacity="0.92"/>
+        <path d="M30 12 A18 18 0 1 0 48 30" stroke="#7d96aa" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+        <line x1="6" y1="30" x2="54" y2="30" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="nm">G&amp;P <span>Standards</span><small>Forensic Recovery</small></div>
+    </div>
+    <div class="eng">
+      <div class="e1">AURUM&trade;</div>
+      <div class="e2">Forensic Console · Built on Anthropic</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="label reveal d1">Live Demonstration</div>
+    <h1 class="display reveal d2">Watch the leakage surface — <span class="italic">in seconds, not months.</span></h1>
+    <p class="reveal d3">This is a working demonstration of AURUM, our forensic reconciliation engine, running on a <strong style="color:var(--cream);font-weight:500;">synthetic sample dataset</strong>. Choose a sector, load the sample, and watch the engine reconstruct contracts, test every invoice against them, and surface the money that was quietly leaking — exactly as it would in a real engagement.</p>
+  </section>
+
+  <!-- STEPS -->
+  <div class="stepwrap reveal d3">
+    <div class="st on" id="step1"><span class="num">1</span> Choose Sector</div>
+    <div class="sep"></div>
+    <div class="st" id="step2"><span class="num">2</span> Load Data</div>
+    <div class="sep"></div>
+    <div class="st" id="step3"><span class="num">3</span> Analyze</div>
+    <div class="sep"></div>
+    <div class="st" id="step4"><span class="num">4</span> Recovery Report</div>
+  </div>
+
+  <!-- SETUP PANEL -->
+  <div class="panel reveal d3" id="setupPanel">
+    <div class="panel-title">1 · Select a sector</div>
+    <div class="panel-sub">Each sample reflects the vendor types and leakage patterns typical of that industry.</div>
+    <div class="sectors" id="sectors">
+      <button class="sect" data-k="restaurants"><div class="sicon">❖</div><div class="sname">Multi-Unit Restaurants</div><div class="sdesc">Distributors, processors, delivery platforms</div></button>
+      <button class="sect" data-k="healthcare"><div class="sicon">✚</div><div class="sname">PE-Backed Healthcare</div><div class="sdesc">Supplies, labs, imaging, revenue cycle</div></button>
+      <button class="sect" data-k="manufacturing"><div class="sicon">⚙</div><div class="sname">Manufacturing</div><div class="sdesc">Freight, commodities, industrial supply</div></button>
+      <button class="sect" data-k="nursing"><div class="sicon">✦</div><div class="sname">Skilled Nursing</div><div class="sdesc">Pharmacy, GPO, medical supply, therapy</div></button>
+    </div>
+
+    <div class="panel-title" style="margin-top:30px;">2 · Load the sample dataset</div>
+    <div class="panel-sub">Drop any file to simulate your vendor data, or load the prepared synthetic sample.</div>
+    <div class="upload" id="upload">
+      <div class="uicon">↥</div>
+      <div class="utitle">Drop vendor file here</div>
+      <div class="usub">Accepts AP ledger, invoices, or contracts &mdash; .xlsx, .csv, .pdf</div>
+      <div class="ufile" id="ufile"></div>
+      <input type="file" id="fileInput" class="hidden">
+    </div>
+    <div class="orsample">
+      <div class="or">— or —</div>
+      <button class="linkbtn" id="useSample">Load the prepared synthetic sample dataset →</button>
+    </div>
+
+    <div class="analyze-wrap">
+      <button class="analyze" id="analyzeBtn" disabled>Run AURUM Analysis
+        <span class="hint" id="analyzeHint">Select a sector and load data to begin</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SCAN CONSOLE -->
+  <div class="console" id="console">
+    <div class="ctop"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="ctitle">AURUM Engine · Forensic Reconciliation</span></div>
+    <div class="clog" id="clog"></div>
+    <div class="progress"><div class="pf" id="pf"></div></div>
+  </div>
+
+  <!-- REPORT -->
+  <div class="report" id="report">
+    <div class="rhero">
+      <div class="label">Recoverable Leakage Identified</div>
+      <div class="bignum" id="bignum">$0</div>
+      <div class="bigcap" id="bigcap">across the sample dataset · senior-verified findings</div>
+      <div class="rmeta">
+        <div class="rm"><div class="rmv" id="mInv">0</div><div class="rml">Invoice Lines Scanned</div></div>
+        <div class="rm"><div class="rmv" id="mVen">0</div><div class="rml">Vendors Reconciled</div></div>
+        <div class="rm"><div class="rmv" id="mFind">0</div><div class="rml">Confirmed Findings</div></div>
+        <div class="rm"><div class="rmv" id="mTime">0s</div><div class="rml">Engine Runtime</div></div>
+      </div>
+    </div>
+
+    <div class="findhead">
+      <div class="fh1">Confirmed Findings</div>
+      <div class="fh2" id="findSectorLabel"></div>
+    </div>
+    <div id="findings"></div>
+
+    <div class="rcta">
+      <h3 class="display">This was synthetic. <span class="italic">Your contracts are not.</span></h3>
+      <p>This demonstration runs on prepared sample data. A real engagement runs AURUM against your own vendor master, invoices, and contracts &mdash; with every finding verified by a senior analyst before it reaches you.</p>
+      <div class="btns">
+        <a class="btn btn-solid" href="mailto:engagements@gpstandards.com?subject=Forensic%20Recovery%20Briefing%20%E2%80%94%20G%26P%20Standards">Request a Real Analysis</a>
+        <button class="btn btn-ghost" id="resetBtn">Run Another Sector</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLOSURE -->
+  <div class="disc">
+    <p>Demonstration only. All vendors, invoices, contract terms, and recovery figures shown are fictional, synthetic data created solely to illustrate the AURUM methodology. They do not represent any real company, any real G&amp;P Standards client, or any guarantee of results. No file you load is uploaded, stored, transmitted, or analyzed; the demonstration uses prepared sample data regardless of input. AURUM is built on licensed US enterprise AI (including Anthropic) with senior human verification on every finding. Actual recovery depends on your contracts, data, and control environment, and is confirmed only under a signed engagement. G&amp;P Standards is an independent forensic recovery firm and is not a licensed public accounting firm.</p>
+  </div>
+
+  <footer>
+    <div class="mono">© 2026 Genesis &amp; Prime Standards LLC · Wilmington, Delaware, USA</div>
+    <div class="mono"><a href="https://gpstandards.com">gpstandards.com</a></div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ---------- synthetic datasets ----------
+  var DATA = {
+    restaurants: {
+      label:"Multi-Unit Restaurants",
+      invoices:128420, vendors:312,
+      findings:[
+        {vendor:"Broadline Foodservice Co.", pattern:"Missed Volume Rebate Tier", amt:412800,
+         contract:"Tier 3 rebate of 4.5% applies above $18M annual purchases (Exhibit B, §2.3).",
+         invoice:"Rebate credited at Tier 1 (1.5%) all 24 months despite $21.4M annual volume.",
+         note:"Volume crossed the Tier 3 threshold in month 4 and was never re-tiered. 24-month under-credit recovered."},
+        {vendor:"MeridianPay Processing", pattern:"Fee Above Negotiated Rate", amt:286500,
+         contract:"Interchange-plus 0.18% + $0.07/txn (MSA §4.1).",
+         invoice:"Effective blended rate billed at 0.41% across 9.2M transactions.",
+         note:"Processor drifted off the contracted interchange-plus schedule; differential recovered across all locations."},
+        {vendor:"QuickServe Delivery Platform", pattern:"Commission Over Merchant Agreement", amt:198200,
+         contract:"Capped marketplace commission of 15% (Amendment 2).",
+         invoice:"Commission charged 18–23% on 41,600 orders post-amendment.",
+         note:"Amendment cap never applied in the platform's billing engine. Overage recovered."},
+        {vendor:"Linen & Uniform Svc.", pattern:"Duplicate Payment", amt:74350,
+         contract:"Single monthly service fee per location (SOW §1).",
+         invoice:"38 invoices paid twice across 11 locations (distinct PO + manual entry).",
+         note:"Classic dual-entry duplicate: same invoice keyed against both PO and statement."},
+        {vendor:"ColdChain Logistics", pattern:"Fuel Surcharge Misapplication", amt:61900,
+         contract:"Surcharge indexed to DOE diesel index, reset monthly (§5.2).",
+         invoice:"Surcharge held at peak rate for 14 months after index fell.",
+         note:"De-escalation clause never triggered; recovered to contracted index."}
+      ]
+    },
+    healthcare: {
+      label:"PE-Backed Healthcare",
+      invoices:204870, vendors:418,
+      findings:[
+        {vendor:"National Medical Supply", pattern:"Legacy Rate vs Enterprise Contract", amt:1284000,
+         contract:"Post-acquisition enterprise pricing schedule effective Day 1 (MSA §3).",
+         invoice:"14 acquired sites continued pre-acquisition list pricing for 19 months.",
+         note:"Enterprise rates negotiated but never propagated to acquired locations' ordering systems."},
+        {vendor:"Apex Diagnostic Labs", pattern:"Out-of-Contract Surcharge", amt:642300,
+         contract:"All-inclusive per-test pricing; no handling surcharge (Exhibit A).",
+         invoice:"$11.50 'specimen handling' surcharge on 55,800 tests.",
+         note:"Surcharge has no contractual basis; fully recoverable across the lookback."},
+        {vendor:"ImageOne Radiology", pattern:"Duplicate Imaging Invoice", amt:318900,
+         contract:"One global read fee per study (§2.2).",
+         invoice:"Technical + professional components billed as separate full studies.",
+         note:"Unbundling created duplicate global charges on 2,100 studies."},
+        {vendor:"RevCycle Partners", pattern:"Contracted Fee Creep", amt:486200,
+         contract:"4.0% of net collections, fixed for term (SOW §4).",
+         invoice:"Fee escalated to 4.9–5.6% without executed amendment.",
+         note:"Unauthorized rate increases applied silently; differential recovered."},
+        {vendor:"PharmaDirect 340B", pattern:"Missed Contract Pricing", amt:472100,
+         contract:"340B ceiling pricing on eligible NDCs (Addendum C).",
+         invoice:"WAC pricing applied to 3,400 eligible line items.",
+         note:"Eligible NDCs not flagged to ceiling price; recovered to contracted 340B rate."}
+      ]
+    },
+    manufacturing: {
+      label:"Mid-Market Manufacturing",
+      invoices:312640, vendors:506,
+      findings:[
+        {vendor:"TransContinental Freight", pattern:"Tariff & Accessorial Overcharge", amt:1640500,
+         contract:"Contracted FAK class rate + capped accessorials (Tariff Ex. 1).",
+         invoice:"Billed above class rate + uncapped detention/lumper on 18,200 BOLs.",
+         note:"Rate base and accessorial caps both ignored by carrier billing; recovered across 36 months."},
+        {vendor:"Global Resins & Polymers", pattern:"Wrong Surcharge Index", amt:1218400,
+         contract:"Resin surcharge tied to CDI benchmark, monthly reset (§6.4).",
+         invoice:"Surcharge tied to spot price; never de-escalated when CDI fell 22%.",
+         note:"Index substitution + missing de-escalation; large recovery on high-volume commodity."},
+        {vendor:"Industrial MRO Direct", pattern:"Price Tier Reverted to List", amt:742900,
+         contract:"Negotiated tier pricing, 31% off list (Price Book v4).",
+         invoice:"Pricing reverted to list on 41% of SKUs after a catalog refresh.",
+         note:"Catalog update wiped negotiated tier; differential recovered on affected SKUs."},
+        {vendor:"PowerGrid Energy Supply", pattern:"Demand Charge Error", amt:519700,
+         contract:"Demand billed on contracted capacity, not peak (§3.7).",
+         invoice:"Peak-demand ratchet applied for 22 months.",
+         note:"Ratchet clause misapplied against contract; recovered to contracted capacity basis."},
+        {vendor:"Precision Components Ltd.", pattern:"Duplicate Raw-Material Payment", amt:498600,
+         contract:"Payment on receipt-matched PO only (§2.1).",
+         invoice:"Pre-payment + receipt payment both released on 740 POs.",
+         note:"Pre-pay never cleared against final invoice; duplicate recovered."}
+      ]
+    },
+    nursing: {
+      label:"Skilled Nursing & Senior Living",
+      invoices:96240, vendors:228,
+      findings:[
+        {vendor:"LTC Pharmacy Solutions", pattern:"Per-Diem Dispensing Fee Drift", amt:864200,
+         contract:"$3.85 per-resident-per-day dispensing fee, fixed (§4.2).",
+         invoice:"Fee billed $5.10–$6.40 PRPD across 38 facilities for 26 months.",
+         note:"Dispensing fee escalated without amendment; differential recovered across census."},
+        {vendor:"National GPO Alliance", pattern:"Unclaimed Rebate Tier", amt:548900,
+         contract:"Committed-volume rebate of 6.2% at Tier 2 (Membership Ex. C).",
+         invoice:"Rebates paid at Tier 1 (2.1%); facility ordering never aggregated.",
+         note:"Decentralized ordering kept volume below recognized tier; recovered on aggregated spend."},
+        {vendor:"MedSupply Senior Care", pattern:"Pricing Reverted to List", amt:392600,
+         contract:"Contracted formulary pricing, 28% off list (§3).",
+         invoice:"List pricing applied on incontinence + wound-care lines.",
+         note:"High-volume consumables silently moved off contract pricing; recovered."},
+        {vendor:"RehabTherapy Partners", pattern:"Duplicate Therapy Invoice", amt:286400,
+         contract:"One contracted rate per therapy minute (SOW §2).",
+         invoice:"Group + individual minutes double-counted on 1,900 sessions.",
+         note:"Concurrent therapy minutes billed twice; duplicate portion recovered."},
+        {vendor:"DietaryPro Food Svc.", pattern:"CPI Escalation Overcharge", amt:241800,
+         contract:"Annual CPI cap of 3% on per-meal rate (§5.1).",
+         invoice:"Per-meal rate escalated 7.4% in a single adjustment.",
+         note:"Escalation exceeded contractual CPI cap; overage recovered."}
+      ]
+    }
+  };
+
+  // ---------- scan scripts (Wizard of Oz) ----------
+  function scanScript(d){
+    return [
+      {t:"00:00", m:"Initializing AURUM forensic engine…"},
+      {t:"00:00", m:"Secure enclave established · zero-retention mode active", c:"ok"},
+      {t:"00:01", m:"Ingesting vendor master… "+d.vendors+" vendors"},
+      {t:"00:02", m:"Parsing invoice ledger… "+d.invoices.toLocaleString()+" line items"},
+      {t:"00:03", m:"Reconstructing contractual price books…"},
+      {t:"00:04", m:"Indexing master agreements, exhibits & amendments"},
+      {t:"00:05", m:"Running 19 leakage-detection patterns across corpus…"},
+      {t:"00:06", m:"› duplicate & erroneous payment matching"},
+      {t:"00:06", m:"› contract-vs-invoice variance analysis"},
+      {t:"00:07", m:"› rebate & volume-tier reconciliation"},
+      {t:"00:07", m:"› renewal, price-cap & escalation breaches"},
+      {t:"00:08", m:"› SLA credit, freight & surcharge recovery"},
+      {t:"00:09", m:"Anomaly candidates flagged: "+(d.findings.length+13), c:"flag"},
+      {t:"00:10", m:"Routing high-confidence flags to senior verification…"},
+      {t:"00:11", m:"Senior analyst verification complete · "+d.findings.length+" confirmed", c:"ok"},
+      {t:"00:12", m:"Compiling recovery dossier…"},
+      {t:"00:12", m:"Analysis complete.", c:"ok"}
+    ];
+  }
+
+  // ---------- state ----------
+  var sector=null, dataReady=false;
+
+  function fmt(n){ return '$'+n.toLocaleString('en-US'); }
+  function fmtBig(n){
+    if(n>=1e6) return '$'+(n/1e6).toFixed(2)+'M';
+    if(n>=1e3) return '$'+Math.round(n/1e3)+'K';
+    return '$'+n;
+  }
+
+  function refreshAnalyzeState(){
+    var btn=document.getElementById('analyzeBtn'), hint=document.getElementById('analyzeHint');
+    if(sector && dataReady){ btn.disabled=false; hint.textContent='Engine ready · click to run on sample data'; }
+    else if(!sector){ hint.textContent='Select a sector and load data to begin'; }
+    else { hint.textContent='Load the sample dataset to begin'; }
+    document.getElementById('step1').classList.toggle('on', !sector || true);
+    document.getElementById('step2').classList.toggle('on', !!sector);
+    document.getElementById('step3').classList.toggle('on', !!(sector&&dataReady));
+  }
+
+  // ---------- sector selection ----------
+  document.querySelectorAll('#sectors .sect').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#sectors .sect').forEach(function(x){x.classList.remove('sel');});
+      this.classList.add('sel'); sector=this.dataset.k; refreshAnalyzeState();
+    });
+  });
+
+  // ---------- upload (Wizard of Oz: accepts anything, uses sample) ----------
+  var upload=document.getElementById('upload'), fileInput=document.getElementById('fileInput');
+  upload.addEventListener('click',function(){ fileInput.click(); });
+  upload.addEventListener('dragover',function(e){ e.preventDefault(); upload.style.borderColor='var(--goldBright)'; });
+  upload.addEventListener('dragleave',function(){ upload.style.borderColor=''; });
+  upload.addEventListener('drop',function(e){ e.preventDefault(); upload.style.borderColor='';
+    var f=e.dataTransfer.files[0]; if(f) markLoaded(f.name); });
+  fileInput.addEventListener('change',function(){ if(this.files[0]) markLoaded(this.files[0].name); });
+  document.getElementById('useSample').addEventListener('click',function(){ markLoaded('GP_synthetic_vendor_sample.xlsx'); });
+
+  function markLoaded(name){
+    dataReady=true;
+    upload.classList.add('has');
+    document.getElementById('ufile').textContent='✓ '+name+' · ready for analysis';
+    document.querySelector('#upload .utitle').textContent='Dataset loaded';
+    document.querySelector('#upload .usub').textContent='Using prepared synthetic sample for this demonstration';
+    refreshAnalyzeState();
+  }
+
+  // ---------- analyze ----------
+  document.getElementById('analyzeBtn').addEventListener('click',runAnalysis);
+
+  function runAnalysis(){
+    var d=DATA[sector];
+    document.getElementById('setupPanel').classList.add('hidden');
+    var con=document.getElementById('console'), clog=document.getElementById('clog'), pf=document.getElementById('pf');
+    con.classList.add('show'); clog.innerHTML=''; pf.style.width='0';
+    document.getElementById('step3').classList.add('on');
+    con.scrollIntoView({behavior:'smooth',block:'center'});
+
+    var script=scanScript(d), i=0;
+    var iv=setInterval(function(){
+      if(i>=script.length){ clearInterval(iv); setTimeout(function(){ showReport(d); }, 600); return; }
+      var l=script[i];
+      var div=document.createElement('div'); div.className='logline';
+      div.innerHTML='<span class="t">['+l.t+']</span><span class="m '+(l.c||'')+'">'+l.m+'</span>';
+      clog.appendChild(div);
+      clog.parentElement.querySelector('.clog').scrollTop=9999;
+      pf.style.width=Math.round((i+1)/script.length*100)+'%';
+      i++;
+    }, 360);
+  }
+
+  // ---------- report ----------
+  function showReport(d){
+    document.getElementById('console').classList.remove('show');
+    var rep=document.getElementById('report'); rep.classList.add('show');
+    document.getElementById('step4').classList.add('on');
+    document.getElementById('findSectorLabel').textContent=d.label+' · Synthetic Sample';
+
+    var total=d.findings.reduce(function(s,f){return s+f.amt;},0);
+    // animate headline number
+    animate(document.getElementById('bignum'), 0, total, 1400, fmtBig);
+    animate(document.getElementById('mInv'), 0, d.invoices, 1200, function(n){return Math.round(n).toLocaleString();});
+    animate(document.getElementById('mVen'), 0, d.vendors, 1200, function(n){return Math.round(n);});
+    animate(document.getElementById('mFind'), 0, d.findings.length, 1000, function(n){return Math.round(n);});
+    document.getElementById('mTime').textContent='12s';
+
+    rep.scrollIntoView({behavior:'smooth',block:'start'});
+
+    // render findings
+    var fc=document.getElementById('findings'); fc.innerHTML='';
+    d.findings.forEach(function(f,idx){
+      var el=document.createElement('div'); el.className='finding';
+      el.innerHTML=
+        '<div class="ftop"><div><div class="fvendor">'+f.vendor+'</div><div class="fpattern">'+f.pattern+'</div></div>'+
+        '<div class="famt">'+fmt(f.amt)+'</div></div>'+
+        '<div class="fcompare">'+
+          '<div class="fbox contract"><div class="fbl">Contract Says</div><div class="fbv">'+f.contract+'</div></div>'+
+          '<div class="fbox invoice"><div class="fbl">Invoice Charged</div><div class="fbv">'+f.invoice+'</div></div>'+
+        '</div>'+
+        '<div class="fnote">'+f.note+'</div>'+
+        '<div class="fverify"><span class="vd"></span>Senior-verified · traced to clause &amp; invoice line</div>';
+      fc.appendChild(el);
+      setTimeout(function(){ el.classList.add('in'); }, 1400 + idx*450);
+    });
+  }
+
+  function animate(el, from, to, dur, fmtFn){
+    var t0=performance.now();
+    function step(t){
+      var p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent=fmtFn(from+(to-from)*e);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ---------- reset ----------
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    document.getElementById('report').classList.remove('show');
+    document.getElementById('setupPanel').classList.remove('hidden');
+    document.querySelectorAll('#sectors .sect').forEach(function(x){x.classList.remove('sel');});
+    upload.classList.remove('has');
+    document.getElementById('ufile').textContent='';
+    document.querySelector('#upload .utitle').textContent='Drop vendor file here';
+    document.querySelector('#upload .usub').textContent='Accepts AP ledger, invoices, or contracts — .xlsx, .csv, .pdf';
+    sector=null; dataReady=false;
+    ['step2','step3','step4'].forEach(function(s){document.getElementById(s).classList.remove('on');});
+    refreshAnalyzeState();
+    document.getElementById('setupPanel').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  refreshAnalyzeState();
+})();
+</script>
+
+<script>
+/* Bridge to parent (demo.html) — auto-resize iframe + signal report shown.
+   Harmless when opened standalone (no parent listener). */
+(function(){
+  function postH(){ try{ parent.postMessage({type:'gpAurumHeight', h: document.documentElement.scrollHeight}, '*'); }catch(e){} }
+  if (window.ResizeObserver){ try{ new ResizeObserver(postH).observe(document.body); }catch(e){} }
+  window.addEventListener('load', postH);
+  setInterval(postH, 1200);
+  var rep = document.getElementById('report');
+  if (rep){
+    var mo = new MutationObserver(function(){
+      if (rep.classList.contains('show')){ try{ parent.postMessage({type:'gpAurumReport'}, '*'); }catch(e){} }
+    });
+    mo.observe(rep, {attributes:true, attributeFilter:['class']});
+  }
+})();
+</script>
+
+</body>
+</html>
