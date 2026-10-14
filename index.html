@@ -3,120 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G&P Standards | Genesis & Prime Sovereign Systems</title>
-    <script src="https://tailwindcss.com"></script>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>G&P Standards | Sovereign Systems Architecture</title>
     <style>
+        /* الدليل اللوني الرسمي والهوية البصرية الحديدية لـ G&P Standards */
         :root {
-            --gp-navy: #0B2F4D;
-            --gp-gold: #996420;
+            --navy: #0B2F4D;    /* الكحلي السيادي */
+            --gold: #996420;    /* الذهب الصلب */
+            --light-bg: #F4F7FA;
+            --text-dark: #0B2F4D;
         }
-        body { font-family: 'Poppins', sans-serif; background-color: #f8faff; color: var(--gp-navy); }
-        h1, h2, .brand-font { font-family: 'Playfair Display', serif; }
-        .bg-gp-navy { background-color: var(--gp-navy); }
-        .text-gp-gold { color: var(--gp-gold); }
-        .border-gp-gold { border-color: var(--gp-gold); }
-        .btn-gold { background-color: var(--gp-gold); color: white; transition: all 0.3s ease; }
-        .btn-gold:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(153, 100, 32, 0.3); }
-        .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(11, 47, 77, 0.1); }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #ffffff;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            items-content: center;
+            border-bottom: 1px solid rgba(11, 47, 77, 0.1);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background-color: var(--navy);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--navy);
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        header {
+            background-color: var(--navy);
+            color: #ffffff;
+            padding: 90px 40px;
+            text-align: left;
+        }
+
+        .header-container {
+            max-w: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 46px;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
+
+        h2 strong {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .gold-italic {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #A0B2C6;
+            max-width: 650px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background-color: var(--gold);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 35px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            transition: background 0.2s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: #82531A;
+        }
+
+        /* Three-Column Ledger (Features) */
+        .ledger-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1max));
+            gap: 50px;
+        }
+
+        .ledger-card {
+            border-left: 3px solid var(--gold);
+            padding-left: 25px;
+        }
+
+        .ledger-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        .ledger-card p {
+            font-size: 14px;
+            color: #4A607A;
+            font-weight: 300;
+        }
+
+        /* Ingestion Box (CTA) */
+        .ingestion-section {
+            background-color: #ffffff;
+            border-top: 1px solid rgba(11, 47, 77, 0.05);
+            border-bottom: 1px solid rgba(11, 47, 77, 0.05);
+            padding: 90px 40px;
+            text-align: center;
+        }
+
+        .ingestion-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .ingestion-box {
+            border: 2px dashed rgba(11, 47, 77, 0.2);
+            background-color: var(--light-bg);
+            padding: 60px 20px;
+            margin-top: 40px;
+            border-radius: 4px;
+            transition: border-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .ingestion-box:hover {
+            border-color: var(--gold);
+        }
+
+        .ingestion-box h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: var(--navy);
+        }
+
+        .ingestion-box p {
+            font-size: 12px;
+            color: #7A8B9E;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 40px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            h2 { font-size: 32px; }
+            .ledger-section { grid-template-columns: 1fr; gap: 30px; }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 glass-panel py-4 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <!-- Placeholder for the sophisticated logo icon you provided -->
-                <div class="w-10 h-10 bg-gp-navy rounded-full flex items-center justify-center text-gp-gold font-bold border border-gp-gold">C</div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-bold tracking-tight leading-none">G&P <span class="font-light opacity-70">STANDARDS</span></span>
-                    <span class="text-[10px] tracking-[0.2em] uppercase text-gp-gold font-semibold">Genesis & Prime</span>
-                </div>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
-                <a href="#" class="hover:text-gp-gold transition-colors">Infrastructure</a>
-                <a href="#" class="hover:text-gp-gold transition-colors">Compliance</a>
-                <a href="mailto:chairman@gpstandards.com" class="text-gp-gold border-b border-gp-gold">Contact Board</a>
+    <!-- Header Navigation -->
+    <nav>
+        <div class="logo-area">
+            <div class="logo-icon">C</div>
+            <div class="logo-text">
+                <h1>G&P STANDARDS</h1>
+                <p>Genesis & Prime</p>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative overflow-hidden bg-gp-navy text-white pt-24 pb-32">
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
-            <!-- Simulated background texture from your images -->
-            <svg viewBox="0 0 100 100" class="w-full h-full"><path d="M0 50 Q 25 0 50 50 T 100 50" fill="none" stroke="#996420" stroke-width="0.5"/></svg>
-        </div>
-        
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-            <span class="inline-block px-4 py-1 border border-gp-gold text-gp-gold text-[10px] uppercase tracking-[0.3em] mb-6 rounded-full">Systems Architecture</span>
-            <h1 class="text-5xl md:text-7xl mb-8 leading-tight">
-                Deterministic InterOps for the <br>
-                <span class="text-gp-gold italic">Mid-Market Sovereign.</span>
-            </h1>
-            <p class="text-lg md:text-xl opacity-80 max-w-2xl mb-12 font-light leading-relaxed">
-                We engineer the invisible software layers that bridge unstandardized edge data with rigid legacy systems. Zero-Storage. Zero-Latency. Federal-grade velocity.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="#demo" class="btn-gold px-10 py-4 text-sm font-semibold uppercase tracking-widest rounded-sm text-center">
-                    Request Architectural Audit
-                </a>
-                <div class="flex items-center gap-3 px-4 py-2 border border-white/20 rounded-sm">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span class="text-xs font-light uppercase tracking-tighter">Nodes Active: US Central / East</span>
-                </div>
-            </div>
+    <!-- Main Architectural Hero -->
+    <header>
+        <div class="header-container">
+            <div class="badge">Systems Architecture</div>
+            <h2>Deterministic InterOps for the <br><span class="gold-italic">Mid-Market Sovereign.</span></h2>
+            <p>We engineer the invisible software layers that bridge unstandardized edge data with rigid legacy systems. Zero-Storage. Zero-Latency. Federal-grade velocity.</p>
+            <a href="mailto:chairman@gpstandards.com" class="btn-gold">Request Architectural Audit & Demo</a>
         </div>
     </header>
 
-    <!-- Methodology Section -->
-    <section class="py-24 max-w-6xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div class="border-l-2 border-gp-gold pl-6">
-                <h3 class="brand-font text-2xl mb-4">Zero-Storage</h3>
-                <p class="text-sm text-gray-600 leading-relaxed font-light">Data processed in volatile RAM and flushed instantly. We don't store your secrets; we verify them. 100% HIPAA/SOC2 architecture alignment.</p>
-            </div>
-            <div class="border-l-2 border-gp-gold pl-6">
-                <h3 class="brand-font text-2xl mb-4">14-Day Delivery</h3>
-                <p class="text-sm text-gray-600 leading-relaxed font-light">While legacy firms bill for months of discovery, our core deterministic engine deploys and reconciles your first dataset in under two weeks.</p>
-            </div>
-            <div class="border-l-2 border-gp-gold pl-6">
-                <h3 class="brand-font text-2xl mb-4">Revenue Capture</h3>
-                <p class="text-sm text-gray-600 leading-relaxed font-light">Directly targeting the 8-12% EBITDA leakage found in fragmented mid-market operations through automated reconciliation loops.</p>
+    <!-- Operational Ledger (The Core Value) -->
+    <section class="ledger-section">
+        <div class="ledger-card">
+            <h3>Zero-Storage</h3>
+            <p>Data processed in volatile RAM and flushed instantly. We do not store corporate records; we verify and route them. Fully aligned with SOC2 data security protocols.</p>
+        </div>
+        <div class="ledger-card">
+            <h3>14-Day Velocity</h3>
+            <p>While legacy consultancies bill for months of discovery, our core deterministic engine configures and reconciles your first dataset in under two weeks.</p>
+        </div>
+        <div class="ledger-card">
+            <h3>Revenue Capture</h3>
+            <p>Directly targeting the 12% to 18% EBITDA leakage found in fragmented mid-market operations through automated, non-invasive reconciliation loops.</p>
+        </div>
+    </section>
+
+    <!-- Secure Ingestion Node (The Bait) -->
+    <section class="ingestion-section">
+        <div class="ingestion-container">
+            <h3>Validate Your Leaks in 7 Minutes</h3>
+            <p style="color: #4A607A; font-weight: 300; margin-top: 10px;">Drop a de-identified sample of your fragmented ledger files (CSV/JSON). Our core engine will chart the revenue leaks without accessing your live network.</p>
+            
+            <div class="ingestion-box" onclick="window.location.href='mailto:chairman@://gpstandards.com Ledger Deposit'">
+                <h4>Drop Encrypted Ledger File Here</h4>
+                <p>Secure AES-256 Ingestion Node</p>
             </div>
         </div>
     </section>
 
-    <!-- The Demo "Brick" - Low Tension Ingestion -->
-    <section id="demo" class="bg-white py-24 border-y border-gray-100">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl mb-6">Validate in 7 Minutes</h2>
-            <p class="text-gray-500 mb-12 font-light">Upload a de-identified sample of your edge data (CSV/JSON). Our engine will map the leaks without touching your production environment.</p>
-            
-            <div class="border-2 border-dashed border-gp-navy/20 rounded-lg p-16 bg-f8faff group hover:border-gp-gold transition-all cursor-pointer">
-                <div class="text-gp-navy opacity-40 mb-4">
-                    <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                </div>
-                <p class="text-sm font-semibold uppercase tracking-widest mb-2">Drop Encrypted Ledger File</p>
-                <p class="text-xs text-gray-400">Secure AES-256 Upload Node</p>
-            </div>
-            
-            <p class="mt-8 text-[10px] uppercase tracking-widest text-gray-400">By proceeding, you agree to our Sovereign Data Protocols.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gp-navy text-white/50 py-16 px-6 border-t border-gp-gold/30">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3">
-                <span class="text-gp-gold font-bold tracking-widest uppercase text-xs">G&P STANDARDS</span>
-                <span class="h-4 w-[1px] bg-white/20"></span>
-                <span class="text-[10px] tracking-tight">Est. 2026 Riyadh / Delaware</span>
-            </div>
-            <p class="text-[10px] uppercase tracking-[0.2em]">&copy; All Systems Sovereign. Authorized Personnel Only.</p>
-        </div>
+    <!-- Sovereign Footer -->
+    <footer>
+        &copy; 2026 G&P Standards | All Systems Sovereign | Authorized Personnel Only
     </footer>
 
 </body>
